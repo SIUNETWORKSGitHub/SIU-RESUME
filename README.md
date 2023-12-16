@@ -9,3 +9,7 @@ My digital Siu Resume, following step by step from [ https://learn.acloud.guru/s
 ## How to upload files folders projects on github (Simple Way)
 
 - step by step [https://www.youtube.com/watch?v=eGaImwD8fPQ video]()
+
+## git Download
+
+download git for your repo [https://git-scm.com/download/win video]()
