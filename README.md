@@ -1,2 +1,2 @@
-# az-resume
+# SIU-resume
 My digital Azure Resume
