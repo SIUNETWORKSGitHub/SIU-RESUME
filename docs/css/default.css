@@ -804,23 +804,21 @@ properly.
 	margin-left: auto !important;
 	margin-right: auto !important;
 	text-align: center !important;
-}
 
-.btn {
-  background-color: Black;
+btn {
+  background-color: Grey;
   border-radius: 50px;
   border: none;
   color: white;
   padding: 12px 30px;
   cursor: pointer;
-  font-size: 20px;
+  font-size: 15px;
 }
  
 /* Darker background on mouse-over */
 .btn:hover {
-  background-color: grey;
+  background-color: Black;
 }
-
 
 
 
