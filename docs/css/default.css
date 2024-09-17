@@ -806,6 +806,21 @@ properly.
 	text-align: center !important;
 }
 
+.btn {
+  background-color: Black;
+  border-radius: 50px;
+  border: none;
+  color: white;
+  padding: 12px 30px;
+  cursor: pointer;
+  font-size: 20px;
+}
+ 
+/* Darker background on mouse-over */
+.btn:hover {
+  background-color: grey;
+}
+
 
 
 
