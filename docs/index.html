@@ -271,6 +271,20 @@
 			transform: rotate(5deg) scale(1.05);
 		}
 
+		/* New Cloud Partners image style */
+		.cloud-partners-image {
+			max-width: 100%; /* Ensure responsiveness */
+			height: auto;
+			border-radius: 14px; /* Match other images */
+			margin-top: 20px; /* Space from profile pic */
+			box-shadow: 0 0 10px rgba(0, 255, 0, 0.2); /* Subtle green glow */
+			transition: transform 0.3s ease-in-out;
+		}
+		.cloud-partners-image:hover {
+			transform: scale(1.03); /* Slight zoom on hover */
+		}
+
+
 		/* --- Services Section --- */
 		#services {
 			background: #0a0a0a;
@@ -482,9 +496,8 @@
 	 			<h3>**SiuCloud** helps **Small to Medium Businesses (SMBs)** thrive in the cloud with simple, effective solutions. Get **cost savings, robust security, and seamless growth** – without the tech headaches.</h3>
 
 				<div class="home">
-					<img src="images/cloud_providers_logos.png" alt="Logos of AWS, Azure, and Google Cloud Platform" style="max-width: 400px;">
-					<p class="home">We partner with leading cloud platforms like AWS, Azure, and Google Cloud to simplify your digital journey.</p>
-				</div>
+					<img src="images/cloud_solution_call_to_action.jpg" alt="Your Cloud Solution Starts Here. Call Today: 305 440 9192." style="max-width: 600px;">
+					</div>
 
 	 			<ul class="social">
 					<li><a href="https://siucloud.org/images/Siu.pdf" target="_blank" class="btn"><i class="fa fa-download"></i> Download Our Cloud Service Catalog</a></li>
@@ -505,7 +518,8 @@
 	 	<div class="row">
 
 	 		<div class="three columns">
-	 			<img class="profile-pic" src=docs/images/Cloud_Partners.png alt="Cloud Advisor Image representing strategy and expertise" />
+	 			<img class="profile-pic" src="images/cloud_advisor_hero.png" alt="Cloud Advisor Image representing strategy and expertise" />
+                <img class="cloud-partners-image" src="docs/images/Cloud_Partners.png" alt="SiuCloud partners with leading cloud providers" />
 	 		</div>
 
 	 		<div class="nine columns main-col">
@@ -859,4 +873,76 @@
 	 		<div class="twelve columns">
 	 			<ul class="social-links">
 	 				<li><a href="https://www.linkedin.com/in/siunetworks/" target="_blank" aria-label="LinkedIn"><i class="fa fa-linkedin"></i></a></li>
-	 				<li><a href="https://github
+	 				<li><a href="https://github.com/SIUNETWORKSGitHub" target="_blank" aria-label="GitHub"><i class="fa fa-github"></i></a></li>
+					<li><a href="https://siucloud.org" target="_blank" aria-label="Our Blog"><i class="fa fa-external-link"></i> Our Blog</a></li>
+	 			</ul>
+	 			<ul class="copyright">
+	 				<li>&copy; Copyright 2025 SiuCloud.org</li>
+	 				<li>Design based on <a href="https://www.styleshout.com/free-templates/ceevee/" target="_blank">CeeVee by Styleshout</a>, modified by SiuCloud.org</li>
+	 			</ul>
+	 		</div>
+
+	 		<div id="go-top"><a class="smoothscroll" title="Back to Top" href="#home"><i class="icon-up-open"></i></a></div>
+			<img class="footer-logo" src="images/siucloudlogo.png" alt="SiuCloud Logo" style="height: 50px; margin-top: 20px;" />
+	 	</div>
+	</footer>
+
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+	<script>window.jQuery || document.write('<script src="js/jquery-1.10.2.min.js"><\/script>')</script>
+	<script type="text/javascript" src="js/jquery-migrate-1.2.1.min.js"></script>
+
+	<script src="js/jquery.flexslider.js"></script>
+	<script src="js/waypoints.js"></script>
+	<script src="js/jquery.fittext.js"></script>
+	<script src="js/magnific-popup.js"></script>
+	<script src="js/init.js"></script>
+	<script>
+		$(window).on('load', function() {
+			// Animated Counters
+			function animateNumbers() {
+				$('.stats-item strong').each(function() {
+					$(this).prop('Counter', 0).animate({
+						Counter: $(this).data('count')
+					}, {
+						duration: 2500,
+						easing: 'swing',
+						step: function(now) {
+							$(this).text(Math.ceil(now));
+						}
+					});
+				});
+			}
+
+			// Trigger animation when the stats section is in view
+			$('#stats').waypoint(function() {
+				animateNumbers();
+				this.destroy();
+			}, { offset: '80%' });
+
+			// Testimonials Carousel (FlexSlider)
+			if ($.fn.flexslider) {
+				$('.flexslider').flexslider({
+					animation: "slide",
+					controlsContainer: $(".flex-container"),
+					slideshowSpeed: 8000,
+					animationSpeed: 700,
+					directionNav: false,
+					controlNav: true,
+					pauseOnAction: true,
+					pauseOnHover: true
+				});
+			}
+
+			// FAQ Accordion functionality
+			$('.faq-question').on('click', function() {
+				var $parentItem = $(this).parent('.faq-item');
+				$('.faq-item').not($parentItem).removeClass('active').find('.faq-answer').slideUp(300);
+
+				$parentItem.toggleClass('active');
+				$parentItem.find('.faq-answer').slideToggle(300);
+			});
+		});
+	</script>
+</body>
+
+</html>
