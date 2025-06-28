@@ -3,8 +3,8 @@
 <head>
 
 	<meta charset="utf-8">
-	<title>SiuCloud | Your Trusted Cloud Advisor & Analyst for SMBs</title>
-	<meta name="description" content="Expert cloud advisory and analysis services for small and medium-sized businesses. Optimize costs, enhance security, and scale effectively with AWS, Azure, and GCP.">
+	<title>SiuCloud | Your Cloud, Simplified: Strategy, Savings, Security for SMBs</title>
+	<meta name="description" content="Expert cloud strategy, cost optimization, and security for small to medium-sized businesses. Get simple, effective cloud solutions.">
 	<meta name="author" content="Roberto Siu | SiuCloud.org">
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
@@ -104,9 +104,12 @@
 			-webkit-background-size: cover;
 			text-align: center;
 			position: relative;
-			height: 850px;
-			min-height: 600px;
+			height: auto; /* Adjust height based on content */
+			min-height: 850px; /* Minimum height for initial view */
 			overflow: hidden; /* Hide overflow from banner elements */
+			display: flex; /* Use flexbox for vertical centering */
+			align-items: center; /* Center content vertically */
+			justify-content: center; /* Center content horizontally */
 		}
 
 		.header-overlay {
@@ -123,36 +126,58 @@
 			position: relative;
 			z-index: 2;
 			color: #00ff00;
-			padding-top: 150px;
+			padding-top: 50px; /* Reduced top padding as flexbox handles centering */
+			padding-bottom: 50px; /* Added bottom padding */
+			max-width: 900px; /* Limit width for better readability */
+			margin: 0 auto; /* Center banner content */
 		}
 		.banner-text h1 {
 			color: #39ff14;
-			font-size: 60px;
+			font-size: 56px; /* Slightly smaller for video prominence */
 			margin-bottom: 15px;
 			line-height: 1.1;
-			text-shadow: 0 0 15px rgba(0, 255, 0, 0.5); /* Subtle neon glow effect */
-			animation: fadeInDown 1s ease-out; /* Animation for main headline */
+			text-shadow: 0 0 15px rgba(0, 255, 0, 0.5);
+			animation: fadeInDown 1s ease-out;
 		}
 		.banner-text h3 {
 			color: #00ff00;
-			font-size: 24px;
+			font-size: 22px; /* Slightly smaller */
 			line-height: 1.5;
 			margin-bottom: 40px;
-			animation: fadeInUp 1s ease-out 0.3s forwards; /* Animation for subtitle, with delay */
-			opacity: 0; /* Start hidden for animation */
+			animation: fadeInUp 1s ease-out 0.3s forwards;
+			opacity: 0;
+		}
+		.video-container {
+			position: relative;
+			padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
+			height: 0;
+			overflow: hidden;
+			max-width: 100%;
+			background: #1a1a1a; /* Placeholder background for video */
+			border-radius: 10px;
+			margin-top: 30px;
+			box-shadow: 0 0 20px rgba(0, 255, 0, 0.3);
+		}
+		.video-container iframe {
+			position: absolute;
+			top: 0;
+			left: 0;
+			width: 100%;
+			height: 100%;
+			border: 0;
 		}
 
 		/* Social links styling in header */
 		.social li {
 			display: inline-block;
 			margin: 0 10px;
-			animation: fadeIn 1s ease-out 0.6s forwards; /* Fade in with delay */
-			opacity: 0; /* Start hidden for animation */
+			animation: fadeIn 1s ease-out 0.6s forwards;
+			opacity: 0;
 		}
 		.social li a {
 			color: #00ff00;
 			background-color: rgba(0,255,0,0.15);
-			border-radius: 50%; /* Make them perfectly round */
+			border-radius: 50%;
 			width: 50px;
 			height: 50px;
 			display: flex;
@@ -160,17 +185,17 @@
 			align-items: center;
 			font-size: 24px;
 			transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
-			box-shadow: 0 0 10px rgba(0, 255, 0, 0.3); /* Initial glow */
+			box-shadow: 0 0 10px rgba(0, 255, 0, 0.3);
 		}
 		.social li a:hover {
 			background-color: #008000;
-			transform: scale(1.1) rotate(5deg); /* Grow and slight rotate on hover */
-			box-shadow: 0 0 20px rgba(0, 255, 0, 0.7); /* Stronger glow on hover */
+			transform: scale(1.1) rotate(5deg);
+			box-shadow: 0 0 20px rgba(0, 255, 0, 0.7);
 		}
 
 		/* --- Navigation Bar --- */
 		#nav-wrap {
-			background-color: rgba(0,0,0,0.8); /* Semi-transparent black nav */
+			background-color: rgba(0,0,0,0.8);
 			transition: background-color 0.3s ease;
 		}
 		#nav-wrap.opaque {
@@ -181,10 +206,10 @@
 			transition: color 0.3s ease;
 		}
 		#nav-wrap ul#nav a:hover, #nav-wrap a.mobile-btn:hover {
-			color: #39ff14 !important; /* Softer green on hover for nav */
+			color: #39ff14 !important;
 		}
 		#nav-wrap ul#nav li.current a {
-			color: #39ff14 !important; /* Highlight current page */
+			color: #39ff14 !important;
 		}
 
 		/* --- Scroll Down Arrow --- */
@@ -199,7 +224,7 @@
 			color: #00ff00;
 			font-size: 30px;
 			display: block;
-			animation: bounce 2s infinite; /* Continuous bounce effect */
+			animation: bounce 2s infinite;
 			transition: color 0.3s ease;
 		}
 		.scrolldown a i {
@@ -210,7 +235,7 @@
 		}
 		.scrolldown a i:hover {
 			background: #008000;
-			transform: scale(1.1); /* Slight growth on hover */
+			transform: scale(1.1);
 		}
 
 		/* --- Sections (General) --- */
@@ -219,9 +244,9 @@
 			text-align: center;
 		}
 		hr {
-			border-top: 1px dashed #004d00; /* Dashed green line */
-			margin: 80px auto; /* Adjust spacing */
-			width: 80%; /* Width of the line */
+			border-top: 1px dashed #004d00;
+			margin: 80px auto;
+			width: 80%;
 		}
 
 		/* --- About Section --- */
@@ -234,11 +259,11 @@
 		/* Icons in the 'deliver tangible value' list */
 		#about .main-col ul li i {
 			color: #39ff14;
-			font-size: 20px; /* Slightly larger icon */
+			font-size: 20px;
 			transition: transform 0.2s ease-out;
 		}
 		#about .main-col ul li:hover i {
-			transform: translateX(5px); /* Slide icon right on hover */
+			transform: translateX(5px);
 		}
 
 		/* Our Approach Steps */
@@ -250,16 +275,16 @@
 		}
 		#about .main-col ol li h4 i {
 			color: #39ff14;
-			font-size: 22px; /* Make approach icons slightly larger */
+			font-size: 22px;
 			transition: transform 0.2s ease-out;
 		}
 		#about .main-col ol li:hover h4 i {
-			transform: rotate(5deg) scale(1.05); /* Spin and grow slightly on hover */
+			transform: rotate(5deg) scale(1.05);
 		}
 
 		/* --- Services Section --- */
 		#services {
-			background: #0a0a0a; /* Slightly lighter black for services section */
+			background: #0a0a0a;
 		}
 		#services .header-col h1 span {
 			color: #39ff14;
@@ -270,20 +295,35 @@
 		}
 		/* Icons within service descriptions */
 		#services .main-col h4 i {
-			font-size: 28px; /* Larger service icons */
-			color: #00ff00; /* Bright green for these primary service icons */
+			font-size: 28px;
+			color: #00ff00;
 			transition: transform 0.3s ease-out, color 0.3s ease;
 		}
 		#services .main-col h4:hover i {
-			transform: rotate(-5deg) scale(1.1); /* Rotate and grow on hover */
-			color: #39ff14; /* Change color on hover */
+			transform: rotate(-5deg) scale(1.1);
+			color: #39ff14;
 		}
 		#services .main-col ul li i {
-			color: #00ff00; /* Ensure nested list icons are bright green */
+			color: #00ff00;
 			transition: transform 0.2s ease-out;
 		}
 		#services .main-col ul li:hover i {
 			transform: translateX(5px);
+		}
+		.service-video-placeholder {
+			width: 100%;
+			height: 250px; /* Smaller video size for individual services */
+			background: #222;
+			border-radius: 8px;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			color: #00ff00;
+			font-size: 18px;
+			font-weight: bold;
+			margin-top: 20px;
+			margin-bottom: 30px;
+			box-shadow: 0 0 10px rgba(0, 255, 0, 0.2);
 		}
 
 
@@ -314,8 +354,8 @@
 			transition: transform 0.3s ease, box-shadow 0.3s ease;
 		}
 		.testimonial-item:hover {
-			transform: translateY(-5px); /* Lift testimonial on hover */
-			box-shadow: 0 8px 20px rgba(0, 255, 0, 0.3); /* Stronger shadow */
+			transform: translateY(-5px);
+			box-shadow: 0 8px 20px rgba(0, 255, 0, 0.3);
 		}
 		.testimonial-item p {
 			color: #00ff00;
@@ -323,13 +363,13 @@
 		.testimonial-author {
 			color: #39ff14;
 		}
-		.flexslider .flex-control-nav li a { /* Dots for testimonials */
-			background: #008000; /* Darker green dot */
+		.flexslider .flex-control-nav li a {
+			background: #008000;
 			transition: background 0.3s ease, transform 0.3s ease;
 		}
 		.flexslider .flex-control-nav li a.flex-active,
 		.flexslider .flex-control-nav li a:hover {
-			background: #39ff14; /* Softer green for active/hover dot */
+			background: #39ff14;
 			transform: scale(1.2);
 		}
 
@@ -343,11 +383,11 @@
 		}
 		.faq-item {
 			border: 1px solid #004d00;
-			background: #1a1a1a; /* Background for individual FAQ items */
+			background: #1a1a1a;
 			transition: box-shadow 0.3s ease;
 		}
 		.faq-item:hover {
-			box-shadow: 0 0 15px rgba(0, 255, 0, 0.2); /* Glow on hover */
+			box-shadow: 0 0 15px rgba(0, 255, 0, 0.2);
 		}
 		.faq-question {
 			background: #1a1a1a;
@@ -364,7 +404,7 @@
 		}
 		.faq-item.active .faq-question .icon {
 			transform: rotate(180deg);
-			color: #00ff00; /* Brighten icon when active */
+			color: #00ff00;
 		}
 		.faq-answer {
 			background: #0a0a0a;
@@ -374,7 +414,7 @@
 
 		/* --- Consultation Section --- */
 		#consultation {
-			background: #0a0a0a; /* Slightly lighter black */
+			background: #0a0a0a;
 		}
 		#consultation h2 {
 			color: #39ff14;
@@ -390,6 +430,8 @@
 		footer {
 			background-color: #000000;
 			color: #00ff00;
+			padding-top: 40px;
+			padding-bottom: 40px;
 		}
 		footer .social-links li a {
 			color: #00ff00;
@@ -406,7 +448,7 @@
 		}
 		#go-top a {
 			color: #00ff00;
-			animation: bounce 2s infinite; /* Keep bounce for this too */
+			animation: bounce 2s infinite;
 		}
 		#go-top a i {
 			border: 2px solid #00ff00;
@@ -417,7 +459,7 @@
 			transform: scale(1.1);
 		}
 		.footer-logo {
-			opacity: 0.8; /* Slightly dim the logo to fit theme */
+			opacity: 0.8;
 		}
 
 		/* --- Keyframe Animations --- */
@@ -474,8 +516,12 @@
 
 		<div class="row banner">
 	 		<div class="banner-text">
-	 			<h1 class="responsive-headline">Unlock Your Business's Cloud Potential.</h1>
-	 			<h3>**SiuCloud** is your dedicated **Cloud Advisor and Analyst** for **Small to Medium Businesses (SMBs)**. We cut through the complexity of cloud technology to deliver **cost savings, robust security, and scalable solutions** across AWS, Azure, and GCP, empowering your business to **innovate and grow** confidently.</h3>
+	 			<h1 class="responsive-headline">Your Cloud, Simplified.</h1>
+	 			<h3>**SiuCloud** helps **Small to Medium Businesses (SMBs)** thrive in the cloud with simple, effective solutions. Get **cost savings, robust security, and seamless growth** – without the tech headaches.</h3>
+
+				<div class="video-container">
+					<p style="font-size: 20px;">[Placeholder for Your "SiuCloud Intro" Video]</p>
+				</div>
 
 	 			<ul class="social">
 	 				<li><a href="https://www.linkedin.com/in/siunetworks/" target="_blank" aria-label="LinkedIn"><i class="fa fa-linkedin"></i></a></li>
@@ -503,43 +549,43 @@
 	 		<div class="nine columns main-col">
 	 			<h2>ABOUT SIUCLOUD: Your Partner for Cloud Success</h2>
 
-	 			<p>At **SiuCloud**, we know that for many **Small to Medium-sized Businesses (SMBs)**, harnessing the cloud's power can seem daunting. You're aware of its potential for efficiency and growth, but navigating complex platforms, managing costs, and ensuring security often requires specialized expertise that's expensive to maintain in-house. **This is exactly where we step in.**</p>
+	 			<p>At **SiuCloud**, we make cloud computing straightforward for **Small to Medium-sized Businesses (SMBs)**. We know you need cloud power without the complexity or high costs. **That's our specialty.**</p>
 
-				<p>Founded by **Roberto Siu**, our core mission is simple: to make the cloud work effortlessly for *your* business. We bridge the gap between complex cloud technology and practical business solutions. Think of us as your dedicated, fractional cloud team, turning challenges into clear pathways for innovation and savings. We deliver tangible value by focusing on:</p>
+				<p>Founded by **Roberto Siu**, our mission is simple: to make the cloud work effortlessly for *your* business. We're your dedicated cloud team, turning challenges into clear pathways for innovation and savings. We deliver **real value** by focusing on:</p>
 				<ul>
-					<li><i class="fa fa-map-signs" style="margin-right: 8px;"></i><strong>Strategic Cloud Roadmapping:</strong> We don't just migrate; we strategize. We'll guide your entire cloud journey, from initial concept to optimizing your existing setup for sustainable growth.</li>
-					<li><i class="fa fa-money" style="margin-right: 8px;"></i><strong>Proactive Cost Optimization (FinOps):</strong> Cloud bills can be a mystery. We'll demystify them, identify wasteful spending, and implement strategies to significantly reduce your operational costs and maximize your Return on Investment (ROI).</li>
-					<li><i class="fa fa-lock" style="margin-right: 8px;"></i><strong>Ironclad Security & Compliance:</strong> Your data is your lifeline. We'll build robust security frameworks and ensure your cloud environment meets critical industry compliance standards, giving you peace of mind.</li>
-					<li><i class="fa fa-cloud-upload" style="margin-right: 8px;"></i><strong>Seamless Cloud Migration:</strong> Moving to the cloud should be smooth, not stressful. We ensure a secure, efficient transition of your applications and data with minimal disruption to your daily operations.</li>
-					<li><i class="fa fa-line-chart" style="margin-right: 8px;"></i><strong>Performance & Scalability for Growth:</strong> As your business expands, your cloud infrastructure needs to keep up. We design and fine-tune solutions that automatically scale with demand, ensuring consistent high performance.</li>
+					<li><i class="fa fa-map-signs" style="margin-right: 8px;"></i>**Clear Cloud Strategy:** Your step-by-step plan for cloud success.</li>
+					<li><i class="fa fa-money" style="margin-right: 8px;"></i>**Smart Cost Savings:** Maximize your budget, cut waste.</li>
+					<li><i class="fa fa-lock" style="margin-right: 8px;"></i>**Solid Security:** Protect your data and operations.</li>
+					<li><i class="fa fa-cloud-upload" style="margin-right: 8px;"></i>**Smooth Migrations:** Move to the cloud, stress-free.</li>
+					<li><i class="fa fa-line-chart" style="margin-right: 8px;"></i>**Ready for Growth:** Cloud solutions that scale with you.</li>
 				</ul>
 
-				<h3>Our Approach: Your Goals, Our Expertise, Measurable Results</h3>
-				<p>With extensive, hands-on experience across leading cloud platforms including **Amazon Web Services (AWS), Microsoft Azure, Google Cloud Platform (GCP)**, and on-premise solutions like **VMware**, we bring a holistic perspective to your cloud challenges. Our proven methodology is built on a foundation of genuine partnership and transparency:</p>
+				<h3>Our Approach: Simple Steps, Powerful Results</h3>
+				<p>With expertise across **AWS, Azure, GCP**, and even your existing systems, we offer a complete view. Our approach is built on **partnership and clear communication**:</p>
 				<ol>
 					<li>
-						<h4><i class="fa fa-handshake-o" style="margin-right: 8px;"></i>**1. Listen & Understand: Your Vision, Our Starting Point**</h4>
-						<p>We begin by deeply listening to your specific business needs, current IT landscape, and future aspirations. We believe in understanding your unique context before proposing any solutions. No generic advice here.</p>
+						<h4><i class="fa fa-handshake-o" style="margin-right: 8px;"></i>**1. Listen & Understand: Your Goals First**</h4>
+						<p>We start by listening. We learn about your business, your current tech, and what you want to achieve. No tech jargon, just clear understanding.</p>
 					</li>
 					<li>
-						<h4><i class="fa fa-search" style="margin-right: 8px;"></i>**2. Analyze & Advise: Uncovering Opportunities**</h4>
-						<p>We conduct meticulous, data-driven assessments of your existing cloud environment (or on-premise setup) to pinpoint inefficiencies, identify hidden cost-saving opportunities, and mitigate potential risks. We provide clear, actionable insights.</p>
+						<h4><i class="fa fa-search" style="margin-right: 8px;"></i>**2. Analyze & Advise: Spotting Opportunities**</h4>
+						<p>We look closely at your cloud setup to find ways to save money, improve performance, and fix any security gaps. We'll show you exactly what we find.</p>
 					</li>
 					<li>
-						<h4><i class="fa fa-lightbulb-o" style="margin-right: 8px;"></i>**3. Strategize & Plan: Your Custom Cloud Blueprint**</h4>
-						<p>Next, we craft a clear, step-by-step cloud strategy and detailed roadmap that's custom-built for your unique objectives and budget. This isn't just a plan; it's your blueprint for measurable success.</p>
+						<h4><i class="fa fa-lightbulb-o" style="margin-right: 8px;"></i>**3. Strategize & Plan: Your Custom Cloud Map**</h4>
+						<p>We create a simple, step-by-step plan for your cloud journey. It's a clear map tailored to your business, showing you exactly how we'll get you there.</p>
 					</li>
 					<li>
-						<h4><i class="fa fa-cogs" style="margin-right: 8px;"></i>**4. Implement & Optimize: Seamless Execution, Continuous Improvement**</h4>
-						<p>We don't just plan; we help you execute. Our team assists with seamless solution implementation, focusing on robust security, efficient migrations, and continuous performance and cost optimization to ensure maximum value.</p>
+						<h4><i class="fa fa-cogs" style="margin-right: 8px;"></i>**4. Implement & Optimize: Making it Happen**</h4>
+						<p>We help put the plan into action, ensuring a smooth transition. We focus on security, efficiency, and making sure everything works perfectly from day one.</p>
 					</li>
 					<li>
-						<h4><i class="fa fa-graduation-cap" style="margin-right: 8px;"></i>**5. Educate & Empower: Building Your Cloud Confidence**</h4>
-						<p>We believe in empowering you. We'll transfer essential knowledge to your team, providing the insights and best practices needed to confidently manage and evolve your cloud infrastructure long-term. You'll gain independence and expertise.</p>
+						<h4><i class="fa fa-graduation-cap" style="margin-right: 8px;"></i>**5. Educate & Empower: Your Team, Confident**</h4>
+						<p>We'll share our knowledge with your team, giving them the tools to confidently manage your cloud. You'll gain independence and control.</p>
 					</li>
 				</ol>
 
-				<p>From helping you take your first secure steps into the cloud to optimizing complex existing deployments, **SiuCloud** is dedicated to ensuring your cloud investment translates directly into significant business value and a stronger competitive edge. We empower SMBs not just to adopt cloud, but to truly **compete, innovate, and thrive** in today's digital economy.</p>
+				<p>From starting in the cloud to making your current setup better and safer, **SiuCloud** helps SMBs **grow, innovate, and succeed** in the digital world. We make cloud easy.</p>
 
 	 		</div>
 		</div>
@@ -584,19 +630,32 @@
 	<section id="services">
 	 	<div class="row services">
 	 		<div class="three columns header-col">
-	 			<h1><span>OUR CORE SERVICES: How We Help You Succeed</span></h1>
+	 			<h1><span>OUR SERVICES: Cloud Solutions Made Simple</span></h1>
 	 		</div>
 
 	 		<div class="nine columns main-col">
 	 			<div class="row item">
 	 				<div class="twelve columns">
-	 					<h4><i class="fa fa-map-signs" style="margin-right: 10px;"></i>Cloud Strategy & Planning: Your Blueprint for Success</h4>
-	 					<p>Don't jump into the cloud without a clear direction. We help SMBs develop a powerful, actionable cloud strategy that directly supports your business goals. This ensures every cloud decision moves you closer to your objectives.</p>
+	 					<h4><i class="fa fa-map-signs" style="margin-right: 10px;"></i>Cloud Strategy: Your Clear Path</h4>
+	 					<p>We help you plan your cloud journey so it directly supports your business goals. No wasted effort, just smart growth.</p>
+						<div class="service-video-placeholder">[Video: What is Cloud Strategy?]</div>
+						<ul>
+							<li>**Cloud Readiness:** Are you ready for the cloud? We'll check and show you how.</li>
+							<li>**Best Platform:** AWS, Azure, GCP? We'll pick what's right for *your* business.</li>
+							<li>**Clear Plan:** A simple, step-by-step map for your cloud journey.</li>
+						</ul>
+					</div>
+	 			</div>
+
+				<div class="row item">
+	 				<div class="twelve columns">
+	 					<h4><i class="fa fa-money" style="margin-right: 10px;"></i>Cost Optimization: Save Money, Grow Faster</h4>
+	 					<p>Cloud bills can get big fast. We find ways to cut waste and ensure you get the most value for every dollar spent.</p>
+						<div class="service-video-placeholder">[Video: How to Lower Cloud Costs?]</div>
 							<ul>
-								<li>**Cloud Readiness Assessment:** We thoroughly evaluate your existing IT systems, applications, and business processes to determine your optimal path to the cloud, identifying what's ready and what needs adjustment.</li>
-								<li>**Platform Selection (AWS, Azure, GCP):** Overwhelmed by choice? We provide expert, unbiased guidance in selecting the best cloud provider for your specific industry, technical requirements, and budget, ensuring a perfect fit.</li>
-								<li>**Tailored Roadmap Development:** We craft a clear, step-by-step plan for your entire cloud journey – whether it's initial adoption or advanced optimization. This includes realistic timelines, key milestones, and measurable outcomes.</li>
-								<li>**Optimized Architecture Design:** Our experts design scalable, resilient, and cost-efficient cloud architectures for your applications and data, built to perform under pressure and adapt to future needs.</li>
+								<li>**Bill Review:** We find where you're spending too much.</li>
+								<li>**Right-Sizing:** Pay only for what you use, nothing more.</li>
+								<li>**Smart Deals:** We use cloud discounts to save you big.</li>
 							</ul>
 						</p>
 	 				</div>
@@ -604,14 +663,13 @@
 
 				<div class="row item">
 	 				<div class="twelve columns">
-	 					<h4><i class="fa fa-money" style="margin-right: 10px;"></i>Cloud Cost Optimization & FinOps: Get More for Less</h4>
-	 					<p>Uncontrolled cloud costs can quickly erode your budget. Our specialized cost optimization services are designed to maximize your cloud investment and put significant savings back into your business.</p>
+	 					<h4><i class="fa fa-lock" style="margin-right: 10px;"></i>Security & Compliance: Your Business, Protected</h4>
+	 					<p>Protecting your data in the cloud is crucial. We build strong security around your business and help you meet important industry rules.</p>
+						<div class="service-video-placeholder">[Video: Cloud Security Basics]</div>
 							<ul>
-								<li>**Detailed Cost Audits & Waste Identification:** We conduct an in-depth analysis of your current cloud spending, pinpointing underutilized resources, idle services, and billing inefficiencies that are costing you money.</li>
-								<li>**Resource Right-Sizing & Efficiency Gains:** We provide precise recommendations for optimizing your compute instances, storage tiers, and network configurations, ensuring you only pay for the resources you truly use, not a byte more.</li>
-								<li>**Leveraging Cloud Pricing Models:** We guide you through complex pricing models like Reserved Instances, Savings Plans, and Spot Instances, implementing smart strategies that can lead to dramatic cost reductions.</li>
-								<li>**FinOps Framework Implementation:** We help you establish collaborative financial operations practices, fostering accountability between finance and technical teams for continuous cost monitoring and proactive management.</li>
-								<li>**Proactive Cost Anomaly Detection:** We set up intelligent alerts and monitoring systems to quickly detect and address unexpected spikes in spending, preventing budget overruns before they happen.</li>
+								<li>**Security Check:** We find and fix weaknesses in your cloud.</li>
+								<li>**Access Control:** Only the right people get access.</li>
+								<li>**Data Safety:** Your data is encrypted and backed up.</li>
 							</ul>
 						</p>
 	 				</div>
@@ -619,14 +677,13 @@
 
 				<div class="row item">
 	 				<div class="twelve columns">
-	 					<h4><i class="fa fa-lock" style="margin-right: 10px;"></i>Cloud Security & Compliance Analysis: Protect Your Business Assets</h4>
-	 					<p>In the cloud, security is not just an option – it's a necessity. We empower SMBs with robust security strategies and ensure your cloud environment meets stringent regulatory requirements, safeguarding your valuable data and operations.</p>
+	 					<h4><i class="fa fa-cloud-upload" style="margin-right: 10px;"></i>Cloud Migration: Easy Move to the Cloud</h4>
+	 					<p>Moving your business to the cloud should be easy, not a headache. We handle the move smoothly, so you can keep working.</p>
+						<div class="service-video-placeholder">[Video: What is Cloud Migration?]</div>
 							<ul>
-								<li>**Comprehensive Security Posture Assessment:** We perform a meticulous evaluation of your cloud environment's security controls, identifying vulnerabilities, misconfigurations, and critical compliance gaps.</li>
-								<li>**Advanced Identity & Access Management (IAM):** We design and implement strong access controls, enforcing the "least privilege" principle to ensure only authorized personnel and systems can access your sensitive resources.</li>
-								<li>**Robust Data Protection Strategies:** We advise on and implement industry-leading practices for data encryption (at rest and in transit), architect resilient backup solutions, create comprehensive disaster recovery plans, and address data residency concerns.</li>
-								<li>**Regulatory Compliance Guidance:** Navigating complex regulations like HIPAA, GDPR, PCI DSS, and other industry-specific standards can be tough. We provide clear guidance and assist in achieving and maintaining compliance.</li>
-								<li>**Intelligent Network Security Configuration:** We design and implement secure virtual networks, advanced firewalls, and cutting-edge intrusion detection/prevention systems to protect your cloud perimeter.</li>
+								<li>**Move Plan:** A detailed, step-by-step plan for your move.</li>
+								<li>**Lift-and-Shift:** Simple transfer of your current systems.</li>
+								<li>**Modernization:** Update old apps for cloud power.</li>
 							</ul>
 						</p>
 	 				</div>
@@ -634,28 +691,13 @@
 
 				<div class="row item">
 	 				<div class="twelve columns">
-	 					<h4><i class="fa fa-cloud-upload" style="margin-right: 10px;"></i>Cloud Migration & Modernization: Your Smooth Transition to the Cloud</h4>
-	 					<p>Whether you're moving your first application or modernizing an entire infrastructure, we ensure your transition to the cloud is seamless, secure, and minimally disruptive to your daily business operations.</p>
+	 					<h4><i class="fa fa-line-chart" style="margin-right: 10px;"></i>Performance & Growth: Always Ready to Scale</h4>
+	 					<p>Your cloud should always perform well and grow with your business. We make sure it's fast, reliable, and ready for anything.</p>
+						<div class="service-video-placeholder">[Video: Scaling Your Business with Cloud]</div>
 							<ul>
-								<li>**Detailed Migration Planning & Assessment:** We develop a precise migration strategy, including in-depth application dependency mapping, thorough risk assessments, and robust rollback plans to ensure a safe transition.</li>
-								<li>**"Lift-and-Shift" Migration (Re-hosting):** For immediate cloud benefits, we expertly assist with re-hosting your existing applications to the cloud platform with minimal changes, getting you up and running quickly.</li>
-								<li>**Strategic Application Modernization:** Beyond just moving, we guide your transition to cutting-edge cloud-native architectures (like containers and serverless functions) for dramatically improved scalability, agility, and long-term cost-efficiency.</li>
-								<li>**Secure Data Migration Services:** We ensure the secure and efficient transfer of your critical databases, files, and entire datasets to the cloud, maintaining data integrity throughout the process.</li>
-								<li>**Seamless Hybrid Cloud Integration:** If a full cloud migration isn't right for you, we connect your on-premise systems with cloud resources, creating a flexible, powerful, and secure hybrid IT environment.</li>
-							</ul>
-						</p>
-	 				</div>
-	 			</div>
-
-				<div class="row item">
-	 				<div class="twelve columns">
-	 					<h4><i class="fa fa-line-chart" style="margin-right: 10px;"></i>Performance Optimization & Scalability: Grow Without Limits</h4>
-	 					<p>Your cloud infrastructure needs to keep pace with your business. We ensure it performs efficiently under any load and scales effortlessly as you grow, preventing bottlenecks and maximizing uptime.</p>
-							<ul>
-								<li>**Continuous Performance Monitoring & Tuning:** We proactively identify performance bottlenecks and fine-tune your cloud configurations to significantly improve application responsiveness and overall resource utilization.</li>
-								<li>**Dynamic Auto-Scaling Solutions:** We implement intelligent, automated scaling strategies that adjust your cloud resources in real-time based on demand, guaranteeing consistent performance during peak periods and cost efficiency during lulls.</li>
-								<li>**Resilience & High Availability Design:** Our architects design solutions that ensure your critical applications remain available and operational, even during unexpected failures, regional outages, or sudden surges in traffic.</li>
-								<li>**Proactive Capacity Planning & Forecasting:** We analyze historical data and predict your future resource needs, preventing potential performance issues and providing a clear roadmap to support your strategic business growth.</li>
+								<li>**Speed Boosts:** Make your cloud apps run faster.</li>
+								<li>**Auto-Scaling:** Your cloud grows automatically as needed.</li>
+								<li>**Always On:** Keep your business running, no downtime.</li>
 							</ul>
 						</p>
 	 				</div>
@@ -678,31 +720,34 @@
 	 		<div class="nine columns main-col">
 	 			<div class="row item">
 	 				<div class="twelve columns">
-	 					<h4>Cloud Cost Revolution: Leading E-commerce Platform Saves Big</h4>
-	 					<p class="info">**Challenge:** A rapidly scaling e-commerce business was experiencing spiraling AWS costs due to unoptimized resources and lack of visibility.</p>
-	 					<p>**Solution:** SiuCloud performed a deep-dive cost audit, identifying key areas of waste. We implemented Reserved Instances, optimized their S3 storage strategies, re-architected certain services to serverless alternatives, and introduced FinOps best practices.
+	 					<h4>E-commerce: 38% Cloud Cost Reduction!</h4>
+	 					<p class="info">**Challenge:** Growing e-commerce business had rising AWS costs, no clear spending view.</p>
+	 					<p>**Solution:** We found savings, optimized their setup, and changed how they managed cloud spending.
 						<br><br>
-						**Result:** This comprehensive approach led to a **remarkable 38% reduction in monthly cloud expenditure** within just four months, allowing them to reinvest savings directly into product development and marketing.</p>
+						**Result:** **38% less monthly cloud spending** in 4 months, freeing up cash for growth!</p>
+						<div class="service-video-placeholder" style="height: 180px;">[Video: E-commerce Success Story]</div>
 	 				</div>
 	 			</div>
 
 				<div class="row item">
 	 				<div class="twelve columns">
-	 					<h4>HIPAA-Compliant Azure Migration for a Disruptive HealthTech Startup</h4>
-	 					<p class="info">**Challenge:** A groundbreaking healthcare startup needed to rapidly migrate its sensitive patient data and core applications to Azure. The paramount concern was ensuring strict HIPAA compliance and absolute data security from day one.</p>
-	 					<p>**Solution:** SiuCloud engineered and executed a highly secure Azure migration strategy. This involved meticulous configuration of Azure Security Center, implementation of robust Identity and Access Management (IAM) policies, comprehensive data encryption (at rest and in transit), and setting up continuous compliance monitoring.
+	 					<h4>Healthcare: Secure Azure Migration, HIPAA Ready.</h4>
+	 					<p class="info">**Challenge:** New healthcare startup needed to move patient data to Azure, with strict security (HIPAA).</p>
+	 					<p>**Solution:** We built a super-secure Azure setup, with strong access controls and encrypted data.
 						<br><br>
-						**Result:** The migration was completed seamlessly and ahead of schedule, with the client successfully passing a rigorous third-party HIPAA compliance audit. Their operations now run securely and confidently in the cloud.</p>
+						**Result:** Smooth, on-time move, passed all security checks, now securely in the cloud.</p>
+						<div class="service-video-placeholder" style="height: 180px;">[Video: Healthcare Security Case Study]</div>
 	 				</div>
 	 			</div>
 
 				<div class="row item">
 					<div class="twelve columns">
-						<h4>Performance Boost for a Growing SaaS Provider on GCP</h4>
-						<p class="info">**Challenge:** A Software-as-a-Service (SaaS) provider experienced intermittent performance issues and struggled with manual scaling, impacting user experience during peak usage times.</p>
-						<p>**Solution:** We optimized their Google Cloud Platform (GCP) infrastructure, implementing advanced auto-scaling groups, fine-tuning database performance, and optimizing network configurations. We also established proactive monitoring and alerting.
+						<h4>SaaS Provider: 25% Performance Boost!</h4>
+						<p class="info">**Challenge:** SaaS business had slow performance and manual scaling issues, impacting users.</p>
+						<p>**Solution:** We fine-tuned their Google Cloud setup, added auto-scaling, and improved monitoring.
 						<br><br>
-						**Result:** The client achieved a **25% improvement in application response times** and eliminated manual scaling bottlenecks, ensuring their users consistently experienced a fast and reliable service, even during high traffic events.</p>
+						**Result:** **25% faster apps** and no more slowdowns, even with lots of users. Happy customers!</p>
+						<div class="service-video-placeholder" style="height: 180px;">[Video: SaaS Performance Boost]</div>
 					</div>
 				</div>
 	 		</div>
