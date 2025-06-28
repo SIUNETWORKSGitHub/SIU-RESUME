@@ -25,6 +25,7 @@
 		body {
 			background-color: #000000; /* Solid Black Background */
 			color: #00ff00; /* Bright Green for default text */
+			font-family: 'Arial', sans-serif; /* A more modern default font */
 		}
 
 		/* --- General Text Styles --- */
@@ -56,6 +57,15 @@
 			margin-bottom: 10px;
 		}
 
+		/* --- Images --- */
+		img {
+			border-radius: 14px;
+			transition: transform 0.3s ease-in-out; /* Smooth hover effect for images */
+		}
+		img:hover {
+			transform: scale(1.02); /* Slightly enlarge images on hover */
+		}
+
 		/* --- Buttons --- */
 		.btn {
 			background-color: #008000; /* Darker Green for buttons */
@@ -67,18 +77,24 @@
 			font-size: 16px;
 			display: inline-block;
 			text-decoration: none;
-			transition: background-color 0.3s ease, transform 0.2s ease;
+			transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease; /* Added box-shadow transition */
 			font-weight: bold;
 			text-transform: uppercase;
 			letter-spacing: 0.5px;
+			box-shadow: 0 4px 8px rgba(0, 255, 0, 0.2); /* Subtle initial shadow */
 		}
 		.btn:hover {
 			background-color: #004d00; /* Even darker green on hover */
-			transform: translateY(-2px);
-			color: #00ff00; /* Maintain bright green text */
+			transform: translateY(-3px); /* More pronounced lift on hover */
+			color: #00ff00;
+			box-shadow: 0 6px 12px rgba(0, 255, 0, 0.4); /* Stronger shadow on hover */
 		}
 		.btn i {
 			margin-right: 8px;
+			transition: transform 0.3s ease; /* Icon transition */
+		}
+		.btn:hover i {
+			transform: translateX(5px); /* Move icon slightly on hover */
 		}
 
 		/* --- Header Section (Home) --- */
@@ -90,6 +106,7 @@
 			position: relative;
 			height: 850px;
 			min-height: 600px;
+			overflow: hidden; /* Hide overflow from banner elements */
 		}
 
 		.header-overlay {
@@ -98,251 +115,339 @@
 			left: 0;
 			width: 100%;
 			height: 100%;
-			background: rgba(0, 0, 0, 0.7); /* Darker overlay for better green text contrast */
+			background: rgba(0, 0, 0, 0.75); /* Even darker overlay for better green text contrast */
 			z-index: 1;
 		}
 
 		.banner {
 			position: relative;
 			z-index: 2;
-			color: #00ff00; /* Bright Green for banner text */
+			color: #00ff00;
 			padding-top: 150px;
 		}
 		.banner-text h1 {
-			color: #39ff14; /* Softer green for main banner heading */
+			color: #39ff14;
 			font-size: 60px;
 			margin-bottom: 15px;
 			line-height: 1.1;
+			text-shadow: 0 0 15px rgba(0, 255, 0, 0.5); /* Subtle neon glow effect */
+			animation: fadeInDown 1s ease-out; /* Animation for main headline */
 		}
 		.banner-text h3 {
-			color: #00ff00; /* Bright Green for banner subtitle */
+			color: #00ff00;
 			font-size: 24px;
 			line-height: 1.5;
 			margin-bottom: 40px;
+			animation: fadeInUp 1s ease-out 0.3s forwards; /* Animation for subtitle, with delay */
+			opacity: 0; /* Start hidden for animation */
 		}
 
 		/* Social links styling in header */
+		.social li {
+			display: inline-block;
+			margin: 0 10px;
+			animation: fadeIn 1s ease-out 0.6s forwards; /* Fade in with delay */
+			opacity: 0; /* Start hidden for animation */
+		}
 		.social li a {
-			color: #00ff00; /* Bright Green for social icons */
-			background-color: rgba(0,255,0,0.15); /* Semi-transparent green background */
-			transition: background-color 0.3s ease;
+			color: #00ff00;
+			background-color: rgba(0,255,0,0.15);
+			border-radius: 50%; /* Make them perfectly round */
+			width: 50px;
+			height: 50px;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			font-size: 24px;
+			transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+			box-shadow: 0 0 10px rgba(0, 255, 0, 0.3); /* Initial glow */
 		}
 		.social li a:hover {
-			background-color: #008000; /* Darker green on hover */
+			background-color: #008000;
+			transform: scale(1.1) rotate(5deg); /* Grow and slight rotate on hover */
+			box-shadow: 0 0 20px rgba(0, 255, 0, 0.7); /* Stronger glow on hover */
 		}
 
 		/* --- Navigation Bar --- */
-		#nav-wrap ul#nav a, #nav-wrap a.mobile-btn {
-			color: #00ff00 !important; /* Force green color for nav links */
-		}
-		#nav-wrap { /* Background of the nav bar itself */
-			background-color: #111; /* Slightly lighter black for nav for subtle contrast */
+		#nav-wrap {
+			background-color: rgba(0,0,0,0.8); /* Semi-transparent black nav */
+			transition: background-color 0.3s ease;
 		}
 		#nav-wrap.opaque {
-			background-color: #000000; /* Solid black when scrolled */
+			background-color: #000000;
+		}
+		#nav-wrap ul#nav a, #nav-wrap a.mobile-btn {
+			color: #00ff00 !important;
+			transition: color 0.3s ease;
+		}
+		#nav-wrap ul#nav a:hover, #nav-wrap a.mobile-btn:hover {
+			color: #39ff14 !important; /* Softer green on hover for nav */
+		}
+		#nav-wrap ul#nav li.current a {
+			color: #39ff14 !important; /* Highlight current page */
 		}
 
 		/* --- Scroll Down Arrow --- */
+		.scrolldown {
+			position: absolute;
+			bottom: 40px;
+			left: 50%;
+			transform: translateX(-50%);
+			z-index: 3;
+		}
 		.scrolldown a {
-			color: #00ff00; /* Bright Green for scroll arrow */
+			color: #00ff00;
+			font-size: 30px;
+			display: block;
+			animation: bounce 2s infinite; /* Continuous bounce effect */
+			transition: color 0.3s ease;
 		}
 		.scrolldown a i {
-			border: 2px solid #00ff00; /* Green border for the arrow circle */
+			border: 2px solid #00ff00;
+			border-radius: 50%;
+			padding: 8px;
+			transition: background 0.3s ease, transform 0.3s ease;
 		}
 		.scrolldown a i:hover {
-			background: #008000; /* Darker green on hover */
-			color: #00ff00; /* Maintain bright green icon */
+			background: #008000;
+			transform: scale(1.1); /* Slight growth on hover */
 		}
 
-
-		/* --- Stats Section --- */
-		.stats-section {
-			background: #000000; /* Solid Black Background */
+		/* --- Sections (General) --- */
+		section {
 			padding: 90px 0;
 			text-align: center;
 		}
-		.stats-section h2 {
-			margin-bottom: 50px;
-			color: #39ff14; /* Softer green for heading */
-		}
-		.stats-item {
-			color: #00ff00; /* Bright Green text */
-			padding: 15px 0;
-		}
-		.stats-item strong {
-			color: #39ff14; /* Softer green for numbers */
-		}
-		.stats-item span {
-			color: #00ff00; /* Bright Green text */
+		hr {
+			border-top: 1px dashed #004d00; /* Dashed green line */
+			margin: 80px auto; /* Adjust spacing */
+			width: 80%; /* Width of the line */
 		}
 
-		/* --- Testimonials Section --- */
-		#testimonials {
-			background: #000000; /* Solid Black Background */
-			padding: 90px 0;
-			text-align: center;
-		}
-		#testimonials h2 {
-			margin-bottom: 50px;
-			color: #39ff14; /* Softer green for heading */
-		}
-		.testimonial-item {
-			background: #1a1a1a; /* Slightly lighter black for testimonial boxes */
-			border-radius: 10px;
-			box-shadow: 0 5px 15px rgba(0,255,0,0.15); /* Greenish shadow */
-		}
-		.testimonial-item p {
-			color: #00ff00; /* Bright Green for quote text */
-		}
-		.testimonial-author {
-			color: #39ff14; /* Softer green for author name */
-		}
-
-		/* --- FAQ Section --- */
-		#faq {
-			background: #000000; /* Solid Black Background */
-			padding: 90px 0;
-		}
-		#faq .header-col h1 span {
-			color: #39ff14; /* Softer green for FAQ heading */
-		}
-		.faq-item {
-			border: 1px solid #004d00; /* Darker Green border */
-			border-radius: 8px;
-		}
-		.faq-question {
-			background: #1a1a1a; /* Lighter black for question background */
-			border-bottom: 1px solid #004d00; /* Darker Green separator */
-			color: #00ff00; /* Bright Green for question text */
-		}
-		.faq-question:hover {
-			background: #2a2a2a; /* Even lighter black on hover */
-		}
-		.faq-question .icon {
-			color: #39ff14; /* Softer green for icon */
-		}
-		.faq-answer {
-			background: #0a0a0a; /* Slightly darker black for answer background */
-			border-top: 1px solid #004d00; /* Darker Green separator */
-			color: #00ff00; /* Bright Green for answer text */
-		}
-
-		/* --- Consultation Section --- */
-		#consultation {
-			background: #000000; /* Solid Black Background */
-			padding-top: 90px;
-			padding-bottom: 90px;
-		}
-		#consultation h2 {
-			color: #39ff14; /* Softer green for heading */
-		}
-		#consultation p {
-			color: #00ff00; /* Bright Green for text */
-		}
-		.calendly-inline-widget {
-			box-shadow: 0 5px 15px rgba(0,255,0,0.15); /* Greenish shadow */
-		}
-
-		/* --- Footer --- */
-		footer {
-			background-color: #000000; /* Ensure footer is black */
-			color: #00ff00; /* Bright Green for copyright text */
-			padding-top: 40px;
-			padding-bottom: 40px;
-		}
-		footer .social-links li a {
-			color: #00ff00; /* Bright Green for social icons in footer */
-			background-color: rgba(0,255,0,0.15); /* Semi-transparent green background */
-		}
-		footer .social-links li a:hover {
-			background-color: #008000; /* Darker green on hover */
-		}
-		footer .copyright li {
-			color: #00ff00; /* Bright Green for copyright text */
-		}
-		footer .copyright li a {
-			color: #39ff14; /* Softer green for links in copyright */
-		}
-		#go-top a {
-			color: #00ff00; /* Bright Green for scroll to top icon */
-		}
-		#go-top a i {
-			border: 2px solid #00ff00; /* Green border for scroll to top circle */
-		}
-		#go-top a i:hover {
-			background: #008000; /* Darker green on hover */
-			color: #00ff00; /* Maintain bright green icon */
-		}
-
-		/* --- REVISED STYLES FOR BRIGHTNESS AND GREEN TEXT --- */
-
-		/* About Section */
+		/* --- About Section --- */
 		#about {
-			background: #000000; /* Explicitly black background for about section */
-			padding-top: 90px;
-			padding-bottom: 90px;
+			background: #000000;
 		}
-		#about .main-col h3 { /* "Our Approach" sub-heading */
-			color: #39ff14; /* Softer green for better contrast */
+		#about .main-col h3 {
+			color: #39ff14;
 		}
-		/* Specific styling for the approach steps (headers and icons within ordered list) */
+		/* Icons in the 'deliver tangible value' list */
+		#about .main-col ul li i {
+			color: #39ff14;
+			font-size: 20px; /* Slightly larger icon */
+			transition: transform 0.2s ease-out;
+		}
+		#about .main-col ul li:hover i {
+			transform: translateX(5px); /* Slide icon right on hover */
+		}
+
+		/* Our Approach Steps */
 		#about .main-col ol li h4 {
-			color: #39ff14; /* Softer green for approach step headings */
+			color: #39ff14;
 			font-size: 20px;
 			margin-bottom: 10px;
 			margin-top: 20px;
 		}
 		#about .main-col ol li h4 i {
-			color: #39ff14; /* Ensure icon matches text color */
-		}
-		#about .main-col ul li i { /* Icons in the 'deliver tangible value' list */
 			color: #39ff14;
+			font-size: 22px; /* Make approach icons slightly larger */
+			transition: transform 0.2s ease-out;
+		}
+		#about .main-col ol li:hover h4 i {
+			transform: rotate(5deg) scale(1.05); /* Spin and grow slightly on hover */
 		}
 
-
-		/* Services Section */
+		/* --- Services Section --- */
 		#services {
-			background: #000000; /* Explicitly black background for services section */
-			padding: 90px 0;
+			background: #0a0a0a; /* Slightly lighter black for services section */
 		}
-		#services .header-col h1 span { /* "OUR CORE SERVICES" heading */
-			color: #39ff14; /* Softer green for heading */
-		}
-		#services .main-col h4 { /* Service sub-headings (e.g., Cloud Strategy & Planning) */
-			color: #39ff14; /* Softer green for service headings */
-			font-size: 24px;
-			margin-bottom: 15px;
-		}
-		#services .main-col p,
-		#services .main-col ul li {
-			color: #00ff00; /* Bright Green for text within services */
-		}
-		#services .main-col ul li i { /* Icons in service bullet points */
+		#services .header-col h1 span {
 			color: #39ff14;
 		}
-
-		/* Case Studies Section */
-		#casestudies {
-			background: #0a0a0a; /* Slightly lighter black for case studies to break monotony */
-			padding: 90px 0;
-		}
-		#casestudies .header-col h1 span { /* "SUCCESS STORIES" heading */
-			color: #39ff14; /* Softer green for heading */
-		}
-		#casestudies .main-col h4 { /* Case study titles */
-			color: #39ff14; /* Softer green for titles */
+		#services .main-col h4 {
+			color: #39ff14;
 			font-size: 24px;
-			margin-bottom: 10px;
 		}
-		#casestudies .main-col p.info { /* Challenge/Solution bold info */
-			color: #00ff00; /* Bright Green for info text */
-			font-weight: normal;
-			margin-bottom: 5px;
-			font-size: 16px;
+		/* Icons within service descriptions */
+		#services .main-col h4 i {
+			font-size: 28px; /* Larger service icons */
+			color: #00ff00; /* Bright green for these primary service icons */
+			transition: transform 0.3s ease-out, color 0.3s ease;
 		}
-		#casestudies .main-col p { /* Main text in case studies */
-			color: #00ff00; /* Bright Green for text */
+		#services .main-col h4:hover i {
+			transform: rotate(-5deg) scale(1.1); /* Rotate and grow on hover */
+			color: #39ff14; /* Change color on hover */
 		}
+		#services .main-col ul li i {
+			color: #00ff00; /* Ensure nested list icons are bright green */
+			transition: transform 0.2s ease-out;
+		}
+		#services .main-col ul li:hover i {
+			transform: translateX(5px);
+		}
+
+
+		/* --- Stats Section --- */
+		.stats-section {
+			background: #000000;
+		}
+		.stats-section h2 {
+			color: #39ff14;
+		}
+		.stats-item strong {
+			color: #39ff14;
+		}
+		.stats-item span {
+			color: #00ff00;
+		}
+
+		/* --- Testimonials Section --- */
+		#testimonials {
+			background: #0a0a0a;
+		}
+		#testimonials h2 {
+			color: #39ff14;
+		}
+		.testimonial-item {
+			background: #1a1a1a;
+			box-shadow: 0 5px 15px rgba(0,255,0,0.15);
+			transition: transform 0.3s ease, box-shadow 0.3s ease;
+		}
+		.testimonial-item:hover {
+			transform: translateY(-5px); /* Lift testimonial on hover */
+			box-shadow: 0 8px 20px rgba(0, 255, 0, 0.3); /* Stronger shadow */
+		}
+		.testimonial-item p {
+			color: #00ff00;
+		}
+		.testimonial-author {
+			color: #39ff14;
+		}
+		.flexslider .flex-control-nav li a { /* Dots for testimonials */
+			background: #008000; /* Darker green dot */
+			transition: background 0.3s ease, transform 0.3s ease;
+		}
+		.flexslider .flex-control-nav li a.flex-active,
+		.flexslider .flex-control-nav li a:hover {
+			background: #39ff14; /* Softer green for active/hover dot */
+			transform: scale(1.2);
+		}
+
+
+		/* --- FAQ Section --- */
+		#faq {
+			background: #000000;
+		}
+		#faq .header-col h1 span {
+			color: #39ff14;
+		}
+		.faq-item {
+			border: 1px solid #004d00;
+			background: #1a1a1a; /* Background for individual FAQ items */
+			transition: box-shadow 0.3s ease;
+		}
+		.faq-item:hover {
+			box-shadow: 0 0 15px rgba(0, 255, 0, 0.2); /* Glow on hover */
+		}
+		.faq-question {
+			background: #1a1a1a;
+			border-bottom: 1px solid #004d00;
+			color: #00ff00;
+			transition: background 0.3s ease;
+		}
+		.faq-question:hover {
+			background: #2a2a2a;
+		}
+		.faq-question .icon {
+			color: #39ff14;
+			transition: transform 0.3s ease, color 0.3s ease;
+		}
+		.faq-item.active .faq-question .icon {
+			transform: rotate(180deg);
+			color: #00ff00; /* Brighten icon when active */
+		}
+		.faq-answer {
+			background: #0a0a0a;
+			border-top: 1px solid #004d00;
+			color: #00ff00;
+		}
+
+		/* --- Consultation Section --- */
+		#consultation {
+			background: #0a0a0a; /* Slightly lighter black */
+		}
+		#consultation h2 {
+			color: #39ff14;
+		}
+		#consultation p {
+			color: #00ff00;
+		}
+		.calendly-inline-widget {
+			box-shadow: 0 5px 15px rgba(0,255,0,0.15);
+		}
+
+		/* --- Footer --- */
+		footer {
+			background-color: #000000;
+			color: #00ff00;
+		}
+		footer .social-links li a {
+			color: #00ff00;
+			background-color: rgba(0,255,0,0.15);
+		}
+		footer .social-links li a:hover {
+			background-color: #008000;
+		}
+		footer .copyright li {
+			color: #00ff00;
+		}
+		footer .copyright li a {
+			color: #39ff14;
+		}
+		#go-top a {
+			color: #00ff00;
+			animation: bounce 2s infinite; /* Keep bounce for this too */
+		}
+		#go-top a i {
+			border: 2px solid #00ff00;
+			transition: background 0.3s ease, transform 0.3s ease;
+		}
+		#go-top a i:hover {
+			background: #008000;
+			transform: scale(1.1);
+		}
+		.footer-logo {
+			opacity: 0.8; /* Slightly dim the logo to fit theme */
+		}
+
+		/* --- Keyframe Animations --- */
+		@keyframes fadeInDown {
+			from { opacity: 0; transform: translateY(-20px); }
+			to { opacity: 1; transform: translateY(0); }
+		}
+
+		@keyframes fadeInUp {
+			from { opacity: 0; transform: translateY(20px); }
+			to { opacity: 1; transform: translateY(0); }
+		}
+
+		@keyframes fadeIn {
+			from { opacity: 0; }
+			to { opacity: 1; }
+		}
+
+		@keyframes bounce {
+			0%, 20%, 50%, 80%, 100% {
+				transform: translateY(0);
+			}
+			40% {
+				transform: translateY(-10px);
+			}
+			60% {
+				transform: translateY(-5px);
+			}
+		}
+
 	</style>
 
 </head>
@@ -536,4 +641,275 @@
 								<li>**"Lift-and-Shift" Migration (Re-hosting):** For immediate cloud benefits, we expertly assist with re-hosting your existing applications to the cloud platform with minimal changes, getting you up and running quickly.</li>
 								<li>**Strategic Application Modernization:** Beyond just moving, we guide your transition to cutting-edge cloud-native architectures (like containers and serverless functions) for dramatically improved scalability, agility, and long-term cost-efficiency.</li>
 								<li>**Secure Data Migration Services:** We ensure the secure and efficient transfer of your critical databases, files, and entire datasets to the cloud, maintaining data integrity throughout the process.</li>
-								<li>**Seamless Hybrid Cloud Integration:** If a full cloud migration isn't right for you, we connect your on-
+								<li>**Seamless Hybrid Cloud Integration:** If a full cloud migration isn't right for you, we connect your on-premise systems with cloud resources, creating a flexible, powerful, and secure hybrid IT environment.</li>
+							</ul>
+						</p>
+	 				</div>
+	 			</div>
+
+				<div class="row item">
+	 				<div class="twelve columns">
+	 					<h4><i class="fa fa-line-chart" style="margin-right: 10px;"></i>Performance Optimization & Scalability: Grow Without Limits</h4>
+	 					<p>Your cloud infrastructure needs to keep pace with your business. We ensure it performs efficiently under any load and scales effortlessly as you grow, preventing bottlenecks and maximizing uptime.</p>
+							<ul>
+								<li>**Continuous Performance Monitoring & Tuning:** We proactively identify performance bottlenecks and fine-tune your cloud configurations to significantly improve application responsiveness and overall resource utilization.</li>
+								<li>**Dynamic Auto-Scaling Solutions:** We implement intelligent, automated scaling strategies that adjust your cloud resources in real-time based on demand, guaranteeing consistent performance during peak periods and cost efficiency during lulls.</li>
+								<li>**Resilience & High Availability Design:** Our architects design solutions that ensure your critical applications remain available and operational, even during unexpected failures, regional outages, or sudden surges in traffic.</li>
+								<li>**Proactive Capacity Planning & Forecasting:** We analyze historical data and predict your future resource needs, preventing potential performance issues and providing a clear roadmap to support your strategic business growth.</li>
+							</ul>
+						</p>
+	 				</div>
+	 			</div>
+	 		</div>
+	 	</div>
+		<p class="scrolldown">
+	 		<a class="smoothscroll" href="#casestudies"><i class="icon-down-circle"></i></a>
+	 	</p>
+	</section>
+
+	<hr>
+
+	<section id="casestudies">
+	 	<div class="row casestudies">
+	 		<div class="three columns header-col">
+	 			<h1><span>SUCCESS STORIES: Real Results for SMBs</span></h1>
+	 		</div>
+
+	 		<div class="nine columns main-col">
+	 			<div class="row item">
+	 				<div class="twelve columns">
+	 					<h4>Cloud Cost Revolution: Leading E-commerce Platform Saves Big</h4>
+	 					<p class="info">**Challenge:** A rapidly scaling e-commerce business was experiencing spiraling AWS costs due to unoptimized resources and lack of visibility.</p>
+	 					<p>**Solution:** SiuCloud performed a deep-dive cost audit, identifying key areas of waste. We implemented Reserved Instances, optimized their S3 storage strategies, re-architected certain services to serverless alternatives, and introduced FinOps best practices.
+						<br><br>
+						**Result:** This comprehensive approach led to a **remarkable 38% reduction in monthly cloud expenditure** within just four months, allowing them to reinvest savings directly into product development and marketing.</p>
+	 				</div>
+	 			</div>
+
+				<div class="row item">
+	 				<div class="twelve columns">
+	 					<h4>HIPAA-Compliant Azure Migration for a Disruptive HealthTech Startup</h4>
+	 					<p class="info">**Challenge:** A groundbreaking healthcare startup needed to rapidly migrate its sensitive patient data and core applications to Azure. The paramount concern was ensuring strict HIPAA compliance and absolute data security from day one.</p>
+	 					<p>**Solution:** SiuCloud engineered and executed a highly secure Azure migration strategy. This involved meticulous configuration of Azure Security Center, implementation of robust Identity and Access Management (IAM) policies, comprehensive data encryption (at rest and in transit), and setting up continuous compliance monitoring.
+						<br><br>
+						**Result:** The migration was completed seamlessly and ahead of schedule, with the client successfully passing a rigorous third-party HIPAA compliance audit. Their operations now run securely and confidently in the cloud.</p>
+	 				</div>
+	 			</div>
+
+				<div class="row item">
+					<div class="twelve columns">
+						<h4>Performance Boost for a Growing SaaS Provider on GCP</h4>
+						<p class="info">**Challenge:** A Software-as-a-Service (SaaS) provider experienced intermittent performance issues and struggled with manual scaling, impacting user experience during peak usage times.</p>
+						<p>**Solution:** We optimized their Google Cloud Platform (GCP) infrastructure, implementing advanced auto-scaling groups, fine-tuning database performance, and optimizing network configurations. We also established proactive monitoring and alerting.
+						<br><br>
+						**Result:** The client achieved a **25% improvement in application response times** and eliminated manual scaling bottlenecks, ensuring their users consistently experienced a fast and reliable service, even during high traffic events.</p>
+					</div>
+				</div>
+	 		</div>
+	 	</div>
+		<p class="scrolldown">
+	 		<a class="smoothscroll" href="#testimonials"><i class="icon-down-circle"></i></a>
+	 	</p>
+	</section>
+
+	<hr>
+
+	<section id="testimonials">
+		<div class="row">
+			<div class="twelve columns">
+				<h2>What Our Valued Clients Say About SiuCloud</h2>
+				<div class="flexslider">
+					<ul class="slides">
+						<li>
+							<div class="testimonial-item">
+								<p>"SiuCloud didn't just save us money; they fundamentally transformed how we view our cloud spending. Their FinOps strategies are brilliant, leading to significant monthly savings that we've reinvested into our core business. Absolutely indispensable!"</p>
+								<div class="testimonial-author">- Sarah L., CEO, Innovate E-Solutions</div>
+							</div>
+						</li>
+						<li>
+							<div class="testimonial-item">
+								<p>"Migrating our entire operations to Azure felt like a monumental task, but SiuCloud made it surprisingly smooth and worry-free. Their attention to security details ensured our transition was flawless and our data perfectly protected."</p>
+								<div class="testimonial-author">- Mark R., Head of Operations, FutureTech Corp.</div>
+							</div>
+						</li>
+						<li>
+							<div class="testimonial-item">
+								<p>"The team at SiuCloud has an incredible knack for demystifying cloud security. Their comprehensive analysis uncovered critical vulnerabilities and provided actionable solutions that have made our cloud environment significantly more resilient."</p>
+								<div class="testimonial-author">- David P., CTO, VeriCare Health Systems</div>
+							</div>
+						</li>
+						<li>
+							<div class="testimonial-item">
+								<p>"We always struggled with unpredictable cloud performance during peak times. SiuCloud's optimization expertise on GCP not only stabilized our application but also improved our user experience dramatically. They truly understand scalability!"</p>
+								<div class="testimonial-author">- Emily Chen, Product Lead, Synapse Analytics</div>
+							</div>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+		<p class="scrolldown">
+	 		<a class="smoothscroll" href="#faq"><i class="icon-down-circle"></i></a>
+	 	</p>
+	</section>
+
+	<hr>
+
+	<section id="faq">
+		<div class="row">
+			<div class="three columns header-col">
+				<h1><span>COMMON QUESTIONS, CLEAR ANSWERS</span></h1>
+			</div>
+			<div class="nine columns main-col">
+				<div class="faq-container">
+					<div class="faq-item">
+						<div class="faq-question">
+							What types of businesses does SiuCloud primarily serve?
+							<span class="icon">&#9660;</span>
+						</div>
+						<div class="faq-answer">
+							We are laser-focused on **Small to Medium-sized Businesses (SMBs)** across a diverse range of industries, including e-commerce, healthcare, financial services, tech startups, and professional services. We understand the unique challenges SMBs face, such as budget constraints and limited in-house IT resources, and tailor our solutions specifically to these needs.
+						</div>
+					</div>
+					<div class="faq-item">
+						<div class="faq-question">
+							Which cloud platforms are within your area of expertise?
+							<span class="icon">&#9660;</span>
+						</div>
+						<div class="faq-answer">
+							Our deep expertise covers the leading public cloud providers: **Amazon Web Services (AWS), Microsoft Azure, and Google Cloud Platform (GCP)**. Additionally, we have extensive experience with on-premise virtualization solutions like VMware vSphere, allowing us to effectively manage and integrate hybrid cloud environments.
+						</div>
+					</div>
+					<div class="faq-item">
+						<div class="faq-question">
+							How can SiuCloud significantly reduce my cloud expenses?
+							<span class="icon">&#9660;</span>
+						</div>
+						<div class="faq-answer">
+							We employ a multi-faceted approach to cost optimization. This includes performing in-depth cloud cost audits to pinpoint wasteful spending, recommending and implementing efficient pricing models (like Reserved Instances or Savings Plans), right-sizing your resources, and advising on serverless architectures where they can provide maximum cost-efficiency. Our goal is always to maximize your cloud ROI.
+						</div>
+					</div>
+					<div class="faq-item">
+						<div class="faq-question">
+							Do you offer continuous cloud management or support?
+							<span class="icon">&#9660;</span>
+						</div>
+						<div class="faq-answer">
+							While our primary focus is strategic advisory and detailed analysis, we empower your team for ongoing management. We can recommend top-tier managed service providers, assist in training your internal IT staff, and crucially, help you establish robust FinOps (Cloud Financial Operations) practices for continuous cost monitoring and optimization within your organization.
+						</div>
+					</div>
+					<div class="faq-item">
+						<div class="faq-question">
+							What truly sets SiuCloud apart from other cloud consulting firms?
+							<span class="icon">&#9660;</span>
+						</div>
+						<div class="faq-answer">
+							Our distinct advantage lies in our unwavering focus on SMBs. We provide practical, actionable, and results-driven advice without the overwhelming jargon or unnecessary complexity often found with larger firms. Our founder, Roberto Siu, personally brings **over a decade of hands-on, practical cloud experience** to every client engagement, ensuring tailored solutions and tangible business value. We are your dedicated cloud partners.
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<p class="scrolldown">
+	 		<a class="smoothscroll" href="#consultation"><i class="icon-down-circle"></i></a>
+	 	</p>
+	</section>
+
+	<hr>
+
+	<section id="consultation">
+	 	<div class="row">
+	 		<div class="three columns">
+	 			<img class="profile-pic" src="images/consultation_image.png" alt="Schedule a Cloud Consultation with SiuCloud" />
+	 		</div>
+
+	 		<div class="nine columns main-col">
+				<br><br>
+	 			<h2>Ready to Transform Your Business with the Cloud?</h2>
+	 			<p>Don't let cloud complexity hold your business back. Schedule a **no-obligation, free consultation** with our expert cloud advisors today. We'll discuss your specific challenges, explore your business goals, and outline how SiuCloud can help you leverage the cloud efficiently, securely, and cost-effectively to drive growth and innovation.</p>
+				<p>It's time to unlock your full cloud potential. **Book your discovery call now.**</p>
+
+				<div class="calendly-inline-widget" data-url="https://calendly.com/antonyroberth" style="min-width:320px;height:750px;"></div>
+				<script type="text/javascript" src="https://assets.calendly.com/assets/external/widget.js" async></script>
+			</div>
+	 	</div>
+	</section>
+
+	<footer>
+	 	<div class="row">
+	 		<div class="twelve columns">
+	 			<ul class="social-links">
+	 				<li><a href="https://www.linkedin.com/in/siunetworks/" target="_blank" aria-label="LinkedIn"><i class="fa fa-linkedin"></i></a></li>
+	 				<li><a href="https://github.com/SIUNETWORKSGitHub" target="_blank" aria-label="GitHub"><i class="fa fa-github"></i></a></li>
+					<li><a href="https://siucloud.org" target="_blank" aria-label="Our Blog"><i class="fa fa-external-link"></i> Our Blog</a></li>
+	 			</ul>
+	 			<ul class="copyright">
+	 				<li>&copy; Copyright 2025 SiuCloud.org</li>
+	 				<li>Design based on <a href="https://www.styleshout.com/free-templates/ceevee/" target="_blank">CeeVee by Styleshout</a>, modified by SiuCloud.org</li>
+	 			</ul>
+	 		</div>
+
+	 		<div id="go-top"><a class="smoothscroll" title="Back to Top" href="#home"><i class="icon-up-open"></i></a></div>
+			<img class="footer-logo" src="images/siucloudlogo.png" alt="SiuCloud Logo" style="height: 50px; margin-top: 20px;" />
+	 	</div>
+	</footer>
+
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+	<script>window.jQuery || document.write('<script src="js/jquery-1.10.2.min.js"><\/script>')</script>
+	<script type="text/javascript" src="js/jquery-migrate-1.2.1.min.js"></script>
+
+	<script src="js/jquery.flexslider.js"></script>
+	<script src="js/waypoints.js"></script>
+	<script src="js/jquery.fittext.js"></script>
+	<script src="js/magnific-popup.js"></script>
+	<script src="js/init.js"></script>
+	<script>
+		$(window).on('load', function() {
+			// Animated Counters
+			function animateNumbers() {
+				$('.stats-item strong').each(function() {
+					$(this).prop('Counter', 0).animate({
+						Counter: $(this).data('count')
+					}, {
+						duration: 2500,
+						easing: 'swing',
+						step: function(now) {
+							$(this).text(Math.ceil(now));
+						}
+					});
+				});
+			}
+
+			// Trigger animation when the stats section is in view
+			$('#stats').waypoint(function() {
+				animateNumbers();
+				this.destroy();
+			}, { offset: '80%' });
+
+			// Testimonials Carousel (FlexSlider)
+			if ($.fn.flexslider) {
+				$('.flexslider').flexslider({
+					animation: "slide",
+					controlsContainer: $(".flex-container"),
+					slideshowSpeed: 8000,
+					animationSpeed: 700,
+					directionNav: false,
+					controlNav: true,
+					pauseOnAction: true,
+					pauseOnHover: true
+				});
+			}
+
+			// FAQ Accordion functionality
+			$('.faq-question').on('click', function() {
+				var $parentItem = $(this).parent('.faq-item');
+				$('.faq-item').not($parentItem).removeClass('active').find('.faq-answer').slideUp(300);
+
+				$parentItem.toggleClass('active');
+				$parentItem.find('.faq-answer').slideToggle(300);
+			});
+		});
+	</script>
+</body>
+
+</html>
