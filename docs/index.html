@@ -180,7 +180,6 @@
 			animation: fadeInUp 1s ease-out 0.3s forwards;
 			opacity: 0;
 		}
-		/* Removed .video-container styles as it's no longer iframe based */
 
 		/* Social links styling in header */
 		.social li {
@@ -227,32 +226,7 @@
 			color: #39ff14 !important;
 		}
 
-		/* --- Scroll Down Arrow --- */
-		.scrolldown {
-			position: absolute;
-			bottom: 40px;
-			left: 50%;
-			transform: translateX(-50%);
-			z-index: 3;
-		}
-		.scrolldown a {
-			color: #00ff00;
-			font-size: 30px;
-			display: block;
-			animation: bounce 2s infinite;
-			transition: color 0.3s ease;
-		}
-		.scrolldown a i {
-			border: 2px solid #00ff00;
-			border-radius: 50%;
-			padding: 8px;
-			transition: background 0.3s ease, transform 0.3s ease;
-		}
-		.scrolldown a i:hover {
-			background: #008000;
-			transform: scale(1.1);
-		}
-
+		/* Removed .scrolldown specific styles for the removed elements */
 		/* --- Sections (General) --- */
 		section {
 			padding: 90px 0;
@@ -445,18 +419,7 @@
 		footer .copyright li a {
 			color: #39ff14;
 		}
-		#go-top a {
-			color: #00ff00;
-			animation: bounce 2s infinite;
-		}
-		#go-top a i {
-			border: 2px solid #00ff00;
-			transition: background 0.3s ease, transform 0.3s ease;
-		}
-		#go-top a i:hover {
-			background: #008000;
-			transform: scale(1.1);
-		}
+		/* Removed #go-top specific styles as it's no longer iframe based */
 		.footer-logo {
 			opacity: 0.8;
 		}
@@ -532,21 +495,20 @@
 	 		</div>
 	 	</div>
 
-	 	<p class="scrolldown">
-	 		<a class="smoothscroll" href="#about"><i class="icon-down-circle"></i></a>
-	 	</p>
-
-	</header>
+	 	</header>
 
 	<hr>
 
 	<section id="about">
+
 	 	<div class="row">
+
 	 		<div class="three columns">
 	 			<img class="profile-pic" src="images/cloud_advisor_hero.png" alt="Cloud Advisor Image representing strategy and expertise" />
 	 		</div>
 
 	 		<div class="nine columns main-col">
+
 	 			<h2>ABOUT SIUCLOUD: Your Partner for Cloud Success</h2>
 
 	 			<p>At **SiuCloud**, we make cloud computing straightforward for **Small to Medium-sized Businesses (SMBs)**. We know you need cloud power without the complexity or high costs. **That's our specialty.**</p>
@@ -588,11 +550,9 @@
 				<p>From starting in the cloud to making your current setup better and safer, **SiuCloud** helps SMBs **grow, innovate, and succeed** in the digital world. We make cloud easy.</p>
 
 	 		</div>
+
 		</div>
-		<p class="scrolldown">
-	 		<a class="smoothscroll" href="#stats"><i class="icon-down-circle"></i></a>
-	 	</p>
-	</section>
+		</section>
 
 	<hr>
 
@@ -620,15 +580,13 @@
 				</div>
 			</div>
 		</div>
-		<p class="scrolldown">
-	 		<a class="smoothscroll" href="#services"><i class="icon-down-circle"></i></a>
-	 	</p>
-	</section>
-
+		</section>
 	<hr>
 
 	<section id="services">
+
 	 	<div class="row services">
+
 	 		<div class="three columns header-col">
 	 			<h1><span>OUR SERVICES: Cloud Solutions Made Simple</span></h1>
 	 		</div>
@@ -639,7 +597,7 @@
 	 					<h4><i class="fa fa-map-signs" style="margin-right: 10px;"></i>Cloud Strategy: Your Clear Path</h4>
 	 					<p>We help you plan your cloud journey so it directly supports your business goals. No wasted effort, just smart growth.</p>
 						<div class="tool-image-container">
-							<img src="images/aws_gcp_azure_icons.png" alt="Icons representing AWS, Azure, Google Cloud for platform strategy">
+							<img src="images/cloud_providers_logos.png" alt="Logos of AWS, Azure, and Google Cloud Platform for platform strategy">
 							<p class="tool-image-caption">Choosing the right cloud partner for your unique business needs.</p>
 						</div>
 						<ul>
@@ -722,10 +680,7 @@
 	 			</div>
 	 		</div>
 	 	</div>
-		<p class="scrolldown">
-	 		<a class="smoothscroll" href="#casestudies"><i class="icon-down-circle"></i></a>
-	 	</p>
-	</section>
+		</section>
 
 	<hr>
 
@@ -779,10 +734,7 @@
 				</div>
 	 		</div>
 	 	</div>
-		<p class="scrolldown">
-	 		<a class="smoothscroll" href="#testimonials"><i class="icon-down-circle"></i></a>
-	 	</p>
-	</section>
+		</section>
 
 	<hr>
 
@@ -820,10 +772,7 @@
 				</div>
 			</div>
 		</div>
-		<p class="scrolldown">
-	 		<a class="smoothscroll" href="#faq"><i class="icon-down-circle"></i></a>
-	 	</p>
-	</section>
+		</section>
 
 	<hr>
 
@@ -882,10 +831,7 @@
 				</div>
 			</div>
 		</div>
-		<p class="scrolldown">
-	 		<a class="smoothscroll" href="#consultation"><i class="icon-down-circle"></i></a>
-	 	</p>
-	</section>
+		</section>
 
 	<hr>
 
@@ -912,76 +858,4 @@
 	 		<div class="twelve columns">
 	 			<ul class="social-links">
 	 				<li><a href="https://www.linkedin.com/in/siunetworks/" target="_blank" aria-label="LinkedIn"><i class="fa fa-linkedin"></i></a></li>
-	 				<li><a href="https://github.com/SIUNETWORKSGitHub" target="_blank" aria-label="GitHub"><i class="fa fa-github"></i></a></li>
-					<li><a href="https://siucloud.org" target="_blank" aria-label="Our Blog"><i class="fa fa-external-link"></i> Our Blog</a></li>
-	 			</ul>
-	 			<ul class="copyright">
-	 				<li>© Copyright 2025 SiuCloud.org</li>
-	 				<li>Design based on <a href="https://www.styleshout.com/free-templates/ceevee/" target="_blank">CeeVee by Styleshout</a>, modified by SiuCloud.org</li>
-	 			</ul>
-	 		</div>
-
-	 		<div id="go-top"><a class="smoothscroll" title="Back to Top" href="#home"><i class="icon-up-open"></i></a></div>
-			<img class="footer-logo" src="images/siucloudlogo.png" alt="SiuCloud Logo" style="height: 50px; margin-top: 20px;" />
-	 	</div>
-	</footer>
-
-	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-	<script>window.jQuery || document.write('<script src="js/jquery-1.10.2.min.js"><\/script>')</script>
-	<script type="text/javascript" src="js/jquery-migrate-1.2.1.min.js"></script>
-
-	<script src="js/jquery.flexslider.js"></script>
-	<script src="js/waypoints.js"></script>
-	<script src="js/jquery.fittext.js"></script>
-	<script src="js/magnific-popup.js"></script>
-	<script src="js/init.js"></script>
-	<script>
-		$(window).on('load', function() {
-			// Animated Counters
-			function animateNumbers() {
-				$('.stats-item strong').each(function() {
-					$(this).prop('Counter', 0).animate({
-						Counter: $(this).data('count')
-					}, {
-						duration: 2500,
-						easing: 'swing',
-						step: function(now) {
-							$(this).text(Math.ceil(now));
-						}
-					});
-				});
-			}
-
-			// Trigger animation when the stats section is in view
-			$('#stats').waypoint(function() {
-				animateNumbers();
-				this.destroy();
-			}, { offset: '80%' });
-
-			// Testimonials Carousel (FlexSlider)
-			if ($.fn.flexslider) {
-				$('.flexslider').flexslider({
-					animation: "slide",
-					controlsContainer: $(".flex-container"),
-					slideshowSpeed: 8000,
-					animationSpeed: 700,
-					directionNav: false,
-					controlNav: true,
-					pauseOnAction: true,
-					pauseOnHover: true
-				});
-			}
-
-			// FAQ Accordion functionality
-			$('.faq-question').on('click', function() {
-				var $parentItem = $(this).parent('.faq-item');
-				$('.faq-item').not($parentItem).removeClass('active').find('.faq-answer').slideUp(300);
-
-				$parentItem.toggleClass('active');
-				$parentItem.find('.faq-answer').slideToggle(300);
-			});
-		});
-	</script>
-</body>
-
-</html>
+	 				<li><a href="https://github
