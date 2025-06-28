@@ -66,6 +66,39 @@
 			transform: scale(1.02); /* Slightly enlarge images on hover */
 		}
 
+		/* Tool Image Specific Styles */
+		.tool-image-container {
+			background: #1a1a1a; /* Dark background for the image frame */
+			border-radius: 10px;
+			padding: 15px; /* Padding around the image */
+			margin-top: 20px;
+			margin-bottom: 30px;
+			box-shadow: 0 0 15px rgba(0, 255, 0, 0.3); /* Green glow effect */
+			display: inline-block; /* Allows width to shrink to content */
+			max-width: 100%; /* Ensure it's responsive */
+			overflow: hidden; /* Important for border-radius */
+			position: relative; /* For caption positioning */
+		}
+		.tool-image-container img {
+			max-width: 100%; /* Make image responsive within its container */
+			height: auto;
+			display: block; /* Remove extra space below image */
+			border-radius: 8px; /* Slightly smaller border radius for inner image */
+			border: 1px solid rgba(0, 255, 0, 0.5); /* Subtle green border */
+			transition: transform 0.3s ease-in-out;
+		}
+		.tool-image-container img:hover {
+			transform: scale(1.05); /* Zoom in effect on hover */
+		}
+		.tool-image-caption {
+			color: #00ff00; /* Green caption text */
+			font-size: 14px;
+			margin-top: 10px;
+			font-weight: bold;
+			text-align: center;
+		}
+
+
 		/* --- Buttons --- */
 		.btn {
 			background-color: #008000; /* Darker Green for buttons */
@@ -147,25 +180,7 @@
 			animation: fadeInUp 1s ease-out 0.3s forwards;
 			opacity: 0;
 		}
-		.video-container {
-			position: relative;
-			padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
-			height: 0;
-			overflow: hidden;
-			max-width: 100%;
-			background: #1a1a1a; /* Placeholder background for video */
-			border-radius: 10px;
-			margin-top: 30px;
-			box-shadow: 0 0 20px rgba(0, 255, 0, 0.3);
-		}
-		.video-container iframe {
-			position: absolute;
-			top: 0;
-			left: 0;
-			width: 100%;
-			height: 100%;
-			border: 0;
-		}
+		/* Removed .video-container styles as it's no longer iframe based */
 
 		/* Social links styling in header */
 		.social li {
@@ -310,22 +325,6 @@
 		#services .main-col ul li:hover i {
 			transform: translateX(5px);
 		}
-		.service-video-placeholder {
-			width: 100%;
-			height: 250px; /* Smaller video size for individual services */
-			background: #222;
-			border-radius: 8px;
-			display: flex;
-			align-items: center;
-			justify-content: center;
-			color: #00ff00;
-			font-size: 18px;
-			font-weight: bold;
-			margin-top: 20px;
-			margin-bottom: 30px;
-			box-shadow: 0 0 10px rgba(0, 255, 0, 0.2);
-		}
-
 
 		/* --- Stats Section --- */
 		.stats-section {
@@ -519,8 +518,9 @@
 	 			<h1 class="responsive-headline">Your Cloud, Simplified.</h1>
 	 			<h3>**SiuCloud** helps **Small to Medium Businesses (SMBs)** thrive in the cloud with simple, effective solutions. Get **cost savings, robust security, and seamless growth** – without the tech headaches.</h3>
 
-				<div class="video-container">
-					<p style="font-size: 20px;">[Placeholder for Your "SiuCloud Intro" Video]</p>
+				<div class="tool-image-container">
+					<img src="images/cloud_providers_logos.png" alt="Logos of AWS, Azure, and Google Cloud Platform" style="max-width: 400px;">
+					<p class="tool-image-caption">We partner with leading cloud platforms like AWS, Azure, and Google Cloud to simplify your digital journey.</p>
 				</div>
 
 	 			<ul class="social">
@@ -638,7 +638,10 @@
 	 				<div class="twelve columns">
 	 					<h4><i class="fa fa-map-signs" style="margin-right: 10px;"></i>Cloud Strategy: Your Clear Path</h4>
 	 					<p>We help you plan your cloud journey so it directly supports your business goals. No wasted effort, just smart growth.</p>
-						<div class="service-video-placeholder">[Video: What is Cloud Strategy?]</div>
+						<div class="tool-image-container">
+							<img src="images/aws_gcp_azure_icons.png" alt="Icons representing AWS, Azure, Google Cloud for platform strategy">
+							<p class="tool-image-caption">Choosing the right cloud partner for your unique business needs.</p>
+						</div>
 						<ul>
 							<li>**Cloud Readiness:** Are you ready for the cloud? We'll check and show you how.</li>
 							<li>**Best Platform:** AWS, Azure, GCP? We'll pick what's right for *your* business.</li>
@@ -651,7 +654,10 @@
 	 				<div class="twelve columns">
 	 					<h4><i class="fa fa-money" style="margin-right: 10px;"></i>Cost Optimization: Save Money, Grow Faster</h4>
 	 					<p>Cloud bills can get big fast. We find ways to cut waste and ensure you get the most value for every dollar spent.</p>
-						<div class="service-video-placeholder">[Video: How to Lower Cloud Costs?]</div>
+						<div class="tool-image-container">
+							<img src="images/aws_cost_explorer.png" alt="Screenshot or icon of AWS Cost Explorer or Azure Cost Management">
+							<p class="tool-image-caption">Visualizing and controlling your cloud spending with advanced tools.</p>
+						</div>
 							<ul>
 								<li>**Bill Review:** We find where you're spending too much.</li>
 								<li>**Right-Sizing:** Pay only for what you use, nothing more.</li>
@@ -665,11 +671,15 @@
 	 				<div class="twelve columns">
 	 					<h4><i class="fa fa-lock" style="margin-right: 10px;"></i>Security & Compliance: Your Business, Protected</h4>
 	 					<p>Protecting your data in the cloud is crucial. We build strong security around your business and help you meet important industry rules.</p>
-						<div class="service-video-placeholder">[Video: Cloud Security Basics]</div>
+						<div class="tool-image-container">
+							<img src="images/azure_security_center.png" alt="Screenshot or icon of Azure Security Center or AWS Security Hub">
+							<p class="tool-image-caption">Proactive security monitoring and compliance dashboards for peace of mind.</p>
+						</div>
 							<ul>
 								<li>**Security Check:** We find and fix weaknesses in your cloud.</li>
 								<li>**Access Control:** Only the right people get access.</li>
 								<li>**Data Safety:** Your data is encrypted and backed up.</li>
+							<li>**Rule Following:** We ensure you meet industry standards.</li>
 							</ul>
 						</p>
 	 				</div>
@@ -679,11 +689,15 @@
 	 				<div class="twelve columns">
 	 					<h4><i class="fa fa-cloud-upload" style="margin-right: 10px;"></i>Cloud Migration: Easy Move to the Cloud</h4>
 	 					<p>Moving your business to the cloud should be easy, not a headache. We handle the move smoothly, so you can keep working.</p>
-						<div class="service-video-placeholder">[Video: What is Cloud Migration?]</div>
+						<div class="tool-image-container">
+							<img src="images/gcp_migrate_icon.png" alt="Icon representing Google Cloud Migrate or AWS Migration Hub">
+							<p class="tool-image-caption">Seamlessly moving your applications and data with specialized migration tools.</p>
+						</div>
 							<ul>
 								<li>**Move Plan:** A detailed, step-by-step plan for your move.</li>
 								<li>**Lift-and-Shift:** Simple transfer of your current systems.</li>
 								<li>**Modernization:** Update old apps for cloud power.</li>
+							<li>**Zero Downtime:** Keep your business running during the move.</li>
 							</ul>
 						</p>
 	 				</div>
@@ -693,11 +707,15 @@
 	 				<div class="twelve columns">
 	 					<h4><i class="fa fa-line-chart" style="margin-right: 10px;"></i>Performance & Growth: Always Ready to Scale</h4>
 	 					<p>Your cloud should always perform well and grow with your business. We make sure it's fast, reliable, and ready for anything.</p>
-						<div class="service-video-placeholder">[Video: Scaling Your Business with Cloud]</div>
+						<div class="tool-image-container">
+							<img src="images/aws_auto_scaling.png" alt="Icon representing AWS Auto Scaling or Azure Monitor">
+							<p class="tool-image-caption">Ensuring your cloud grows automatically and performs optimally with demand.</p>
+						</div>
 							<ul>
 								<li>**Speed Boosts:** Make your cloud apps run faster.</li>
 								<li>**Auto-Scaling:** Your cloud grows automatically as needed.</li>
 								<li>**Always On:** Keep your business running, no downtime.</li>
+							<li>**Future-Proof:** Built to handle your future growth.</li>
 							</ul>
 						</p>
 	 				</div>
@@ -725,7 +743,10 @@
 	 					<p>**Solution:** We found savings, optimized their setup, and changed how they managed cloud spending.
 						<br><br>
 						**Result:** **38% less monthly cloud spending** in 4 months, freeing up cash for growth!</p>
-						<div class="service-video-placeholder" style="height: 180px;">[Video: E-commerce Success Story]</div>
+						<div class="tool-image-container" style="max-width: 300px;">
+							<img src="images/cost_savings_graph.png" alt="Abstract graph showing significant cost reduction">
+							<p class="tool-image-caption">Visualizing the impact of our cost optimization strategies.</p>
+						</div>
 	 				</div>
 	 			</div>
 
@@ -736,7 +757,10 @@
 	 					<p>**Solution:** We built a super-secure Azure setup, with strong access controls and encrypted data.
 						<br><br>
 						**Result:** Smooth, on-time move, passed all security checks, now securely in the cloud.</p>
-						<div class="service-video-placeholder" style="height: 180px;">[Video: Healthcare Security Case Study]</div>
+						<div class="tool-image-container" style="max-width: 300px;">
+							<img src="images/security_lock_icon.png" alt="Security lock icon representing data protection">
+							<p class="tool-image-caption">Our commitment to robust data protection and compliance.</p>
+						</div>
 	 				</div>
 	 			</div>
 
@@ -747,7 +771,10 @@
 						<p>**Solution:** We fine-tuned their Google Cloud setup, added auto-scaling, and improved monitoring.
 						<br><br>
 						**Result:** **25% faster apps** and no more slowdowns, even with lots of users. Happy customers!</p>
-						<div class="service-video-placeholder" style="height: 180px;">[Video: SaaS Performance Boost]</div>
+						<div class="tool-image-container" style="max-width: 300px;">
+							<img src="images/performance_speed_icon.png" alt="Speedometer or arrow icon representing performance increase">
+							<p class="tool-image-caption">Boosting application speed and reliability for enhanced user experience.</p>
+						</div>
 					</div>
 				</div>
 	 		</div>
@@ -810,7 +837,7 @@
 					<div class="faq-item">
 						<div class="faq-question">
 							What types of businesses does SiuCloud primarily serve?
-							<span class="icon">&#9660;</span>
+							<span class="icon">▼</span>
 						</div>
 						<div class="faq-answer">
 							We are laser-focused on **Small to Medium-sized Businesses (SMBs)** across a diverse range of industries, including e-commerce, healthcare, financial services, tech startups, and professional services. We understand the unique challenges SMBs face, such as budget constraints and limited in-house IT resources, and tailor our solutions specifically to these needs.
@@ -819,7 +846,7 @@
 					<div class="faq-item">
 						<div class="faq-question">
 							Which cloud platforms are within your area of expertise?
-							<span class="icon">&#9660;</span>
+							<span class="icon">▼</span>
 						</div>
 						<div class="faq-answer">
 							Our deep expertise covers the leading public cloud providers: **Amazon Web Services (AWS), Microsoft Azure, and Google Cloud Platform (GCP)**. Additionally, we have extensive experience with on-premise virtualization solutions like VMware vSphere, allowing us to effectively manage and integrate hybrid cloud environments.
@@ -828,7 +855,7 @@
 					<div class="faq-item">
 						<div class="faq-question">
 							How can SiuCloud significantly reduce my cloud expenses?
-							<span class="icon">&#9660;</span>
+							<span class="icon">▼</span>
 						</div>
 						<div class="faq-answer">
 							We employ a multi-faceted approach to cost optimization. This includes performing in-depth cloud cost audits to pinpoint wasteful spending, recommending and implementing efficient pricing models (like Reserved Instances or Savings Plans), right-sizing your resources, and advising on serverless architectures where they can provide maximum cost-efficiency. Our goal is always to maximize your cloud ROI.
@@ -837,7 +864,7 @@
 					<div class="faq-item">
 						<div class="faq-question">
 							Do you offer continuous cloud management or support?
-							<span class="icon">&#9660;</span>
+							<span class="icon">▼</span>
 						</div>
 						<div class="faq-answer">
 							While our primary focus is strategic advisory and detailed analysis, we empower your team for ongoing management. We can recommend top-tier managed service providers, assist in training your internal IT staff, and crucially, help you establish robust FinOps (Cloud Financial Operations) practices for continuous cost monitoring and optimization within your organization.
@@ -846,7 +873,7 @@
 					<div class="faq-item">
 						<div class="faq-question">
 							What truly sets SiuCloud apart from other cloud consulting firms?
-							<span class="icon">&#9660;</span>
+							<span class="icon">▼</span>
 						</div>
 						<div class="faq-answer">
 							Our distinct advantage lies in our unwavering focus on SMBs. We provide practical, actionable, and results-driven advice without the overwhelming jargon or unnecessary complexity often found with larger firms. Our founder, Roberto Siu, personally brings **over a decade of hands-on, practical cloud experience** to every client engagement, ensuring tailored solutions and tangible business value. We are your dedicated cloud partners.
@@ -889,7 +916,7 @@
 					<li><a href="https://siucloud.org" target="_blank" aria-label="Our Blog"><i class="fa fa-external-link"></i> Our Blog</a></li>
 	 			</ul>
 	 			<ul class="copyright">
-	 				<li>&copy; Copyright 2025 SiuCloud.org</li>
+	 				<li>© Copyright 2025 SiuCloud.org</li>
 	 				<li>Design based on <a href="https://www.styleshout.com/free-templates/ceevee/" target="_blank">CeeVee by Styleshout</a>, modified by SiuCloud.org</li>
 	 			</ul>
 	 		</div>
