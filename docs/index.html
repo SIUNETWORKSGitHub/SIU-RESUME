@@ -25,12 +25,13 @@
 		img {
 			border-radius: 14px;
 		}
+		/* GLOBAL PARAGRAPH AND LIST ITEM STYLES FOR BRIGHTNESS/READABILITY */
 		p {
-			color: #444; /* Slightly darker grey for enhanced readability */
+			color: #444; /* Standard dark grey for enhanced readability across most sections */
 			font-size: 17px; /* Slightly larger for easier reading */
 			line-height: 1.7; /* Improved line spacing for comfort */
 		}
-		ul li {
+		ul li, ol li p { /* Apply to list items and paragraphs within ordered lists */
 			color: #444;
 			font-size: 17px;
 			line-height: 1.7;
@@ -261,18 +262,20 @@
 		/* --- REVISED STYLES FOR BRIGHTER SECTIONS --- */
 
 		/* About Section (Our Approach) */
+		#about { /* Ensure about section background is bright */
+			background: #ffffff;
+			padding-top: 90px;
+			padding-bottom: 90px;
+		}
 		#about .main-col h3 { /* "Our Approach" sub-heading */
 			color: #222; /* Darker for better contrast against lighter backgrounds */
 		}
-		#about .main-col p,
-		#about .main-col ul li,
-		#about .main-col ol li p { /* Paragraphs and list items in About */
-			color: #444; /* Standard dark grey for readability */
-		}
+		/* Specific styling for the approach steps (headers and icons within ordered list) */
 		#about .main-col ol li h4 { /* Headings for each approach step */
 			color: #007bff; /* Use blue for key points for a brighter, professional look */
 			font-size: 20px; /* Slightly smaller than main h4, but still prominent */
 			margin-bottom: 10px;
+			margin-top: 20px; /* Add space above each step */
 		}
 		#about .main-col ol li h4 i {
 			color: #007bff; /* Ensure icon matches text color */
@@ -378,34 +381,34 @@
 
 				<p>Founded by **Roberto Siu**, our core mission is simple: to make the cloud work effortlessly for *your* business. We bridge the gap between complex cloud technology and practical business solutions. Think of us as your dedicated, fractional cloud team, turning challenges into clear pathways for innovation and savings. We deliver tangible value by focusing on:</p>
 				<ul>
-					<li><i class="fa fa-map-signs" style="margin-right: 8px;"></i><strong>Strategic Cloud Roadmapping:</strong> We don't just migrate; we strategize. We'll guide your entire cloud journey, from initial concept to optimizing your existing setup for sustainable growth.</li>
-					<li><i class="fa fa-money" style="margin-right: 8px;"></i><strong>Proactive Cost Optimization (FinOps):</strong> Cloud bills can be a mystery. We'll demystify them, identify wasteful spending, and implement strategies to significantly reduce your operational costs and maximize your Return on Investment (ROI).</li>
-					<li><i class="fa fa-lock" style="margin-right: 8px;"></i><strong>Ironclad Security & Compliance:</strong> Your data is your lifeline. We'll build robust security frameworks and ensure your cloud environment meets critical industry compliance standards, giving you peace of mind.</li>
-					<li><i class="fa fa-cloud-upload" style="margin-right: 8px;"></i><strong>Seamless Cloud Migration:</strong> Moving to the cloud should be smooth, not stressful. We ensure a secure, efficient transition of your applications and data with minimal disruption to your daily operations.</li>
-					<li><i class="fa fa-line-chart" style="margin-right: 8px;"></i><strong>Performance & Scalability for Growth:</strong> As your business expands, your cloud infrastructure needs to keep up. We design and fine-tune solutions that automatically scale with demand, ensuring consistent high performance.</li>
+					<li><i class="fa fa-map-signs" style="margin-right: 8px; color: #007bff;"></i><strong>Strategic Cloud Roadmapping:</strong> We don't just migrate; we strategize. We'll guide your entire cloud journey, from initial concept to optimizing your existing setup for sustainable growth.</li>
+					<li><i class="fa fa-money" style="margin-right: 8px; color: #007bff;"></i><strong>Proactive Cost Optimization (FinOps):</strong> Cloud bills can be a mystery. We'll demystify them, identify wasteful spending, and implement strategies to significantly reduce your operational costs and maximize your Return on Investment (ROI).</li>
+					<li><i class="fa fa-lock" style="margin-right: 8px; color: #007bff;"></i><strong>Ironclad Security & Compliance:</strong> Your data is your lifeline. We'll build robust security frameworks and ensure your cloud environment meets critical industry compliance standards, giving you peace of mind.</li>
+					<li><i class="fa fa-cloud-upload" style="margin-right: 8px; color: #007bff;"></i><strong>Seamless Cloud Migration:</strong> Moving to the cloud should be smooth, not stressful. We ensure a secure, efficient transition of your applications and data with minimal disruption to your daily operations.</li>
+					<li><i class="fa fa-line-chart" style="margin-right: 8px; color: #007bff;"></i><strong>Performance & Scalability for Growth:</strong> As your business expands, your cloud infrastructure needs to keep up. We design and fine-tune solutions that automatically scale with demand, ensuring consistent high performance.</li>
 				</ul>
 
 				<h3>Our Approach: Your Goals, Our Expertise, Measurable Results</h3>
 				<p>With extensive, hands-on experience across leading cloud platforms including **Amazon Web Services (AWS), Microsoft Azure, Google Cloud Platform (GCP)**, and on-premise solutions like **VMware**, we bring a holistic perspective to your cloud challenges. Our proven methodology is built on a foundation of genuine partnership and transparency:</p>
 				<ol>
 					<li>
-						<h4><i class="fa fa-handshake-o" style="margin-right: 8px;"></i>**1. Listen & Understand: Your Vision, Our Starting Point**</h4>
+						<h4><i class="fa fa-handshake-o" style="margin-right: 8px; color: #007bff;"></i>**1. Listen & Understand: Your Vision, Our Starting Point**</h4>
 						<p>We begin by deeply listening to your specific business needs, current IT landscape, and future aspirations. We believe in understanding your unique context before proposing any solutions. No generic advice here.</p>
 					</li>
 					<li>
-						<h4><i class="fa fa-search" style="margin-right: 8px;"></i>**2. Analyze & Advise: Uncovering Opportunities**</h4>
+						<h4><i class="fa fa-search" style="margin-right: 8px; color: #007bff;"></i>**2. Analyze & Advise: Uncovering Opportunities**</h4>
 						<p>We conduct meticulous, data-driven assessments of your existing cloud environment (or on-premise setup) to pinpoint inefficiencies, identify hidden cost-saving opportunities, and mitigate potential risks. We provide clear, actionable insights.</p>
 					</li>
 					<li>
-						<h4><i class="fa fa-lightbulb-o" style="margin-right: 8px;"></i>**3. Strategize & Plan: Your Custom Cloud Blueprint**</h4>
+						<h4><i class="fa fa-lightbulb-o" style="margin-right: 8px; color: #007bff;"></i>**3. Strategize & Plan: Your Custom Cloud Blueprint**</h4>
 						<p>Next, we craft a clear, step-by-step cloud strategy and detailed roadmap that's custom-built for your unique objectives and budget. This isn't just a plan; it's your blueprint for measurable success.</p>
 					</li>
 					<li>
-						<h4><i class="fa fa-cogs" style="margin-right: 8px;"></i>**4. Implement & Optimize: Seamless Execution, Continuous Improvement**</h4>
+						<h4><i class="fa fa-cogs" style="margin-right: 8px; color: #007bff;"></i>**4. Implement & Optimize: Seamless Execution, Continuous Improvement**</h4>
 						<p>We don't just plan; we help you execute. Our team assists with seamless solution implementation, focusing on robust security, efficient migrations, and continuous performance and cost optimization to ensure maximum value.</p>
 					</li>
 					<li>
-						<h4><i class="fa fa-graduation-cap" style="margin-right: 8px;"></i>**5. Educate & Empower: Building Your Cloud Confidence**</h4>
+						<h4><i class="fa fa-graduation-cap" style="margin-right: 8px; color: #007bff;"></i>**5. Educate & Empower: Building Your Cloud Confidence**</h4>
 						<p>We believe in empowering you. We'll transfer essential knowledge to your team, providing the insights and best practices needed to confidently manage and evolve your cloud infrastructure long-term. You'll gain independence and expertise.</p>
 					</li>
 				</ol>
@@ -427,16 +430,20 @@
 				<h2>Our Impact in Numbers</h2>
 				<div class="stats-container">
 					<div class="stats-item">
-						<strong data-count="98">0</strong> <span>% Client Satisfaction Rate</span>
+						<strong data-count="98">0</strong>
+						<span>% Client Satisfaction Rate</span>
 					</div>
 					<div class="stats-item">
-						<strong data-count="35">0</strong> <span>% Average Cloud Cost Savings</span>
+						<strong data-count="35">0</strong>
+						<span>% Average Cloud Cost Savings</span>
 					</div>
 					<div class="stats-item">
-						<strong data-count="250">0</strong> <span>+ Successful Cloud Projects</span>
+						<strong data-count="250">0</strong>
+						<span>+ Successful Cloud Projects</span>
 					</div>
 					<div class="stats-item">
-						<strong data-count="12">0</strong> <span>Years of Focused Cloud Experience</span>
+						<strong data-count="12">0</strong>
+						<span>Years of Focused Cloud Experience</span>
 					</div>
 				</div>
 			</div>
@@ -477,7 +484,7 @@
 								<li>**Detailed Cost Audits & Waste Identification:** We conduct an in-depth analysis of your current cloud spending, pinpointing underutilized resources, idle services, and billing inefficiencies that are costing you money.</li>
 								<li>**Resource Right-Sizing & Efficiency Gains:** We provide precise recommendations for optimizing your compute instances, storage tiers, and network configurations, ensuring you only pay for the resources you truly use, not a byte more.</li>
 								<li>**Leveraging Cloud Pricing Models:** We guide you through complex pricing models like Reserved Instances, Savings Plans, and Spot Instances, implementing smart strategies that can lead to dramatic cost reductions.</li>
-								<li>**FinOps Framework Implementation:** We help you establish collaborative financial operations practices, fostering accountability between your finance and technical teams for continuous cost monitoring and proactive management.</li>
+								<li>**FinOps Framework Implementation:** We help you establish collaborative financial operations practices, fostering accountability between finance and technical teams for continuous cost monitoring and proactive management.</li>
 								<li>**Proactive Cost Anomaly Detection:** We set up intelligent alerts and monitoring systems to quickly detect and address unexpected spikes in spending, preventing budget overruns before they happen.</li>
 							</ul>
 						</p>
@@ -668,114 +675,4 @@
 					<div class="faq-item">
 						<div class="faq-question">
 							What truly sets SiuCloud apart from other cloud consulting firms?
-							<span class="icon">&#9660;</span>
-						</div>
-						<div class="faq-answer">
-							Our distinct advantage lies in our unwavering focus on SMBs. We provide practical, actionable, and results-driven advice without the overwhelming jargon or unnecessary complexity often found with larger firms. Our founder, Roberto Siu, personally brings **over a decade of hands-on, practical cloud experience** to every client engagement, ensuring tailored solutions and tangible business value. We are your dedicated cloud partners.
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-		<p class="scrolldown">
-	 		<a class="smoothscroll" href="#consultation"><i class="icon-down-circle"></i></a>
-	 	</p>
-	</section>
-
-	<hr>
-
-	<section id="consultation">
-	 	<div class="row">
-	 		<div class="three columns">
-	 			<img class="profile-pic" src="images/consultation_image.png" alt="Schedule a Cloud Consultation with SiuCloud" />
-	 		</div>
-
-	 		<div class="nine columns main-col">
-				<br><br>
-	 			<h2>Ready to Transform Your Business with the Cloud?</h2>
-	 			<p>Don't let cloud complexity hold your business back. Schedule a **no-obligation, free consultation** with our expert cloud advisors today. We'll discuss your specific challenges, explore your business goals, and outline how SiuCloud can help you leverage the cloud efficiently, securely, and cost-effectively to drive growth and innovation.</p>
-				<p>It's time to unlock your full cloud potential. **Book your discovery call now.**</p>
-
-				<div class="calendly-inline-widget" data-url="https://calendly.com/antonyroberth" style="min-width:320px;height:750px;"></div> <script type="text/javascript" src="https://assets.calendly.com/assets/external/widget.js" async></script>
-			</div>
-	 	</div>
-	</section>
-
-	<footer>
-	 	<div class="row">
-	 		<div class="twelve columns">
-	 			<ul class="social-links">
-	 				<li><a href="https://www.linkedin.com/in/siunetworks/" target="_blank" aria-label="LinkedIn"><i class="fa fa-linkedin"></i></a></li>
-	 				<li><a href="https://github.com/SIUNETWORKSGitHub" target="_blank" aria-label="GitHub"><i class="fa fa-github"></i></a></li>
-					<li><a href="https://siucloud.org" target="_blank" aria-label="Our Blog"><i class="fa fa-external-link"></i> Our Blog</a></li>
-	 			</ul>
-	 			<ul class="copyright">
-	 				<li>&copy; Copyright 2025 SiuCloud.org</li>
-	 				<li>Design based on <a href="https://www.styleshout.com/free-templates/ceevee/" target="_blank">CeeVee by Styleshout</a>, modified by SiuCloud.org</li>
-	 			</ul>
-	 		</div>
-
-	 		<div id="go-top"><a class="smoothscroll" title="Back to Top" href="#home"><i class="icon-up-open"></i></a></div>
-			<img class="footer-logo" src="images/siucloudlogo.png" alt="SiuCloud Logo" style="height: 50px; margin-top: 20px;" /> </div>
-	</footer>
-
-	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-	<script>window.jQuery || document.write('<script src="js/jquery-1.10.2.min.js"><\/script>')</script>
-	<script type="text/javascript" src="js/jquery-migrate-1.2.1.min.js"></script>
-
-	<script src="js/jquery.flexslider.js"></script>
-	<script src="js/waypoints.js"></script>
-	<script src="js/jquery.fittext.js"></script>
-	<script src="js/magnific-popup.js"></script>
-	<script src="js/init.js"></script>
-	<script>
-		$(window).on('load', function() {
-			// Animated Counters
-			function animateNumbers() {
-				$('.stats-item strong').each(function() {
-					$(this).prop('Counter', 0).animate({
-						Counter: $(this).data('count')
-					}, {
-						duration: 2500, // Slightly longer animation for smoother feel
-						easing: 'swing',
-						step: function(now) {
-							$(this).text(Math.ceil(now));
-						}
-					});
-				});
-			}
-
-			// Trigger animation when the stats section is in view
-			$('#stats').waypoint(function() {
-				animateNumbers();
-				this.destroy(); // Run animation once
-			}, { offset: '80%' }); // Trigger when 80% of element is visible
-
-			// Testimonials Carousel (FlexSlider)
-			if ($.fn.flexslider) {
-				$('.flexslider').flexslider({
-					animation: "slide",
-					controlsContainer: $(".flex-container"),
-					slideshowSpeed: 8000, // Slightly longer display time
-					animationSpeed: 700, // Slightly slower transition
-					directionNav: false,
-					controlNav: true,
-					pauseOnAction: true,
-					pauseOnHover: true
-				});
-			}
-
-			// FAQ Accordion functionality
-			$('.faq-question').on('click', function() {
-				var $parentItem = $(this).parent('.faq-item');
-				// Close others if open (optional, but often preferred for FAQs)
-				$('.faq-item').not($parentItem).removeClass('active').find('.faq-answer').slideUp(300);
-
-				$parentItem.toggleClass('active');
-				$parentItem.find('.faq-answer').slideToggle(300);
-			});
-		});
-	</script>
-</body>
-
-</html>
+							<span class="icon">&#966
