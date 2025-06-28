@@ -10,8 +10,7 @@
 
 	<link rel="stylesheet" href="css/default.css">
 	<link rel="stylesheet" href="css/layout.css">
-	<link rel="stylesheet" href="css/media-queries.css">
-	<link rel="stylesheet" href="css/magnific-popup.css">
+	<link rel="stylesheet" href="css/media-queries.css"> <link rel="stylesheet" href="css/magnific-popup.css">
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
 
@@ -61,6 +60,8 @@
 		img {
 			border-radius: 14px;
 			transition: transform 0.3s ease-in-out; /* Smooth hover effect for images */
+			max-width: 100%; /* Ensure all images are responsive by default */
+			height: auto; /* Maintain aspect ratio */
 		}
 		img:hover {
 			transform: scale(1.02); /* Slightly enlarge images on hover */
@@ -75,17 +76,14 @@
 			margin-bottom: 30px;
 			box-shadow: 0 0 15px rgba(0, 255, 0, 0.3); /* Green glow effect */
 			display: inline-block; /* Allows width to shrink to content */
-			max-width: 100%; /* Ensure it's responsive */
+			max-width: 90%; /* Responsive max-width for containers */
 			overflow: hidden; /* Important for border-radius */
 			position: relative; /* For caption positioning */
 		}
 		.tool-image-container img {
-			max-width: 100%; /* Make image responsive within its container */
-			height: auto;
-			display: block; /* Remove extra space below image */
+			/* max-width: 100%; height: auto; are now global for img */
 			border-radius: 8px; /* Slightly smaller border radius for inner image */
 			border: 1px solid rgba(0, 255, 0, 0.5); /* Subtle green border */
-			transition: transform 0.3s ease-in-out;
 		}
 		.tool-image-container img:hover {
 			transform: scale(1.05); /* Zoom in effect on hover */
@@ -138,7 +136,7 @@
 			text-align: center;
 			position: relative;
 			height: auto; /* Adjust height based on content */
-			min-height: 850px; /* Minimum height for initial view */
+			min-height: 80vh; /* Use viewport height for better responsiveness across devices */
 			overflow: hidden; /* Hide overflow from banner elements */
 			display: flex; /* Use flexbox for vertical centering */
 			align-items: center; /* Center content vertically */
@@ -161,12 +159,13 @@
 			color: #00ff00;
 			padding-top: 50px; /* Reduced top padding as flexbox handles centering */
 			padding-bottom: 50px; /* Added bottom padding */
-			max-width: 900px; /* Limit width for better readability */
+			max-width: 90%; /* Max width relative to viewport */
 			margin: 0 auto; /* Center banner content */
 		}
 		.banner-text h1 {
 			color: #39ff14;
-			font-size: 56px; /* Slightly smaller for video prominence */
+			/* Responsive font size using clamp: min-size, fluid-size, max-size */
+			font-size: clamp(36px, 6vw, 60px);
 			margin-bottom: 15px;
 			line-height: 1.1;
 			text-shadow: 0 0 15px rgba(0, 255, 0, 0.5);
@@ -174,7 +173,8 @@
 		}
 		.banner-text h3 {
 			color: #00ff00;
-			font-size: 22px; /* Slightly smaller */
+			/* Responsive font size using clamp */
+			font-size: clamp(18px, 3.5vw, 22px);
 			line-height: 1.5;
 			margin-bottom: 40px;
 			animation: fadeInUp 1s ease-out 0.3s forwards;
@@ -184,7 +184,7 @@
 		/* Social links styling in header */
 		.social li {
 			display: inline-block;
-			margin: 0 10px;
+			margin: 0 1.5vw; /* Use vw for horizontal margin to scale with screen size */
 			animation: fadeIn 1s ease-out 0.6s forwards;
 			opacity: 0;
 		}
@@ -192,12 +192,12 @@
 			color: #00ff00;
 			background-color: rgba(0,255,0,0.15);
 			border-radius: 50%;
-			width: 50px;
-			height: 50px;
+			width: clamp(40px, 8vw, 50px); /* Responsive width */
+			height: clamp(40px, 8vw, 50px); /* Responsive height */
 			display: flex;
 			justify-content: center;
 			align-items: center;
-			font-size: 24px;
+			font-size: clamp(20px, 4vw, 24px); /* Responsive icon size */
 			transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
 			box-shadow: 0 0 10px rgba(0, 255, 0, 0.3);
 		}
@@ -466,6 +466,169 @@
 			}
 		}
 
+		/* --- Media Queries for Responsiveness --- */
+
+		/* Adjustments for smaller screens (e.g., tablets and phones) */
+		@media only screen and (max-width: 960px) {
+			body {
+				font-size: 16px; /* Slightly smaller base font */
+			}
+
+			h2 {
+				font-size: 32px;
+			}
+			h3 {
+				font-size: 22px;
+			}
+			h4 {
+				font-size: 20px;
+			}
+
+			/* Header adjustments */
+			#home {
+				min-height: 70vh; /* Adjust min-height for smaller screens */
+				padding-top: 100px;
+				padding-bottom: 50px;
+				display: block; /* Revert to block to prevent potential flex issues with complex content */
+			}
+			.banner {
+				padding-top: 0; /* Remove top padding as min-height handles spacing */
+				padding-bottom: 30px;
+			}
+			.banner-text h1 {
+				font-size: clamp(30px, 7vw, 48px); /* Smaller range for phones */
+			}
+			.banner-text h3 {
+				font-size: clamp(16px, 4vw, 20px); /* Smaller range for phones */
+				margin-bottom: 20px;
+			}
+
+			/* Social icons might need more space on smaller screens */
+			.social li {
+				margin: 0 5px; /* Reduce horizontal margin */
+			}
+			.social li a {
+				width: clamp(35px, 10vw, 45px); /* Smaller responsive size for mobile */
+				height: clamp(35px, 10vw, 45px);
+				font-size: clamp(18px, 6vw, 22px);
+			}
+
+			/* About Section columns should stack on smaller devices */
+			#about .three.columns,
+			#about .nine.columns {
+				width: 100%; /* Full width */
+				float: none; /* Remove float */
+				margin-left: 0; /* Remove left margin */
+				padding-left: 0;
+				padding-right: 0;
+				text-align: center; /* Center content */
+			}
+			#about .three.columns {
+				margin-bottom: 30px; /* Space between stacked columns */
+			}
+			#about .profile-pic,
+			.cloud-partners-image {
+				max-width: 70%; /* Adjust image size for stacked layout */
+				margin-left: auto;
+				margin-right: auto;
+				display: block;
+			}
+
+			/* Services Section adjustments */
+			#services .three.columns.header-col,
+			#services .nine.columns.main-col {
+				width: 100%;
+				float: none;
+				margin-left: 0;
+				padding-left: 0;
+				padding-right: 0;
+			}
+			#services .header-col h1 {
+				margin-bottom: 20px;
+			}
+			#services .row.item {
+				margin-bottom: 40px; /* More space between service items */
+			}
+
+			/* Case Studies & Testimonials also likely use a similar grid structure */
+			#casestudies .three.columns,
+			#casestudies .nine.columns,
+			#testimonials .twelve.columns {
+				width: 100%;
+				float: none;
+				margin-left: 0;
+				padding-left: 0;
+				padding-right: 0;
+			}
+			.testimonial-item {
+				width: 90%; /* Adjust width for mobile */
+				margin: 15px auto;
+			}
+
+			/* FAQ Section adjustments */
+			#faq .three.columns.header-col,
+			#faq .nine.columns.main-col {
+				width: 100%;
+				float: none;
+				margin-left: 0;
+				padding-left: 0;
+				padding-right: 0;
+			}
+
+			/* Consultation Section adjustments */
+			#consultation .three.columns,
+			#consultation .nine.columns {
+				width: 100%;
+				float: none;
+				margin-left: 0;
+				padding-left: 0;
+				padding-right: 0;
+			}
+			#consultation .main-col {
+				padding-left: 0; /* Remove specific padding on mobile */
+			}
+			#consultation .profile-pic {
+				max-width: 60%;
+				margin-left: auto;
+				margin-right: auto;
+				margin-bottom: 30px;
+			}
+		}
+
+		/* Specific adjustments for very small screens (e.g., iPhone SE) */
+		@media only screen and (max-width: 480px) {
+			h1 {
+				font-size: clamp(28px, 9vw, 40px); /* Even smaller range for H1 */
+			}
+			h2 {
+				font-size: 28px;
+			}
+			h3 {
+				font-size: 20px;
+			}
+			p {
+				font-size: 15px;
+			}
+			ul li, ol li p {
+				font-size: 15px;
+			}
+			.btn {
+				padding: 10px 20px;
+				font-size: 14px;
+			}
+			.social li {
+				margin: 0 3px;
+			}
+			.social li a {
+				width: 35px;
+				height: 35px;
+				font-size: 18px;
+			}
+			.tool-image-container {
+				padding: 10px; /* Reduce padding for smaller screens */
+			}
+		}
+
 	</style>
 
 </head>
@@ -495,15 +658,15 @@
 	 			<h1 class="responsive-headline">☁️ ☁️ Siucloud ☁️ ☁️, Simplified. </h1>
 	 			<h3>**SiuCloud** helps **Small to Medium Businesses (SMBs)** thrive in the cloud with simple, effective solutions. Get **cost savings, robust security, and seamless growth** – without the tech headaches.</h3>
 
-				<div class="home">
-					<img src="images/Call_today.png" alt="Your Cloud Solution Starts Here. Call Today: 305 440 9192." style="max-width: 600px;">
-					</div>
+				<div class="tool-image-container">
+					<img src="images/cloud_solution_call_to_action.jpg" alt="Your Cloud Solution Starts Here. Call Today: 305 440 9192.">
+				</div>
 
 	 			<ul class="social">
-					
+					<li><a href="https://siucloud.org/images/Siu.pdf" target="_blank" class="btn"><i class="fa fa-download"></i> Download Our Catalog</a></li>
 	 				<li><a href="https://www.linkedin.com/in/siunetworks/" target="_blank" aria-label="LinkedIn"><i class="fa fa-linkedin"></i></a></li>
 	 				<li><a href="https://github.com/SIUNETWORKSGitHub" target="_blank" aria-label="GitHub"><i class="fa fa-github"></i></a></li>
-					<li><a href="https://siucloud.org/images/Siu.pdf" target="_blank" class="btn"><i class="fa fa-download"></i> Download Our Catalog</a></li>
+					<li><a href="https://siucloud.org" target="_blank" class="btn" aria-label="Our Blog"><i class="fa fa-external-link"></i> Visit Our Blog</a></li>
 	 				
 	 			</ul>
 	 		</div>
@@ -519,7 +682,7 @@
 
 	 		<div class="three columns">
 	 			<img class="profile-pic" src="images/Profile_Photo.png" alt="Cloud Advisor Image representing strategy and expertise" />
-                <img class="cloud-partners-image" src="/images/Cloud_Partners.png" alt="SiuCloud partners with leading cloud providers" />
+                <img class="cloud-partners-image" src="docs/images/Cloud_Partners.png" alt="SiuCloud partners with leading cloud providers" />
 	 		</div>
 
 	 		<div class="nine columns main-col">
@@ -859,90 +1022,4 @@
 	 		<div class="nine columns main-col">
 				<br><br>
 	 			<h2>Ready to Transform Your Business with the Cloud?</h2>
-	 			<p>Don't let cloud complexity hold your business back. Schedule a **no-obligation, free consultation** with our expert cloud advisors today. We'll discuss your specific challenges, explore your business goals, and outline how SiuCloud can help you leverage the cloud efficiently, securely, and cost-effectively to drive growth and innovation.</p>
-				<p>It's time to unlock your full cloud potential. **Book your discovery call now.**</p>
-
-				<div class="calendly-inline-widget" data-url="https://calendly.com/antonyroberth" style="min-width:320px;height:750px;"></div>
-				<script type="text/javascript" src="https://assets.calendly.com/assets/external/widget.js" async></script>
-			</div>
-	 	</div>
-	</section>
-
-	<footer>
-	 	<div class="row">
-	 		<div class="twelve columns">
-	 			<ul class="social-links">
-	 				<li><a href="https://www.linkedin.com/in/siunetworks/" target="_blank" aria-label="LinkedIn"><i class="fa fa-linkedin"></i></a></li>
-	 				<li><a href="https://github.com/SIUNETWORKSGitHub" target="_blank" aria-label="GitHub"><i class="fa fa-github"></i></a></li>
-					<li><a href="https://siucloud.org" target="_blank" aria-label="Our Blog"><i class="fa fa-external-link"></i> Our Blog</a></li>
-	 			</ul>
-	 			<ul class="copyright">
-	 				<li>&copy; Copyright 2025 SiuCloud.org</li>
-	 				<li>Design based on <a href="https://www.styleshout.com/free-templates/ceevee/" target="_blank">CeeVee by Styleshout</a>, modified by SiuCloud.org</li>
-	 			</ul>
-	 		</div>
-
-	 		<div id="go-top"><a class="smoothscroll" title="Back to Top" href="#home"><i class="icon-up-open"></i></a></div>
-			<img class="footer-logo" src="images/siucloudlogo.png" alt="SiuCloud Logo" style="height: 50px; margin-top: 20px;" />
-	 	</div>
-	</footer>
-
-	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-	<script>window.jQuery || document.write('<script src="js/jquery-1.10.2.min.js"><\/script>')</script>
-	<script type="text/javascript" src="js/jquery-migrate-1.2.1.min.js"></script>
-
-	<script src="js/jquery.flexslider.js"></script>
-	<script src="js/waypoints.js"></script>
-	<script src="js/jquery.fittext.js"></script>
-	<script src="js/magnific-popup.js"></script>
-	<script src="js/init.js"></script>
-	<script>
-		$(window).on('load', function() {
-			// Animated Counters
-			function animateNumbers() {
-				$('.stats-item strong').each(function() {
-					$(this).prop('Counter', 0).animate({
-						Counter: $(this).data('count')
-					}, {
-						duration: 2500,
-						easing: 'swing',
-						step: function(now) {
-							$(this).text(Math.ceil(now));
-						}
-					});
-				});
-			}
-
-			// Trigger animation when the stats section is in view
-			$('#stats').waypoint(function() {
-				animateNumbers();
-				this.destroy();
-			}, { offset: '80%' });
-
-			// Testimonials Carousel (FlexSlider)
-			if ($.fn.flexslider) {
-				$('.flexslider').flexslider({
-					animation: "slide",
-					controlsContainer: $(".flex-container"),
-					slideshowSpeed: 8000,
-					animationSpeed: 700,
-					directionNav: false,
-					controlNav: true,
-					pauseOnAction: true,
-					pauseOnHover: true
-				});
-			}
-
-			// FAQ Accordion functionality
-			$('.faq-question').on('click', function() {
-				var $parentItem = $(this).parent('.faq-item');
-				$('.faq-item').not($parentItem).removeClass('active').find('.faq-answer').slideUp(300);
-
-				$parentItem.toggleClass('active');
-				$parentItem.find('.faq-answer').slideToggle(300);
-			});
-		});
-	</script>
-</body>
-
-</html>
+	 			<p>Don't let cloud complexity hold your business back. Schedule a **no-obligation, free consultation** with our expert cloud advisors today. We'll discuss your
