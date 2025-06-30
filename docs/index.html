@@ -10,12 +10,13 @@
 
 	<link rel="stylesheet" href="css/default.css">
 	<link rel="stylesheet" href="css/layout.css">
-	<link rel="stylesheet" href="css/media-queries.css"> <link rel="stylesheet" href="css/magnific-popup.css">
+	<link rel="stylesheet" href="css/media-queries.css">
+    <link rel="stylesheet" href="css/magnific-popup.css">
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/FlexSlider/2.7.2/flexslider.min.css">
 
 
 	<script src="js/modernizr.js"></script>
-	<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 	<link rel="shortcut icon" href="favicon.png" >
 
 
@@ -350,8 +351,22 @@
 		.testimonial-author {
 			color: #39ff14;
 		}
+		.flexslider .flex-control-nav { /* Position dots */
+            bottom: -30px; /* Adjust as needed */
+            text-align: center;
+            width: 100%;
+        }
+		.flexslider .flex-control-nav li {
+            display: inline-block;
+            margin: 0 5px;
+        }
 		.flexslider .flex-control-nav li a {
 			background: #008000;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            display: block;
+            text-indent: -9999px; /* Hide text */
 			transition: background 0.3s ease, transform 0.3s ease;
 		}
 		.flexslider .flex-control-nav li a.flex-active,
@@ -359,6 +374,43 @@
 			background: #39ff14;
 			transform: scale(1.2);
 		}
+        /* Make sure navigation arrows are visible for FlexSlider, if using */
+        .flexslider .flex-direction-nav a {
+            text-decoration: none;
+            display: block;
+            width: 40px;
+            height: 40px;
+            margin: -20px 0 0;
+            position: absolute;
+            top: 50%;
+            z-index: 10;
+            overflow: hidden;
+            opacity: 0.8;
+            cursor: pointer;
+            color: rgba(0,0,0,0.8); /* This color might be too dark against a dark background */
+            text-shadow: 1px 1px 0 rgba(255,255,255,0.3);
+            -webkit-transition: all .3s ease;
+            -moz-transition: all .3s ease;
+            transition: all .3s ease;
+            background-color: rgba(255,255,255,0.7); /* Light background for visibility */
+            border-radius: 50%;
+            text-align: center;
+            line-height: 40px;
+            font-size: 1.5em;
+        }
+        .flexslider .flex-direction-nav .flex-prev { left: -50px; }
+        .flexslider .flex-direction-nav .flex-next { right: -50px; }
+        .flexslider .flex-direction-nav a:before { /* You might need to set content property if using icons */
+            font-family: "FontAwesome"; /* Ensure Font Awesome is loaded and this font-family is correct */
+            content: "\f104"; /* Unicode for left arrow, adjust if using Font Awesome 5 */
+            display: inline-block;
+            color: #333; /* Darker color for the arrow icon itself */
+        }
+        .flexslider .flex-direction-nav .flex-next:before {
+            content: "\f105"; /* Unicode for right arrow, adjust if using Font Awesome 5 */
+        }
+        /* Ensure that these arrows are actually part of your flexslider HTML.
+           FlexSlider adds them dynamically, but their styling depends on these classes. */
 
 
 		/* --- FAQ Section --- */
@@ -665,12 +717,12 @@
 	 			<ul class="social">
 
 					<li><a href="https://siucloud.org/images/Siu1.pdf" target="_blank" class="btn"><i class="fa fa-download"></i> Download Our Catalog</a></li>
-					
+
 	 				<li><a href="https://www.linkedin.com/in/siunetworks/" target="_blank" aria-label="LinkedIn"><i class="fa fa-linkedin"></i></a></li>
-					
+
 	 				<li><a href="https://github.com/SIUNETWORKSGitHub" target="_blank" aria-label="GitHub"><i class="fa fa-github"></i></a></li>
-					
-	 				
+
+
 	 			</ul>
 	 		</div>
 	 	</div>
@@ -695,10 +747,10 @@
 
 	 			<p>At **SiuCloud**, we make cloud computing straightforward for **Small to Medium-sized Businesses (SMBs)**. We know you need cloud power without the complexity or high costs. **That's our specialty.**</p>
 
-				<p> Launched by Roberto Siu on February 14, 2014, SiuCloud was built with one clear purpose: to make powerful cloud technology simple and profitable for your business. We act as your dedicated cloud experts, 
-				    transforming complex challenges into straightforward paths for innovation, significant savings, and competitive advantage.
+				<p> Launched by Roberto Siu on February 14, 2014, SiuCloud was built with one clear purpose: to make powerful cloud technology simple and profitable for your business. We act as your dedicated cloud experts, 
+				    transforming complex challenges into straightforward paths for innovation, significant savings, and competitive advantage.
 
-                                    We deliver real value by focusing on:</p>
+                                    We deliver real value by focusing on:</p>
 				<ul>
 					<li><i class="fa fa-map-signs" style="margin-right: 8px;"></i>**Clear Cloud Strategy:** Your step-by-step plan for cloud success.</li>
 					<li><i class="fa fa-money" style="margin-right: 8px;"></i>**Smart Cost Savings:** Maximize your budget, cut waste.</li>
@@ -751,7 +803,7 @@
 				<div class="tool-image-container">
 							<img src="images/Siu_Impact.png" alt="Our Impact: Simple Steps, Powerful Results">
 							<p class="tool-image-caption"> Thanks to our team...always growing!**.</p>
-				
+
 				<h2>Our impact in numbers...and always growing!</h2>
 				<div class="stats-container">
 					<div class="stats-item">
@@ -772,7 +824,7 @@
 					</div>
 				</div>
 			</div>
-	
+
 		</section>
 	<hr>
 
@@ -871,8 +923,8 @@
 						</p>
 	 				</div>
 	 			</div>
-	 
-	 
+
+
 		</section>
 
 	<hr>
@@ -902,8 +954,8 @@
 	 				<div class="twelve columns">
 	 					<h4>Healthcare: Healthcare: Secure Azure Migration with Enhanced Security.</h4>
 	 					<p class="info">**Challenge:** A new healthcare startup needed to migrate sensitive patient data to Azure, with strict requirements for robust data security and compliance..</p>
-	 					<p>**Solution:** Our team engineered a highly secure Azure environment. We implemented strong access controls by configuring Azure Network Security Groups (NSGs) to define inbound and outbound security rules, 
-							allowing only necessary traffic to specific ports and IP ranges. For instance, we set rules to permit web traffic (port 443) only from an application gateway and restricted database access (port 1433) 
+	 					<p>**Solution:** Our team engineered a highly secure Azure environment. We implemented strong access controls by configuring Azure Network Security Groups (NSGs) to define inbound and outbound security rules,
+							allowing only necessary traffic to specific ports and IP ranges. For instance, we set rules to permit web traffic (port 443) only from an application gateway and restricted database access (port 1433)
 							to internal application servers. We also ensured all sensitive data was encrypted at rest and in transit.
 						<br><br>
 						**Result:** The migration was smooth, on time, and successfully passed all security checks, ensuring the patient data is now securely hosted in the cloud.</p>
@@ -928,7 +980,7 @@
 					</div>
 				</div>
 	 		</div>
-			
+
 		</section>
 
 	<hr>
@@ -965,8 +1017,8 @@
 						</li>
 					</ul>
 				</div>
-			</div>
-		
+
+
 		</section>
 
 	<hr>
@@ -1067,17 +1119,17 @@
 	 	</div>
 	</footer>
 
-	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-	<script>window.jQuery || document.write('<script src="js/jquery-1.10.2.min.js"><\/script>')</script>
-	<script type="text/javascript" src="js/jquery-migrate-1.2.1.min.js"></script>
+	<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 
 	<script src="js/jquery.flexslider.js"></script>
 	<script src="js/waypoints.js"></script>
 	<script src="js/jquery.fittext.js"></script>
 	<script src="js/magnific-popup.js"></script>
 	<script src="js/init.js"></script>
+
 	<script>
-		$(window).on('load', function() {
+		$(document).ready(function() { // Changed from $(window).on('load') to $(document).ready()
+
 			// Animated Counters
 			function animateNumbers() {
 				$('.stats-item strong').each(function() {
@@ -1096,18 +1148,18 @@
 			// Trigger animation when the stats section is in view
 			$('#stats').waypoint(function() {
 				animateNumbers();
-				this.destroy();
+				this.destroy(); // Ensure it only runs once
 			}, { offset: '80%' });
 
 			// Testimonials Carousel (FlexSlider)
 			if ($.fn.flexslider) {
 				$('.flexslider').flexslider({
 					animation: "slide",
-					controlsContainer: $(".flex-container"),
+					// REMOVED: controlsContainer: $(".flex-container"), // Remove if you don't have a specific .flex-container element
 					slideshowSpeed: 8000,
 					animationSpeed: 700,
-					directionNav: false,
-					controlNav: true,
+					directionNav: false, // Set to true if you want navigation arrows
+					controlNav: true, // Show navigation dots
 					pauseOnAction: true,
 					pauseOnHover: true
 				});
