@@ -14,7 +14,6 @@
       --panel: rgba(255,255,255,0.03);
       --text: #e6edf3;
       --accent: #00c2a8;
-      --accent-2: #00a08f;
       --border: rgba(230, 237, 243, 0.12);
       --radius: 14px;
       --maxw: 1100px;
@@ -27,9 +26,10 @@
       font-family: "Inter", sans-serif;
       color: var(--text);
       background: var(--bg);
-      padding-top: 80px;
+      padding-top: 70px; /* Space for the fixed menu */
     }
 
+    /* FIXED NAV BAR */
     .nav-wrap {
       position: fixed;
       top: 0; left: 0; right: 0;
@@ -53,10 +53,12 @@
     .brand .dot { width: 10px; height: 10px; border-radius: 50%; background: var(--accent); }
 
     #user-info { display: none; align-items: center; gap: 10px; color: var(--accent); font-weight: 600; }
-    #signOut { cursor: pointer; font-size: 0.75rem; color: var(--muted); border: 1px solid var(--border); border-radius: 4px; padding: 4px 10px; background: transparent; color: white; }
+    #signOut { cursor: pointer; font-size: 0.75rem; color: #93a1ad; border: 1px solid var(--border); border-radius: 4px; padding: 4px 10px; background: transparent; color: white; }
 
     .container { width: min(100% - 2rem, var(--maxw)); margin-inline: auto; }
-    .section { padding-block: 80px; scroll-margin-top: 100px; }
+    .section { padding-block: 60px; scroll-margin-top: 100px; }
+    
+    /* Image rounding */
     img { width: 100%; height: auto; display: block; border-radius: var(--radius); }
     
     .services-grid {
@@ -67,9 +69,8 @@
       text-align: center;
     }
     .service-desc h4 { color: var(--accent); margin-bottom: 10px; }
-    .service-desc p { font-size: 0.95rem; line-height: 1.5; color: var(--text); }
 
-    .btn { background: var(--accent); color: #000; padding: 12px 24px; border-radius: 50px; font-weight: 600; text-decoration: none; display: inline-flex; align-items: center; gap: 8px; border:none; cursor: pointer; }
+    .btn { background: var(--accent); color: #000; padding: 12px 24px; border-radius: 50px; font-weight: 600; text-decoration: none; border:none; cursor: pointer; }
     footer { border-top: 1px solid var(--border); background: var(--bg-soft); padding-block: 40px; text-align: center; }
   </style>
 </head>
@@ -94,15 +95,17 @@
   </div>
 
   <header id="home">
+    <img src="https://raw.githubusercontent.com/SIUNETWORKSGitHub/SIU-RESUME/refs/heads/master/docs/images/New_picture.png" style="width: 100vw; border-radius: 0;"/>
     <div class="container" style="text-align: center; padding-block: 40px;">
       <h1>Your Cloud, Simplified</h1>
+      <p style="color: #93a1ad;">Practical results-first cloud advisory for SMBs.</p>
     </div>
   </header>
 
   <section id="about" class="section">
     <div class="container">
       <h2>About SiuCloud</h2>
-      <p>Practical results-first cloud advisory for SMBs.</p>
+      <p>Helping businesses navigate the cloud with security and partnership at the core.</p>
     </div>
   </section>
 
@@ -134,7 +137,7 @@
   <section id="faq" class="section">
     <div class="container">
       <h2>FAQ</h2>
-      <p style="color: var(--muted);">Coming soon...</p>
+      <p style="color: #93a1ad;">Have questions about migration or hybrid setups? We have answers.</p>
     </div>
   </section>
 
