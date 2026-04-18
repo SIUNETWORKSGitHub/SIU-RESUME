@@ -29,7 +29,7 @@
       padding-top: 70px;
     }
 
-    /* FIXED NAV BAR */
+    /* NAVIGATION */
     .nav-wrap {
       position: fixed;
       top: 0; left: 0; right: 0;
@@ -56,7 +56,7 @@
     #signOut { cursor: pointer; font-size: 0.75rem; color: #93a1ad; border: 1px solid var(--border); border-radius: 4px; padding: 4px 10px; background: transparent; color: white; }
 
     .container { width: min(100% - 2rem, var(--maxw)); margin-inline: auto; }
-    .section { padding-block: 80px; scroll-margin-top: 100px; }
+    .section { padding-block: 100px; scroll-margin-top: 100px; }
     
     img { width: 100%; height: auto; display: block; border-radius: var(--radius); }
     
@@ -95,42 +95,54 @@
     </div>
   </div>
 
-  <header id="home">
-    <img src="https://raw.githubusercontent.com/SIUNETWORKSGitHub/SIU-RESUME/refs/heads/master/docs/images/New_picture.png" style="width: 100vw; border-radius: 0;"/>
-    <div class="container" style="text-align: center; padding-block: 40px;">
-      <h1>Your Cloud, Simplified</h1>
-      <p style="color: #93a1ad;">Practical results-first cloud advisory for SMBs.</p>
+  <header id="home" style="min-height: 85vh; display: flex; flex-direction: column; align-items: center; justify-content: center; background: linear-gradient(180deg, var(--bg) 0%, #1a1f24 100%); padding-bottom: 80px;">
+    <img src="https://raw.githubusercontent.com/SIUNETWORKSGitHub/SIU-RESUME/refs/heads/master/docs/images/New_picture.png" style="width: 100vw; border-radius: 0; margin-top: -70px;"/>
+    
+    <div class="container" style="text-align: center; margin-top: 60px;">
+      <h1 style="font-size: clamp(2.5rem, 6vw, 4rem); margin-bottom: 20px; letter-spacing: -1px;">Your Cloud, Simplified</h1>
+      <p style="color: var(--accent); font-size: 1.4rem; font-weight: 500; max-width: 800px; margin-inline: auto;">
+        Practical results-first cloud advisory for SMBs.
+      </p>
+      <div style="margin-top: 40px;">
+        <a class="btn" href="#consultation" style="padding: 18px 36px; font-size: 1.1rem;">Get Started Now</a>
+      </div>
     </div>
   </header>
 
-  <section id="about" class="section" style="background: var(--bg-soft);">
+  <div style="width: 100%; height: 1px; background: linear-gradient(90deg, transparent, var(--accent), transparent); opacity: 0.3;"></div>
+
+  <section id="about" class="section" style="background: #0f1418; padding-block: 120px;">
     <div class="container">
-      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 50px; align-items: center;">
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 60px; align-items: center;">
+        
         <div>
-          <div class="eyebrow" style="color: var(--accent); font-weight: 700; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 10px;">Who We Are</div>
-          <h2 style="font-size: 2.5rem; margin-bottom: 20px;">Your Trusted Partner in Cloud Evolution</h2>
-          <p style="font-size: 1.1rem; line-height: 1.7; color: var(--text); margin-bottom: 20px;">
+          <div class="eyebrow" style="color: var(--accent); font-weight: 700; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 15px;">Who We Are</div>
+          <h2 style="font-size: 2.8rem; margin-bottom: 25px; line-height: 1.2;">Your Trusted Partner in <br>Cloud Evolution</h2>
+          <p style="font-size: 1.15rem; line-height: 1.8; color: var(--text); margin-bottom: 25px;">
             At <strong>SiuCloud</strong>, we don't just provide services; we build resilient digital foundations. We understand that moving to the cloud or managing a hybrid environment is a critical business decision. 
           </p>
-          <p style="color: #93a1ad; line-height: 1.7;">
-            Our mission is to bridge the gap between complex technology and your business goals. By combining deep technical expertise with a transparent, partnership-first approach, we ensure your data is secure, your costs are optimized, and your infrastructure is ready for tomorrow.
+          <p style="color: #93a1ad; line-height: 1.8; font-size: 1.05rem;">
+            Our mission is to bridge the gap between complex technology and your business goals. By combining deep technical expertise with a transparent approach, we ensure your data is secure and your infrastructure is ready for tomorrow.
           </p>
         </div>
 
-        <div style="display: grid; gap: 20px;">
-          <div style="background: var(--panel); padding: 25px; border-radius: var(--radius); border-left: 4px solid var(--accent);">
-            <h4 style="margin-bottom: 8px;"><i class="fa-solid fa-shield-halved" style="color: var(--accent); margin-right: 10px;"></i> Security Focused</h4>
-            <p style="font-size: 0.9rem; color: #93a1ad; margin: 0;">We implement enterprise-grade security protocols for every cloud and hybrid deployment.</p>
+        <div style="display: grid; gap: 25px;">
+          <div style="background: rgba(255,255,255,0.02); padding: 30px; border-radius: var(--radius); border: 1px solid var(--border); transition: all 0.3s; cursor: default;" onmouseover="this.style.borderColor='var(--accent)'; this.style.background='rgba(0,194,168,0.03)';" onmouseout="this.style.borderColor='var(--border)'; this.style.background='rgba(255,255,255,0.02)';">
+            <h4 style="margin-bottom: 10px; font-size: 1.2rem;"><i class="fa-solid fa-shield-halved" style="color: var(--accent); margin-right: 12px;"></i> Security Focused</h4>
+            <p style="font-size: 0.95rem; color: #93a1ad; margin: 0; line-height: 1.6;">We implement enterprise-grade security protocols for every cloud and hybrid deployment.</p>
           </div>
-          <div style="background: var(--panel); padding: 25px; border-radius: var(--radius); border-left: 4px solid var(--accent);">
-            <h4 style="margin-bottom: 8px;"><i class="fa-solid fa-handshake" style="color: var(--accent); margin-right: 10px;"></i> Partnership Driven</h4>
-            <p style="font-size: 0.9rem; color: #93a1ad; margin: 0;">We operate as an extension of your team, ensuring you never navigate the cloud alone.</p>
+
+          <div style="background: rgba(255,255,255,0.02); padding: 30px; border-radius: var(--radius); border: 1px solid var(--border); transition: all 0.3s; cursor: default;" onmouseover="this.style.borderColor='var(--accent)'; this.style.background='rgba(0,194,168,0.03)';" onmouseout="this.style.borderColor='var(--border)'; this.style.background='rgba(255,255,255,0.02)';">
+            <h4 style="margin-bottom: 10px; font-size: 1.2rem;"><i class="fa-solid fa-handshake" style="color: var(--accent); margin-right: 12px;"></i> Partnership Driven</h4>
+            <p style="font-size: 0.95rem; color: #93a1ad; margin: 0; line-height: 1.6;">We operate as an extension of your team, ensuring you never navigate the cloud alone.</p>
           </div>
-          <div style="background: var(--panel); padding: 25px; border-radius: var(--radius); border-left: 4px solid var(--accent);">
-            <h4 style="margin-bottom: 8px;"><i class="fa-solid fa-layer-group" style="color: var(--accent); margin-right: 10px;"></i> Hybrid Expertise</h4>
-            <p style="font-size: 0.9rem; color: #93a1ad; margin: 0;">Specialized in seamless integration between on-premise hardware and cloud scalability.</p>
+
+          <div style="background: rgba(255,255,255,0.02); padding: 30px; border-radius: var(--radius); border: 1px solid var(--border); transition: all 0.3s; cursor: default;" onmouseover="this.style.borderColor='var(--accent)'; this.style.background='rgba(0,194,168,0.03)';" onmouseout="this.style.borderColor='var(--border)'; this.style.background='rgba(255,255,255,0.02)';">
+            <h4 style="margin-bottom: 10px; font-size: 1.2rem;"><i class="fa-solid fa-layer-group" style="color: var(--accent); margin-right: 12px;"></i> Hybrid Expertise</h4>
+            <p style="font-size: 0.95rem; color: #93a1ad; margin: 0; line-height: 1.6;">Specialized in seamless integration between on-premise hardware and cloud scalability.</p>
           </div>
         </div>
+
       </div>
     </div>
   </section>
