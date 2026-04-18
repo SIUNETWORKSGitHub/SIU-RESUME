@@ -26,7 +26,7 @@
       font-family: "Inter", sans-serif;
       color: var(--text);
       background: var(--bg);
-      padding-top: 70px; /* Space for the fixed menu */
+      padding-top: 70px;
     }
 
     /* FIXED NAV BAR */
@@ -56,9 +56,8 @@
     #signOut { cursor: pointer; font-size: 0.75rem; color: #93a1ad; border: 1px solid var(--border); border-radius: 4px; padding: 4px 10px; background: transparent; color: white; }
 
     .container { width: min(100% - 2rem, var(--maxw)); margin-inline: auto; }
-    .section { padding-block: 60px; scroll-margin-top: 100px; }
+    .section { padding-block: 80px; scroll-margin-top: 100px; }
     
-    /* Image rounding */
     img { width: 100%; height: auto; display: block; border-radius: var(--radius); }
     
     .services-grid {
@@ -104,10 +103,35 @@
     </div>
   </header>
 
-  <section id="about" class="section">
+  <section id="about" class="section" style="background: var(--bg-soft);">
     <div class="container">
-      <h2>About SiuCloud</h2>
-      <p>Helping businesses navigate the cloud with security and partnership at the core.</p>
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 50px; align-items: center;">
+        <div>
+          <div class="eyebrow" style="color: var(--accent); font-weight: 700; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 10px;">Who We Are</div>
+          <h2 style="font-size: 2.5rem; margin-bottom: 20px;">Your Trusted Partner in Cloud Evolution</h2>
+          <p style="font-size: 1.1rem; line-height: 1.7; color: var(--text); margin-bottom: 20px;">
+            At <strong>SiuCloud</strong>, we don't just provide services; we build resilient digital foundations. We understand that moving to the cloud or managing a hybrid environment is a critical business decision. 
+          </p>
+          <p style="color: #93a1ad; line-height: 1.7;">
+            Our mission is to bridge the gap between complex technology and your business goals. By combining deep technical expertise with a transparent, partnership-first approach, we ensure your data is secure, your costs are optimized, and your infrastructure is ready for tomorrow.
+          </p>
+        </div>
+
+        <div style="display: grid; gap: 20px;">
+          <div style="background: var(--panel); padding: 25px; border-radius: var(--radius); border-left: 4px solid var(--accent);">
+            <h4 style="margin-bottom: 8px;"><i class="fa-solid fa-shield-halved" style="color: var(--accent); margin-right: 10px;"></i> Security Focused</h4>
+            <p style="font-size: 0.9rem; color: #93a1ad; margin: 0;">We implement enterprise-grade security protocols for every cloud and hybrid deployment.</p>
+          </div>
+          <div style="background: var(--panel); padding: 25px; border-radius: var(--radius); border-left: 4px solid var(--accent);">
+            <h4 style="margin-bottom: 8px;"><i class="fa-solid fa-handshake" style="color: var(--accent); margin-right: 10px;"></i> Partnership Driven</h4>
+            <p style="font-size: 0.9rem; color: #93a1ad; margin: 0;">We operate as an extension of your team, ensuring you never navigate the cloud alone.</p>
+          </div>
+          <div style="background: var(--panel); padding: 25px; border-radius: var(--radius); border-left: 4px solid var(--accent);">
+            <h4 style="margin-bottom: 8px;"><i class="fa-solid fa-layer-group" style="color: var(--accent); margin-right: 10px;"></i> Hybrid Expertise</h4>
+            <p style="font-size: 0.9rem; color: #93a1ad; margin: 0;">Specialized in seamless integration between on-premise hardware and cloud scalability.</p>
+          </div>
+        </div>
+      </div>
     </div>
   </section>
 
@@ -116,9 +140,7 @@
       <div style="text-align: center; margin-bottom: 30px;">
         <h2>Cloud Solutions Made Simple</h2>
       </div>
-
       <img src="https://raw.githubusercontent.com/SIUNETWORKSGitHub/SIU-RESUME/refs/heads/master/docs/images/New_picture1.png" alt="SiuCloud Services" style="margin-bottom: 30px; width: 100%;">
-
       <div class="services-grid">
         <div class="service-desc">
           <h4>Specialized Support</h4>
@@ -141,16 +163,12 @@
       <h2 style="margin-bottom: 10px;">FAQ</h2>
       <p style="color: #93a1ad; max-width: 600px; margin-bottom: 40px;">
         Have questions about migration or hybrid setups? We have answers. 
-        Don't let complexity hold your business back—secure your cloud future today.
       </p>
-
       <div style="background: var(--panel); border: 1px solid var(--accent); padding: 40px; border-radius: var(--radius); width: 100%; max-width: 850px;">
         <h3 style="color: var(--text); margin-bottom: 15px;">Ready to simplify your cloud?</h3>
         <p style="color: #93a1ad; margin-bottom: 25px;">
-          Join other SMBs who have optimized their security and reduced costs. 
           Create your account now to access our specialized cloud resources.
         </p>
-        
         <button class="btn" id="faqSignIn">
           <i class="fa-solid fa-user-plus"></i> Sign Up & Get Started
         </button>
@@ -177,7 +195,6 @@
   <script type="module">
     import { userManager, signOutRedirect } from "./main.js";
 
-    // Wait for the page to load completely before running the code
     window.addEventListener('load', () => {
         const signInBtn = document.getElementById("signIn");
         const faqSignInBtn = document.getElementById("faqSignIn");
@@ -185,12 +202,10 @@
         const userInfo = document.getElementById("user-info");
         const userEmail = document.getElementById("user-email");
 
-        // Set up the click actions
         if (signInBtn) signInBtn.onclick = () => userManager.signinRedirect();
         if (faqSignInBtn) faqSignInBtn.onclick = () => userManager.signinRedirect();
         if (signOutBtn) signOutBtn.onclick = () => signOutRedirect();
 
-        // Check if the user is already logged in or just returning from login
         userManager.signinCallback().then((user) => {
             const url = new URL(window.location.href);
             url.searchParams.delete("code");
