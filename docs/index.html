@@ -108,77 +108,6 @@
       .hamburger { display: inline-flex; }
     }
 
-    /* Hero */
-    header#home {
-      display: grid; place-items: center; text-align: center;
-      padding-block: var(--space-lg);
-    }
-    .hero h1 { font-size: clamp(34px, 6vw, 56px); }
-    .hero p {
-      max-width: 840px; margin: 0 auto; color: var(--muted);
-      font-size: clamp(16px, 2.2vw, 18px);
-    }
-    .hero-actions { display: flex; justify-content: center; gap: 10px; flex-wrap: wrap; margin-top: 12px; }
-    .hero-illustration { display: grid; place-items: center; margin-top: var(--space); }
-
-    /* Illustrations */
-    .illustration {
-      width: var(--illus-size);
-      max-width: var(--illus-size);
-      height: auto;
-    }
-    /* Let strokes and fills use accent colors */
-    .stroke-accent { stroke: var(--accent); }
-    .fill-accent { fill: var(--accent); }
-    .stroke-muted { stroke: var(--muted); }
-    .fill-muted { fill: var(--muted); }
-
-    /* Grids */
-    .grid-2 { display: grid; gap: var(--space); grid-template-columns: repeat(2, 1fr); }
-    .grid-3 { display: grid; gap: var(--space); grid-template-columns: repeat(3, 1fr); }
-    @media (max-width: 960px) {
-      .grid-2, .grid-3 { grid-template-columns: 1fr; }
-    }
-
-    /* About */
-    .about-grid { display: grid; gap: var(--space); grid-template-columns: 1.1fr 1.9fr; }
-    @media (max-width: 960px) { .about-grid { grid-template-columns: 1fr; } }
-    .eyebrow {
-      text-transform: uppercase; letter-spacing: 0.14em; color: var(--muted);
-      font-weight: 600; font-size: 0.9rem; margin-bottom: 0.5rem;
-    }
-    .list-icon { color: var(--accent); margin-right: 10px; }
-
-    /* Stats */
-    .stats { display: grid; gap: var(--space); grid-template-columns: repeat(4, 1fr); }
-    @media (max-width: 960px) { .stats { grid-template-columns: repeat(2, 1fr); } }
-    @media (max-width: 560px) { .stats { grid-template-columns: 1fr; } }
-    .stat { text-align: center; padding: 18px; border: 1px solid var(--border); border-radius: var(--radius); }
-    .stat strong { display: block; font-size: clamp(28px, 4.4vw, 40px); color: var(--accent); }
-    .stat span { color: var(--muted); font-weight: 500; }
-
-    /* Testimonials */
-    .quote { font-style: italic; color: var(--text); }
-    .author { color: var(--accent); font-weight: 700; margin-top: 0.4rem; }
-
-    /* FAQ */
-    details.faq {
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      background: var(--panel);
-      padding: 12px 16px;
-    }
-    details.faq + details.faq { margin-top: 10px; }
-    summary { cursor: pointer; font-weight: 600; }
-    .faq-content { margin-top: 10px; color: var(--muted); }
-
-    /* Consultation */
-    .calendly-wrap {
-      min-height: 420px; border: 1px dashed var(--border);
-      border-radius: var(--radius); background: var(--panel); overflow: hidden;
-    }
-    .calendly-wrap iframe { width: 900px; height: 1000px; border: 0; }
-
     /* Footer */
     footer { border-top: 1px solid var(--border); background: var(--bg-soft); padding-block: var(--space); text-align: center; }
     .footer-links { display: flex; justify-content: center; gap: 12px; flex-wrap: wrap; }
@@ -243,13 +172,13 @@
       </button>
 
       <nav class="nav-links" id="navLinks" aria-label="Primary">
-        <a href="/#home">Home</a>
-        <a href="/#about">About</a>
-        <a href="/#services">Services</a>
-        <a href="/#casestudies">Success Stories</a>
-        <a href="/#testimonials">Testimonials</a>
-        <a href="/#faq">FAQ</a>
-        <a href="/#consultation">Consultation</a>
+        <a href="#home">Home</a>
+        <a href="#about">About</a>
+        <a href="#services">Services</a>
+        <a href="#casestudies">Success Stories</a>
+        <a href="#testimonials">Testimonials</a>
+        <a href="#faq">FAQ</a>
+        <a href="#consultation">Consultation</a>
         
         <a href="javascript:void(0)" id="signIn"><i class="fa-solid fa-user-lock"></i> Sign In</a>
         
@@ -341,21 +270,21 @@
     const userInfo = document.getElementById("user-info");
     const userEmail = document.getElementById("user-email");
 
-    // 1. Sign In Redirect
     signInBtn.addEventListener("click", () => userManager.signinRedirect());
-
-    // 2. Sign Out Redirect
     signOutBtn.addEventListener("click", () => signOutRedirect());
 
-    // 3. Process the login callback
     userManager.signinCallback().then((user) => {
-        // Clean the URL of the "code" parameter
-        window.history.replaceState({}, document.title, window.location.pathname);
+        // FIXED LOGIC: Removes 'code' but keeps the '#' so links keep working
+        const url = new URL(window.location.href);
+        url.searchParams.delete("code");
+        url.searchParams.delete("state");
+        url.searchParams.delete("session_state");
+        window.history.replaceState({}, document.title, url.pathname + url.hash);
+        
         if (user) {
             showUser(user);
         }
     }).catch(() => {
-        // Check if user is already logged in on refresh
         userManager.getUser().then((user) => {
             if (user) showUser(user);
         });
