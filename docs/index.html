@@ -30,7 +30,6 @@
       padding-top: 80px;
     }
 
-    /* NAV FIX */
     .nav-wrap {
       position: fixed;
       top: 0; left: 0; right: 0;
@@ -53,7 +52,6 @@
     .brand { display: flex; align-items: center; gap: 10px; font-weight: 700; }
     .brand .dot { width: 10px; height: 10px; border-radius: 50%; background: var(--accent); }
 
-    /* AUTH UI */
     #user-info { display: none; align-items: center; gap: 10px; color: var(--accent); font-weight: 600; }
     #signOut { cursor: pointer; font-size: 0.75rem; color: var(--muted); border: 1px solid var(--border); border-radius: 4px; padding: 4px 10px; background: transparent; color: white; }
 
@@ -61,7 +59,6 @@
     .section { padding-block: 80px; scroll-margin-top: 100px; }
     img { width: 100%; height: auto; display: block; border-radius: var(--radius); }
     
-    /* SERVICES GRID SYSTEM */
     .services-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
@@ -85,8 +82,6 @@
         <a href="#home">Home</a>
         <a href="#about">About</a>
         <a href="#services">Services</a>
-        <a href="#casestudies">Stories</a>
-        <a href="#testimonials">Testimonials</a>
         <a href="#faq">FAQ</a>
         <a href="#consultation">Consultation</a>
         <a href="javascript:void(0)" id="signIn"><i class="fa-solid fa-user-lock"></i> Sign In</a>
@@ -121,18 +116,25 @@
 
       <div class="services-grid">
         <div class="service-desc">
-          <h4>Security</h4>
-          <p>Save and secure your data in the cloud or hybrid.</p>
+          <h4>Specialized Support</h4>
+          <p>Integrated Help desk support with team specialized on cloud.</p>
         </div>
         <div class="service-desc">
           <h4>Partnership</h4>
           <p>We do things together.</p>
         </div>
         <div class="service-desc">
-          <h4>Specialized Support</h4>
-          <p>Integrated Help desk support with team specialized on cloud.</p>
+          <h4>Security</h4>
+          <p>Save and secure your data in the cloud or hybrid.</p>
         </div>
       </div>
+    </div>
+  </section>
+
+  <section id="faq" class="section">
+    <div class="container">
+      <h2>FAQ</h2>
+      <p style="color: var(--muted);">Coming soon...</p>
     </div>
   </section>
 
@@ -167,6 +169,7 @@
         const url = new URL(window.location.href);
         url.searchParams.delete("code");
         url.searchParams.delete("state");
+        url.searchParams.delete("session_state");
         window.history.replaceState({}, document.title, url.pathname + url.hash);
         if (user) showUser(user);
     }).catch(() => {
