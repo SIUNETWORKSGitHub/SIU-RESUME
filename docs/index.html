@@ -7,9 +7,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="author" content="SiuCloud.org" />
 
-  <!-- Google Font: Inter -->
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <!-- Font Awesome (optional icons) -->
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
 
   <style>
@@ -179,7 +177,7 @@
       min-height: 420px; border: 1px dashed var(--border);
       border-radius: var(--radius); background: var(--panel); overflow: hidden;
     }
-    .calendly-wrap iframe { width: 900px; height: 1000px; border: 0; center}
+    .calendly-wrap iframe { width: 900px; height: 1000px; border: 0; }
 
     /* Footer */
     footer { border-top: 1px solid var(--border); background: var(--bg-soft); padding-block: var(--space); text-align: center; }
@@ -188,21 +186,51 @@
     .footer-links a:hover { color: var(--accent); }
     .copyright { color: var(--muted); font-size: 0.92rem; margin-top: 10px; }
 
-    
-img {
-width: 100vw;
-padding:0;
-margin:0;
-}
-  </style>
-<!-- Google tag (gtag.js) --> <script async src="https://www.googletagmanager.com/gtag/js?id=AW-17764280720"></script> <script> window.dataLayer = window.dataLayer || []; function gtag(){dataLayer.push(arguments);} gtag('js', new Date()); gtag('config', 'AW-17764280720'); </script> 
+    img {
+      width: 100vw;
+      padding:0;
+      margin:0;
+    }
 
-<!-- Event snippet for Purchase conversion page --> <script> gtag('event', 'conversion', { 'send_to': 'AW-17764280720/Lm7qCJuFzd0bEJDT1ZZC', 'transaction_id': '' }); </script> 
-  
+    /* Auth Styling */
+    #user-info {
+        display: none;
+        align-items: center;
+        gap: 12px;
+        color: var(--accent);
+        font-weight: 600;
+        padding: 6px;
+    }
+    #signOut {
+        cursor: pointer;
+        font-size: 0.8em;
+        color: var(--muted);
+        border: 1px solid var(--border);
+        border-radius: 6px;
+        padding: 4px 10px;
+        background: var(--panel);
+        transition: all 0.2s;
+    }
+    #signOut:hover {
+        background: rgba(255,255,255,0.05);
+        color: var(--text);
+    }
+  </style>
+
+  <script async src="https://www.googletagmanager.com/gtag/js?id=AW-17764280720"></script> 
+  <script> 
+    window.dataLayer = window.dataLayer || []; 
+    function gtag(){dataLayer.push(arguments);} 
+    gtag('js', new Date()); 
+    gtag('config', 'AW-17764280720'); 
+  </script> 
+
+  <script> 
+    gtag('event', 'conversion', { 'send_to': 'AW-17764280720/Lm7qCJuFzd0bEJDT1ZZC', 'transaction_id': '' }); 
+  </script> 
 </head>
 
 <body>
-  <!-- NAV -->
   <div class="nav-wrap">
     <div class="container nav">
       <div class="brand" aria-label="SiuCloud">
@@ -222,6 +250,13 @@ margin:0;
         <a href="#testimonials">Testimonials</a>
         <a href="#faq">FAQ</a>
         <a href="#consultation">Consultation</a>
+        
+        <a href="javascript:void(0)" id="signIn"><i class="fa-solid fa-user-lock"></i> Sign In</a>
+        
+        <span id="user-info">
+            <i class="fa-solid fa-circle-user"></i> <span id="user-email"></span>
+            <button id="signOut">Logout</button>
+        </span>
       </nav>
 
       <div class="nav-cta">
@@ -232,13 +267,10 @@ margin:0;
     </div>
   </div>
 
-  <!-- HERO -->
-  
   <header id="home" class="section">
     <div><img src="https://raw.githubusercontent.com/SIUNETWORKSGitHub/SIU-RESUME/refs/heads/master/docs/images/New_picture.png"/></div>
     <div class="container hero">
       <div class="hero-illustration">
-        <!-- Cloud SVG -->
         <svg class="illustration" role="img" aria-label="Cloud illustration" viewBox="0 0 120 80" fill="none">
           <path class="stroke-muted" stroke-width="2" d="M30 50c0-11 9-20 20-20 1 0 2 0 3 0 4-8 12-14 21-14 13 0 24 10 25 23 9 2 15 10 15 19 0 11-9 20-20 20H40C34 78 30 74 30 68c0-7 5-13 12-14-7-2-12-8-12-14z"/>
           <circle class="fill-accent" cx="38" cy="58" r="3"/>
@@ -259,355 +291,6 @@ margin:0;
     </div>
   </header>
 
-  <!-- ABOUT -->
-  <section id="about" class="section">
-    <br/>
-     <br/>
-    <div class="container">
-      <div class="section-header">
-        <div class="eyebrow">About SiuCloud</div>
-        <h2>Your Partner for Cloud Success</h2>
-        <p>Founded by Roberto Siu, we deliver practical, results-first cloud advisory for SMBs—without jargon or unnecessary complexity.</p>
-        <div class="hero-illustration">
-          <!-- Compass SVG -->
-          <svg class="illustration" role="img" aria-label="Compass illustration" viewBox="0 0 120 120" fill="none">
-            <circle class="stroke-muted" cx="60" cy="60" r="40" stroke-width="2"/>
-            <path class="stroke-accent" stroke-width="3" d="M60 25v10M60 85v10M25 60h10M85 60h10"/>
-            <path class="fill-accent" d="M60 60l-18 8 8-18 18-8-8 18z"/>
-          </svg>
-        </div>
-      </div>
-
-      <div class="about-grid">
-        <div class="card">
-          <h3>What We Focus On</h3>
-          <ul>
-            <li><i class="fa-solid fa-map-signs list-icon"></i><strong>Clear Strategy:</strong> A roadmap aligned to your goals.</li>
-            <li><i class="fa-solid fa-money-bill-wave list-icon"></i><strong>Cost Optimization:</strong> Reduce waste and spend smarter.</li>
-            <li><i class="fa-solid fa-lock list-icon"></i><strong>Security:</strong> Hardened access, encryption, compliance readiness.</li>
-            <li><i class="fa-solid fa-cloud-arrow-up list-icon"></i><strong>Migration:</strong> Lift‑and‑shift or modernization, zero‑drama.</li>
-            <li><i class="fa-solid fa-chart-line list-icon"></i><strong>Scale:</strong> Performance tuning, auto‑scaling, resilience.</li>
-          </ul>
-        </div>
-
-        <div class="card">
-          <h3>Our Approach</h3>
-          <ol>
-            <li><strong>Listen & Understand:</strong> Goals first—no jargon.</li>
-            <li><strong>Analyze & Advise:</strong> Find savings, risks, and performance wins.</li>
-            <li><strong>Strategize & Plan:</strong> Simple, step‑by‑step plan.</li>
-            <li><strong>Implement & Optimize:</strong> Secure, efficient execution.</li>
-            <li><strong>Enable & Empower:</strong> Upskill your team to operate confidently.</li>
-          </ol>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- STATS -->
-  <section id="stats" class="section">
-    <div class="container">
-      <div class="section-header">
-        <div class="eyebrow">Impact</div>
-        <h2>Results in Numbers</h2>
-        <div class="hero-illustration">
-          <!-- Minimal dashboard badge -->
-          <svg class="illustration" role="img" aria-label="Dashboard badge" viewBox="0 0 120 80" fill="none">
-            <rect class="stroke-muted" x="15" y="20" width="90" height="50" rx="8" stroke-width="2"/>
-            <path class="stroke-accent" stroke-width="3" d="M25 60 45 40 60 48 80 35 95 50"/>
-          </svg>
-        </div>
-      </div>
-
-      <div class="stats">
-        <div class="card stat">
-          <strong data-count="88">0</strong>
-          <span>% Client Satisfaction Rate</span>
-        </div>
-        <div class="card stat">
-          <strong data-count="48">0</strong>
-          <span>% Average Cloud Cost Savings</span>
-        </div>
-        <div class="card stat">
-          <strong data-count="438">0</strong>
-          <span>Successful Cloud Projects</span>
-        </div>
-        <div class="card stat">
-          <strong data-count="12">0</strong>
-          <span>Years of Focused Experience</span>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- SERVICES -->
-  <section id="services" class="section">
-    <div><img src="https://raw.githubusercontent.com/SIUNETWORKSGitHub/SIU-RESUME/refs/heads/master/docs/images/New_picture1.png"/></div>
-    <div class="container">
-      <div class="section-header">
-        <div class="eyebrow">Services</div>
-        <h2>Cloud Solutions Made Simple</h2>
-      </div>
-
-      <div class="grid-3">
-        <div class="card service-card">
-          <div style="display:grid;place-items:center;margin-bottom:10px;">
-            <!-- Strategy: map pin -->
-            <svg class="illustration" role="img" aria-label="Strategy map pin" viewBox="0 0 120 120" fill="none">
-              <path class="stroke-muted" stroke-width="2" d="M30 90h60"/>
-              <path class="stroke-accent" stroke-width="2.5" d="M60 20c14 0 26 11 26 25 0 18-26 45-26 45S34 63 34 45c0-14 12-25 26-25z"/>
-              <circle class="stroke-accent" stroke-width="3" cx="60" cy="45" r="10"/>
-            </svg>
-          </div>
-          <h4><i class="fa-solid fa-map-signs list-icon"></i> Strategy</h4>
-          <p class="desc">Readiness, platform fit (AWS/Azure/GCP), and a clear, prioritized roadmap.</p>
-          <ul>
-            <li>Discovery & assessment</li>
-            <li>Platform selection</li>
-            <li>Delivery milestones</li>
-          </ul>
-        </div>
-
-        <div class="card service-card">
-          <div style="display:grid;place-items:center;margin-bottom:10px;">
-            <!-- FinOps: wallet -->
-            <svg class="illustration" role="img" aria-label="FinOps wallet" viewBox="0 0 120 80" fill="none">
-              <rect class="stroke-muted" x="20" y="20" rx="10" width="80" height="40" stroke-width="2"/>
-              <rect class="stroke-accent" x="60" y="28" rx="6" width="36" height="24" stroke-width="2.5"/>
-              <circle class="fill-accent" cx="74" cy="40" r="3"/>
-            </svg>
-          </div>
-          <h4><i class="fa-solid fa-money-bill-wave list-icon"></i> FinOps & Cost</h4>
-          <p class="desc">Audit usage, right‑size resources, leverage discounts—maximize ROI.</p>
-          <ul>
-            <li>Spend analysis</li>
-            <li>Rightsizing & autoscale</li>
-            <li>Savings Plans/RI strategies</li>
-          </ul>
-        </div>
-
-        <div class="card service-card">
-          <div style="display:grid;place-items:center;margin-bottom:10px;">
-            <!-- Security: shield -->
-            <svg class="illustration" role="img" aria-label="Security shield" viewBox="0 0 120 120" fill="none">
-              <path class="stroke-accent" stroke-width="2.5" d="M60 18l28 10v22c0 22-15 36-28 42-13-6-28-20-28-42V28l28-10z"/>
-              <path class="stroke-muted" stroke-width="2" d="M45 58l12 12 18-22"/>
-            </svg>
-          </div>
-          <h4><i class="fa-solid fa-lock list-icon"></i> Security & Compliance</h4>
-          <p class="desc">Access control, encryption, monitoring, and compliance posture.</p>
-          <ul>
-            <li>Identity & access hardening</li>
-            <li>Data protection</li>
-            <li>Policy & controls</li>
-          </ul>
-        </div>
-
-        <div class="card service-card">
-          <div style="display:grid;place-items:center;margin-bottom:10px;">
-            <!-- Migration: cloud arrow -->
-            <svg class="illustration" role="img" aria-label="Cloud migration arrow" viewBox="0 0 120 80" fill="none">
-              <path class="stroke-muted" stroke-width="2" d="M40 52c0-8 7-14 15-14 1 0 2 0 2 0 3-6 9-10 16-10 10 0 18 7 19 17 7 1 12 8 12 14 0 8-7 14-15 14H52c-7 0-12-5-12-11 0-5 4-9 9-10-5-1-9-5-9-10z"/>
-              <path class="stroke-accent" stroke-width="3" d="M30 60h26"/>
-              <path class="stroke-accent" stroke-width="3" d="M48 48l8 12-8 12"/>
-            </svg>
-          </div>
-          <h4><i class="fa-solid fa-cloud-arrow-up list-icon"></i> Migration</h4>
-          <p class="desc">Lift‑and‑shift, replatform, or modernize—planned for minimal downtime.</p>
-          <ul>
-            <li>Workload mapping</li>
-            <li>Cutover strategy</li>
-            <li>Validation & rollback</li>
-          </ul>
-        </div>
-
-        <div class="card service-card">
-          <div style="display:grid;place-items:center;margin-bottom:10px;">
-            <!-- Performance: chart -->
-            <svg class="illustration" role="img" aria-label="Performance chart" viewBox="0 0 120 80" fill="none">
-              <path class="stroke-muted" stroke-width="2" d="M20 60h80M20 20v40"/>
-              <path class="stroke-accent" stroke-width="3" d="M24 56l16-14 18 8 16-18 18 10"/>
-            </svg>
-          </div>
-          <h4><i class="fa-solid fa-chart-line list-icon"></i> Performance & Scale</h4>
-          <p class="desc">Tuning, autoscaling policies, observability and resilience.</p>
-          <ul>
-            <li>Latency & throughput tuning</li>
-            <li>Horizontal/vertical scaling</li>
-            <li>SLOs & monitoring</li>
-          </ul>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- CASE STUDIES -->
-  <section id="casestudies" class="section">
-    <div class="container">
-      <div class="section-header">
-        <div class="eyebrow">Success Stories</div>
-        <h2>Real Results for SMBs</h2>
-        <div class="hero-illustration">
-          <!-- Trophy -->
-          <svg class="illustration" role="img" aria-label="Trophy illustration" viewBox="0 0 120 120" fill="none">
-            <path class="stroke-muted" stroke-width="2" d="M50 30h20v20c0 8-6 14-14 14s-14-6-14-14V30z"/>
-            <path class="stroke-accent" stroke-width="2.5" d="M40 30l-8 8c0 12 10 20 22 20s22-8 22-20l-8-8"/>
-            <rect class="stroke-muted" x="52" y="72" width="16" height="12"/>
-            <rect class="stroke-accent" x="46" y="84" width="28" height="10"/>
-          </svg>
-        </div>
-      </div>
-
-      <div class="grid-2">
-        <div class="card case-card">
-          <h4>E‑commerce: 38% Cost Reduction</h4>
-          <p class="info"><strong>Challenge:</strong> Rising AWS costs with limited visibility.</p>
-          <p><strong>Solution:</strong> Spend audit, environment optimization, FinOps practice.</p>
-          <p><strong>Result:</strong> 38% monthly savings in 4 months.</p>
-        </div>
-
-        <div class="card case-card">
-          <h4>Healthcare: Secure Azure Migration</h4>
-          <p class="info"><strong>Challenge:</strong> Patient data migration with strict compliance.</p>
-          <p><strong>Solution:</strong> Hardened NSGs, encryption, restricted access paths.</p>
-          <p><strong>Result:</strong> Smooth migration; passed all security checks.</p>
-        </div>
-
-        <div class="card case-card">
-          <h4>SaaS: 25% Performance Boost</h4>
-          <p class="info"><strong>Challenge:</strong> Slow performance and manual scaling.</p>
-          <p><strong>Solution:</strong> GCP tuning, autoscaling, improved observability.</p>
-          <p><strong>Result:</strong> 25% faster apps, stable peaks.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- TESTIMONIALS -->
-  <section id="testimonials" class="section">
-    <div class="container">
-      <div class="section-header">
-        <div class="eyebrow">Testimonials</div>
-        <h2>What Clients Say</h2>
-        <div class="hero-illustration">
-          <!-- Chat bubbles -->
-          <svg class="illustration" role="img" aria-label="Chat bubbles" viewBox="0 0 120 80" fill="none">
-            <rect class="stroke-muted" x="20" y="20" rx="10" width="46" height="28" stroke-width="2"/>
-            <path class="stroke-muted" stroke-width="2" d="M30 48l6 6v-6"/>
-            <rect class="stroke-accent" x="62" y="28" rx="10" width="38" height="24" stroke-width="2.5"/>
-            <path class="stroke-accent" stroke-width="2.5" d="M88 52l6 6v-6"/>
-          </svg>
-        </div>
-      </div>
-
-      <div class="grid-2">
-        <div class="card quote">
-          <p>“SiuCloud transformed how we view cloud spending. Their FinOps work delivered savings we reinvested in growth.”</p>
-          <div class="author">— Sarah L., CEO, Innovate E‑Solutions</div>
-        </div>
-
-        <div class="card quote">
-          <p>“Azure Arc migration felt daunting; SiuCloud made it smooth and worry‑free. We’re confidently monitoring our servers.”</p>
-          <div class="author">— Mark R., Head of Operations, FutureTech Corp.</div>
-        </div>
-
-        <div class="card quote">
-          <p>“Security analysis revealed critical issues and clear fixes. Our environment is far more resilient now.”</p>
-          <div class="author">— David P., CTO, VeriCare Health Systems</div>
-        </div>
-
-        <div class="card quote">
-          <p>“GCP optimization stabilized our app and improved UX dramatically. They really understand scalability.”</p>
-          <div class="author">— Emily Chen, Product Lead, Synapse Analytics</div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- FAQ -->
-  <section id="faq" class="section">
-    <div class="container">
-      <div class="section-header">
-        <div class="eyebrow">FAQ</div>
-        <h2>Common Questions, Clear Answers</h2>
-        <div class="hero-illustration">
-          <!-- Question mark card -->
-          <svg class="illustration" role="img" aria-label="Question mark" viewBox="0 0 120 120" fill="none">
-            <rect class="stroke-muted" x="26" y="22" width="68" height="76" rx="10" stroke-width="2"/>
-            <path class="stroke-accent" stroke-width="3" d="M60 44c0-8 6-12 12-12 8 0 12 6 12 12 0 10-12 12-12 22"/>
-            <circle class="fill-accent" cx="60" cy="76" r="3"/>
-          </svg>
-        </div>
-      </div>
-
-      <details class="faq">
-        <summary>What types of businesses do you serve?</summary>
-        <div class="faq-content">
-          SMBs across e‑commerce, healthcare, finance, startups, and professional services. We tailor to real budgets and limited IT resources.
-        </div>
-      </details>
-
-      <details class="faq">
-        <summary>Which cloud platforms?</summary>
-        <div class="faq-content">
-          AWS, Microsoft Azure, and Google Cloud Platform. We also integrate on‑prem like VMware for hybrid designs.
-        </div>
-      </details>
-
-      <details class="faq">
-        <summary>How do you reduce expenses?</summary>
-        <div class="faq-content">
-          Cost audits, rightsizing, Savings Plans/RI strategies, autoscaling, and serverless where it’s effective—maximize ROI.
-        </div>
-      </details>
-
-      <details class="faq">
-        <summary>Do you offer ongoing management?</summary>
-        <div class="faq-content">
-          We empower your team, recommend MSPs as needed, and establish FinOps practices for continuous optimization.
-        </div>
-      </details>
-
-      <details class="faq">
-        <summary>What sets you apart?</summary>
-        <div class="faq-content">
-          Practical, SMB‑focused advisory; hands‑on experience; results over buzzwords; clarity over complexity.
-        </div>
-      </details>
-    </div>
-  </section>
-
-  <!-- CONSULTATION -->
-  <section id="consultation" class="section">
-    <div class="container">
-      <div class="section-header">
-        <div class="eyebrow">Consultation</div>
-        <h2>Ready to Transform Your Business?</h2>
-        <p>Book a no‑obligation discovery call to map challenges, goals, and efficient, secure cloud paths.</p>
-        <div class="hero-illustration">
-          <!-- Calendar -->
-          <svg class="illustration" role="img" aria-label="Calendar" viewBox="0 0 120 100" fill="none">
-            <rect class="stroke-muted" x="18" y="26" width="84" height="58" rx="10" stroke-width="2"/>
-            <path class="stroke-accent" stroke-width="2.5" d="M18 38h84"/>
-            <circle class="fill-accent" cx="42" cy="54" r="4"/>
-            <circle class="fill-accent" cx="60" cy="54" r="4"/>
-            <circle class="fill-accent" cx="78" cy="54" r="4"/>
-          </svg>
-        </div>
-      </div>
-
-      <div class="hero-actions" style="margin-bottom: var(--space);">
-        <a class="btn" href="https://calendly.com/antonyroberth" target="_blank" rel="noopener">
-          <i class="fa-solid fa-calendar-days"></i> Book on Calendly
-        </a>
-        <a class="btn alt" href="mailto:info@siucloud.org"><i class="fa-solid fa-envelope"></i> Email Us</a>
-      </div>
-
-      <!-- Optional embedded Calendly -->
-      
-  </section>
-
-  <!-- FOOTER -->
   <footer>
     <div class="container">
       <div class="footer-links" aria-label="Footer links">
@@ -619,9 +302,7 @@ margin:0;
     </div>
   </footer>
 
-  <!-- Minimal JS: mobile nav + counters -->
   <script>
-    // Mobile nav toggle
     const toggle = document.getElementById('navToggle');
     const links = document.getElementById('navLinks');
     toggle?.addEventListener('click', () => {
@@ -629,7 +310,6 @@ margin:0;
       toggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
     });
 
-    // Animated counters when stats enter viewport (respect reduced motion)
     const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     if (!prefersReduced) {
       const counters = document.querySelectorAll('#stats .stat strong');
@@ -652,17 +332,40 @@ margin:0;
       counters.forEach(c => observer.observe(c));
     }
   </script>
+
+  <script type="module">
+    import { userManager, signOutRedirect } from "./js/main.js";
+
+    const signInBtn = document.getElementById("signIn");
+    const signOutBtn = document.getElementById("signOut");
+    const userInfo = document.getElementById("user-info");
+    const userEmail = document.getElementById("user-email");
+
+    // 1. Sign In Redirect
+    signInBtn.addEventListener("click", () => userManager.signinRedirect());
+
+    // 2. Sign Out Redirect
+    signOutBtn.addEventListener("click", () => signOutRedirect());
+
+    // 3. Process the login callback
+    userManager.signinCallback().then((user) => {
+        // Clean the URL of the "code" parameter
+        window.history.replaceState({}, document.title, window.location.pathname);
+        if (user) {
+            showUser(user);
+        }
+    }).catch(() => {
+        // Check if user is already logged in on refresh
+        userManager.getUser().then((user) => {
+            if (user) showUser(user);
+        });
+    });
+
+    function showUser(user) {
+        signInBtn.style.display = "none";
+        userInfo.style.display = "inline-flex";
+        userEmail.textContent = user.profile.email;
+    }
+  </script>
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
