@@ -119,27 +119,25 @@
           <div class="eyebrow" style="color: var(--accent); font-weight: 700; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 15px;">Who We Are</div>
           <h2 style="font-size: 2.8rem; margin-bottom: 25px; line-height: 1.2;">Your Trusted Partner in <br>Cloud Evolution</h2>
           <p style="font-size: 1.15rem; line-height: 1.8; color: var(--text); margin-bottom: 25px;">
-            At <strong>SiuCloud</strong>, we don't just provide services; we build resilient digital foundations. We understand that moving to the cloud or managing a hybrid environment is a critical business decision. 
+            At <strong>SiuCloud</strong>, we build resilient digital foundations to help your business evolve securely.
           </p>
           <p style="color: #93a1ad; line-height: 1.8; font-size: 1.05rem;">
-            Our mission is to bridge the gap between complex technology and your business goals. By combining deep technical expertise with a transparent approach, we ensure your data is secure and your infrastructure is ready for tomorrow.
+            Our mission is to bridge the gap between complex technology and your business goals.
           </p>
         </div>
 
         <div style="display: grid; gap: 25px;">
-          <div style="background: rgba(255,255,255,0.02); padding: 30px; border-radius: var(--radius); border: 1px solid var(--border); transition: all 0.3s; cursor: default;" onmouseover="this.style.borderColor='var(--accent)'; this.style.background='rgba(0,194,168,0.03)';" onmouseout="this.style.borderColor='var(--border)'; this.style.background='rgba(255,255,255,0.02)';">
-            <h4 style="margin-bottom: 10px; font-size: 1.2rem;"><i class="fa-solid fa-shield-halved" style="color: var(--accent); margin-right: 12px;"></i> Security Focused</h4>
-            <p style="font-size: 0.95rem; color: #93a1ad; margin: 0; line-height: 1.6;">We implement enterprise-grade security protocols for every cloud and hybrid deployment.</p>
+          <div style="background: rgba(255,255,255,0.02); padding: 30px; border-radius: var(--radius); border: 1px solid var(--border); transition: all 0.3s;">
+            <h4 style="margin-bottom: 10px;"><i class="fa-solid fa-shield-halved" style="color: var(--accent); margin-right: 12px;"></i> Security Focused</h4>
+            <p style="font-size: 0.95rem; color: #93a1ad; margin: 0;">Enterprise-grade security protocols for every cloud deployment.</p>
           </div>
-
-          <div style="background: rgba(255,255,255,0.02); padding: 30px; border-radius: var(--radius); border: 1px solid var(--border); transition: all 0.3s; cursor: default;" onmouseover="this.style.borderColor='var(--accent)'; this.style.background='rgba(0,194,168,0.03)';" onmouseout="this.style.borderColor='var(--border)'; this.style.background='rgba(255,255,255,0.02)';">
-            <h4 style="margin-bottom: 10px; font-size: 1.2rem;"><i class="fa-solid fa-handshake" style="color: var(--accent); margin-right: 12px;"></i> Partnership Driven</h4>
-            <p style="font-size: 0.95rem; color: #93a1ad; margin: 0; line-height: 1.6;">We operate as an extension of your team, ensuring you never navigate the cloud alone.</p>
+          <div style="background: rgba(255,255,255,0.02); padding: 30px; border-radius: var(--radius); border: 1px solid var(--border); transition: all 0.3s;">
+            <h4 style="margin-bottom: 10px;"><i class="fa-solid fa-handshake" style="color: var(--accent); margin-right: 12px;"></i> Partnership Driven</h4>
+            <p style="font-size: 0.95rem; color: #93a1ad; margin: 0;">We operate as an extension of your team.</p>
           </div>
-
-          <div style="background: rgba(255,255,255,0.02); padding: 30px; border-radius: var(--radius); border: 1px solid var(--border); transition: all 0.3s; cursor: default;" onmouseover="this.style.borderColor='var(--accent)'; this.style.background='rgba(0,194,168,0.03)';" onmouseout="this.style.borderColor='var(--border)'; this.style.background='rgba(255,255,255,0.02)';">
-            <h4 style="margin-bottom: 10px; font-size: 1.2rem;"><i class="fa-solid fa-layer-group" style="color: var(--accent); margin-right: 12px;"></i> Hybrid Expertise</h4>
-            <p style="font-size: 0.95rem; color: #93a1ad; margin: 0; line-height: 1.6;">Specialized in seamless integration between on-premise hardware and cloud scalability.</p>
+          <div style="background: rgba(255,255,255,0.02); padding: 30px; border-radius: var(--radius); border: 1px solid var(--border); transition: all 0.3s;">
+            <h4 style="margin-bottom: 10px;"><i class="fa-solid fa-layer-group" style="color: var(--accent); margin-right: 12px;"></i> Hybrid Expertise</h4>
+            <p style="font-size: 0.95rem; color: #93a1ad; margin: 0;">Seamless integration between hardware and cloud scalability.</p>
           </div>
         </div>
       </div>
@@ -196,27 +194,34 @@
         const userInfo = document.getElementById("user-info");
         const userEmail = document.getElementById("user-email");
 
-        // --- OAUTH FLOW FIX ---
-        // Disabling PKCE (Proof Key for Code Exchange) to match AWS Implicit Grant
-        if (userManager.settings) {
+        const clientId = "2atbpmss0eh84md5mlqj1jgch7";
+        const domain = "us-east-2c6pp0v70h.auth.us-east-2.amazoncognito.com";
+        const redirectUri = "https://siucloud.org";
+
+        // --- MASTER AUTH FLOW REPAIR ---
+        // This forces the library to ignore PKCE/Code challenges and use the Implicit Flow
+        if (userManager && userManager.settings) {
             userManager.settings.useCodeChallenge = false;
-            userManager.settings.response_type = "token id_token"; 
+            userManager.settings.response_type = "token id_token";
+            userManager.settings.metadata = {
+                issuer: `https://cognito-idp.us-east-2.amazonaws.com/us-east-2_C6pp0v70h`,
+                authorization_endpoint: `https://${domain}/oauth2/authorize`,
+                userinfo_endpoint: `https://${domain}/oauth2/userInfo`,
+                end_session_endpoint: `https://${domain}/logout?client_id=${clientId}&logout_uri=${encodeURIComponent(redirectUri)}`,
+                jwks_uri: `https://cognito-idp.us-east-2.amazonaws.com/us-east-2_C6pp0v70h/.well-known/jwks.json`
+            };
         }
 
         if (signInBtn) signInBtn.onclick = () => userManager.signinRedirect();
         if (faqSignInBtn) faqSignInBtn.onclick = () => userManager.signinRedirect();
         
-        // --- LOGOUT FIX ---
+        // --- LOGOUT REPAIR ---
         if (signOutBtn) {
             signOutBtn.onclick = (e) => {
                 e.preventDefault();
-                const clientId = "2atbpmss0eh84md5mlqj1jgch7";
-                const logoutUri = "https://siucloud.org";
-                const domain = "us-east-2c6pp0v70h.auth.us-east-2.amazoncognito.com";
-                
                 userManager.clearStaleState();
                 userManager.removeUser().then(() => {
-                    window.location.href = `https://${domain}/logout?client_id=${clientId}&logout_uri=${encodeURIComponent(logoutUri)}`;
+                    window.location.href = `https://${domain}/logout?client_id=${clientId}&logout_uri=${encodeURIComponent(redirectUri)}`;
                 });
             };
         }
