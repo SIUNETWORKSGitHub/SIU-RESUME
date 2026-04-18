@@ -14,6 +14,7 @@
       --panel: rgba(255,255,255,0.03);
       --text: #e6edf3;
       --accent: #00c2a8;
+      --accent-2: #00a08f;
       --border: rgba(230, 237, 243, 0.12);
       --radius: 14px;
       --maxw: 1100px;
@@ -26,7 +27,7 @@
       font-family: "Inter", sans-serif;
       color: var(--text);
       background: var(--bg);
-      padding-top: 70px;
+      padding-top: 70px; /* Space for the fixed menu */
     }
 
     /* NAVIGATION */
@@ -46,21 +47,23 @@
       justify-content: space-between;
       padding-block: 15px;
     }
+    /* CLEANED NAV LINKS */
     .nav-links { display: flex; gap: 1.5rem; align-items: center; }
     .nav-links a { color: var(--text); text-decoration: none; font-weight: 500; font-size: 0.95rem; }
     .nav-links a:hover { color: var(--accent); }
     .brand { display: flex; align-items: center; gap: 10px; font-weight: 700; }
     .brand .dot { width: 10px; height: 10px; border-radius: 50%; background: var(--accent); }
 
+    /* AUTH UI */
     #user-info { display: none; align-items: center; gap: 10px; color: var(--accent); font-weight: 600; }
-    #signOut { cursor: pointer; font-size: 0.75rem; color: #93a1ad; border: 1px solid var(--border); border-radius: 4px; padding: 4px 10px; background: transparent; color: white; transition: 0.2s; }
-    #signOut:hover { background: #ff4d4d; color: white; border-color: #ff4d4d; }
+    #signOut { cursor: pointer; font-size: 0.75rem; color: #93a1ad; border: 1px solid var(--border); border-radius: 4px; padding: 4px 10px; background: transparent; color: white; }
 
     .container { width: min(100% - 2rem, var(--maxw)); margin-inline: auto; }
-    .section { padding-block: 100px; scroll-margin-top: 100px; }
+    .section { padding-block: 80px; scroll-margin-top: 100px; }
     
     img { width: 100%; height: auto; display: block; border-radius: var(--radius); }
     
+    /* SERVICES GRID - 3 COLUMNS */
     .services-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
@@ -69,10 +72,9 @@
       text-align: center;
     }
     .service-desc h4 { color: var(--accent); margin-bottom: 10px; }
+    .service-desc p { font-size: 0.95rem; line-height: 1.5; color: var(--text); }
 
-    .btn { background: var(--accent); color: #000; padding: 12px 24px; border-radius: 50px; font-weight: 600; text-decoration: none; border:none; cursor: pointer; display: inline-flex; align-items: center; gap: 8px; transition: transform 0.2s; }
-    .btn:hover { transform: scale(1.05); }
-    
+    .btn { background: var(--accent); color: #000; padding: 12px 24px; border-radius: 50px; font-weight: 600; text-decoration: none; display: inline-flex; align-items: center; gap: 8px; border:none; cursor: pointer; }
     footer { border-top: 1px solid var(--border); background: var(--bg-soft); padding-block: 40px; text-align: center; }
   </style>
 </head>
@@ -96,49 +98,16 @@
     </div>
   </div>
 
-  <header id="home" style="min-height: 85vh; display: flex; flex-direction: column; align-items: center; justify-content: center; background: linear-gradient(180deg, var(--bg) 0%, #1a1f24 100%); padding-bottom: 80px;">
-    <img src="https://raw.githubusercontent.com/SIUNETWORKSGitHub/SIU-RESUME/refs/heads/master/docs/images/New_picture.png" style="width: 100vw; border-radius: 0; margin-top: -70px;"/>
-    
-    <div class="container" style="text-align: center; margin-top: 60px;">
-      <h1 style="font-size: clamp(2.5rem, 6vw, 4rem); margin-bottom: 20px; letter-spacing: -1px;">Your Cloud, Simplified</h1>
-      <p style="color: var(--accent); font-size: 1.4rem; font-weight: 500; max-width: 800px; margin-inline: auto;">
-        Practical results-first cloud advisory for SMBs.
-      </p>
-      <div style="margin-top: 40px;">
-        <a class="btn" href="#consultation" style="padding: 18px 36px; font-size: 1.1rem;">Get Started Now</a>
-      </div>
+  <header id="home">
+    <div class="container" style="text-align: center; padding-block: 40px;">
+      <h1>Your Cloud, Simplified</h1>
     </div>
   </header>
 
-  <div style="width: 100%; height: 1px; background: linear-gradient(90deg, transparent, var(--accent), transparent); opacity: 0.3;"></div>
-
-  <section id="about" class="section" style="background: #0f1418; padding-block: 120px;">
+  <section id="about" class="section">
     <div class="container">
-      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 60px; align-items: center;">
-        
-        <div>
-          <div class="eyebrow" style="color: var(--accent); font-weight: 700; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 15px;">Who We Are</div>
-          <h2 style="font-size: 2.8rem; margin-bottom: 25px; line-height: 1.2;">Your Trusted Partner in <br>Cloud Evolution</h2>
-          <p style="font-size: 1.15rem; line-height: 1.8; color: var(--text); margin-bottom: 25px;">
-            At <strong>SiuCloud</strong>, we build resilient digital foundations to help your business evolve securely. 
-          </p>
-          <p style="color: #93a1ad; line-height: 1.8; font-size: 1.05rem;">
-            Our mission is to bridge the gap between complex technology and your growth goals.
-          </p>
-        </div>
-
-        <div style="display: grid; gap: 25px;">
-          <div style="background: rgba(255,255,255,0.02); padding: 30px; border-radius: var(--radius); border: 1px solid var(--border); transition: all 0.3s; cursor: default;" onmouseover="this.style.borderColor='var(--accent)'; this.style.background='rgba(0,194,168,0.03)';" onmouseout="this.style.borderColor='var(--border)'; this.style.background='rgba(255,255,255,0.02)';">
-            <h4 style="margin-bottom: 10px; font-size: 1.2rem;"><i class="fa-solid fa-shield-halved" style="color: var(--accent); margin-right: 12px;"></i> Security Focused</h4>
-            <p style="font-size: 0.95rem; color: #93a1ad; margin: 0; line-height: 1.6;">Enterprise-grade security protocols for cloud and hybrid deployment.</p>
-          </div>
-
-          <div style="background: rgba(255,255,255,0.02); padding: 30px; border-radius: var(--radius); border: 1px solid var(--border); transition: all 0.3s; cursor: default;" onmouseover="this.style.borderColor='var(--accent)'; this.style.background='rgba(0,194,168,0.03)';" onmouseout="this.style.borderColor='var(--border)'; this.style.background='rgba(255,255,255,0.02)';">
-            <h4 style="margin-bottom: 10px; font-size: 1.2rem;"><i class="fa-solid fa-handshake" style="color: var(--accent); margin-right: 12px;"></i> Partnership Driven</h4>
-            <p style="font-size: 0.95rem; color: #93a1ad; margin: 0; line-height: 1.6;">We operate as an extension of your team.</p>
-          </div>
-        </div>
-      </div>
+      <h2>About SiuCloud</h2>
+      <p>Helping SMBs navigate cloud security, partnership, and specialized support.</p>
     </div>
   </section>
 
@@ -147,7 +116,9 @@
       <div style="text-align: center; margin-bottom: 30px;">
         <h2>Cloud Solutions Made Simple</h2>
       </div>
+
       <img src="https://raw.githubusercontent.com/SIUNETWORKSGitHub/SIU-RESUME/refs/heads/master/docs/images/New_picture1.png" alt="SiuCloud Services" style="margin-bottom: 30px; width: 100%;">
+
       <div class="services-grid">
         <div class="service-desc">
           <h4>Specialized Support</h4>
@@ -166,14 +137,9 @@
   </section>
 
   <section id="faq" class="section">
-    <div class="container" style="display: flex; flex-direction: column; align-items: center; text-align: center;">
-      <h2 style="margin-bottom: 10px;">FAQ</h2>
-      <div style="background: var(--panel); border: 1px solid var(--accent); padding: 40px; border-radius: var(--radius); width: 100%; max-width: 850px;">
-        <h3 style="color: var(--text); margin-bottom: 15px;">Ready to simplify your cloud?</h3>
-        <button class="btn" id="faqSignIn">
-          <i class="fa-solid fa-user-plus"></i> Sign Up & Get Started
-        </button>
-      </div>
+    <div class="container">
+      <h2>FAQ</h2>
+      <p style="color: var(--muted);">Coming soon...</p>
     </div>
   </section>
 
@@ -196,48 +162,30 @@
   <script type="module">
     import { userManager, signOutRedirect } from "./main.js";
 
-    window.addEventListener('load', () => {
-        const signInBtn = document.getElementById("signIn");
-        const faqSignInBtn = document.getElementById("faqSignIn");
-        const signOutBtn = document.getElementById("signOut");
-        const userInfo = document.getElementById("user-info");
-        const userEmail = document.getElementById("user-email");
+    const signInBtn = document.getElementById("signIn");
+    const signOutBtn = document.getElementById("signOut");
+    const userInfo = document.getElementById("user-info");
+    const userEmail = document.getElementById("user-email");
 
-        if (signInBtn) signInBtn.onclick = () => userManager.signinRedirect();
-        if (faqSignInBtn) faqSignInBtn.onclick = () => userManager.signinRedirect();
-        
-        // --- THE FINAL LOGOUT FIX ---
-        if (signOutBtn) {
-          signOutBtn.onclick = (e) => {
-            e.preventDefault();
-            // Force URL to match AWS exactly (No trailing slash)
-            const logoutUri = "https://siucloud.org";
-            const clientId = "2atbpmss0eh84md5mlqj1jgch7";
-            const domain = "us-east-2c6pp0v70h.auth.us-east-2.amazoncognito.com";
-            
-            // Redirect directly to the correct AWS logout endpoint
-            window.location.href = `https://${domain}/logout?client_id=${clientId}&logout_uri=${encodeURIComponent(logoutUri)}`;
-          };
-        }
+    signInBtn.addEventListener("click", () => userManager.signinRedirect());
+    signOutBtn.addEventListener("click", () => signOutRedirect());
 
-        userManager.signinCallback().then((user) => {
-            const url = new URL(window.location.href);
-            url.searchParams.delete("code");
-            url.searchParams.delete("state");
-            url.searchParams.delete("session_state");
-            window.history.replaceState({}, document.title, url.pathname + url.hash);
-            if (user) showUser(user);
-        }).catch(() => {
-            userManager.getUser().then((user) => { if (user) showUser(user); });
-        });
-
-        function showUser(user) {
-            if (signInBtn) signInBtn.style.display = "none";
-            if (faqSignInBtn) faqSignInBtn.style.display = "none"; 
-            if (userInfo) userInfo.style.display = "inline-flex";
-            if (userEmail) userEmail.textContent = user.profile.email;
-        }
+    userManager.signinCallback().then((user) => {
+        const url = new URL(window.location.href);
+        url.searchParams.delete("code");
+        url.searchParams.delete("state");
+        url.searchParams.delete("session_state");
+        window.history.replaceState({}, document.title, url.pathname + url.hash);
+        if (user) showUser(user);
+    }).catch(() => {
+        userManager.getUser().then((user) => { if (user) showUser(user); });
     });
+
+    function showUser(user) {
+        signInBtn.style.display = "none";
+        userInfo.style.display = "inline-flex";
+        userEmail.textContent = user.profile.email;
+    }
   </script>
 </body>
 </html>
