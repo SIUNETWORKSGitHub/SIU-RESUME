@@ -108,6 +108,77 @@
       .hamburger { display: inline-flex; }
     }
 
+    /* Hero */
+    header#home {
+      display: grid; place-items: center; text-align: center;
+      padding-block: var(--space-lg);
+    }
+    .hero h1 { font-size: clamp(34px, 6vw, 56px); }
+    .hero p {
+      max-width: 840px; margin: 0 auto; color: var(--muted);
+      font-size: clamp(16px, 2.2vw, 18px);
+    }
+    .hero-actions { display: flex; justify-content: center; gap: 10px; flex-wrap: wrap; margin-top: 12px; }
+    .hero-illustration { display: grid; place-items: center; margin-top: var(--space); }
+
+    /* Illustrations */
+    .illustration {
+      width: var(--illus-size);
+      max-width: var(--illus-size);
+      height: auto;
+    }
+    /* Let strokes and fills use accent colors */
+    .stroke-accent { stroke: var(--accent); }
+    .fill-accent { fill: var(--accent); }
+    .stroke-muted { stroke: var(--muted); }
+    .fill-muted { fill: var(--muted); }
+
+    /* Grids */
+    .grid-2 { display: grid; gap: var(--space); grid-template-columns: repeat(2, 1fr); }
+    .grid-3 { display: grid; gap: var(--space); grid-template-columns: repeat(3, 1fr); }
+    @media (max-width: 960px) {
+      .grid-2, .grid-3 { grid-template-columns: 1fr; }
+    }
+
+    /* About */
+    .about-grid { display: grid; gap: var(--space); grid-template-columns: 1.1fr 1.9fr; }
+    @media (max-width: 960px) { .about-grid { grid-template-columns: 1fr; } }
+    .eyebrow {
+      text-transform: uppercase; letter-spacing: 0.14em; color: var(--muted);
+      font-weight: 600; font-size: 0.9rem; margin-bottom: 0.5rem;
+    }
+    .list-icon { color: var(--accent); margin-right: 10px; }
+
+    /* Stats */
+    .stats { display: grid; gap: var(--space); grid-template-columns: repeat(4, 1fr); }
+    @media (max-width: 960px) { .stats { grid-template-columns: repeat(2, 1fr); } }
+    @media (max-width: 560px) { .stats { grid-template-columns: 1fr; } }
+    .stat { text-align: center; padding: 18px; border: 1px solid var(--border); border-radius: var(--radius); }
+    .stat strong { display: block; font-size: clamp(28px, 4.4vw, 40px); color: var(--accent); }
+    .stat span { color: var(--muted); font-weight: 500; }
+
+    /* Testimonials */
+    .quote { font-style: italic; color: var(--text); }
+    .author { color: var(--accent); font-weight: 700; margin-top: 0.4rem; }
+
+    /* FAQ */
+    details.faq {
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      background: var(--panel);
+      padding: 12px 16px;
+    }
+    details.faq + details.faq { margin-top: 10px; }
+    summary { cursor: pointer; font-weight: 600; }
+    .faq-content { margin-top: 10px; color: var(--muted); }
+
+    /* Consultation */
+    .calendly-wrap {
+      min-height: 420px; border: 1px dashed var(--border);
+      border-radius: var(--radius); background: var(--panel); overflow: hidden;
+    }
+    .calendly-wrap iframe { width: 900px; height: 1000px; border: 0; }
+
     /* Footer */
     footer { border-top: 1px solid var(--border); background: var(--bg-soft); padding-block: var(--space); text-align: center; }
     .footer-links { display: flex; justify-content: center; gap: 12px; flex-wrap: wrap; }
@@ -145,18 +216,9 @@
         color: var(--text);
     }
   </style>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=AW-17764280720"></script> <script> window.dataLayer = window.dataLayer || []; function gtag(){dataLayer.push(arguments);} gtag('js', new Date()); gtag('config', 'AW-17764280720'); </script> 
 
-  <script async src="https://www.googletagmanager.com/gtag/js?id=AW-17764280720"></script> 
-  <script> 
-    window.dataLayer = window.dataLayer || []; 
-    function gtag(){dataLayer.push(arguments);} 
-    gtag('js', new Date()); 
-    gtag('config', 'AW-17764280720'); 
-  </script> 
-
-  <script> 
-    gtag('event', 'conversion', { 'send_to': 'AW-17764280720/Lm7qCJuFzd0bEJDT1ZZC', 'transaction_id': '' }); 
-  </script> 
+  <script> gtag('event', 'conversion', { 'send_to': 'AW-17764280720/Lm7qCJuFzd0bEJDT1ZZC', 'transaction_id': '' }); </script> 
 </head>
 
 <body>
@@ -220,14 +282,119 @@
     </div>
   </header>
 
+  <section id="about" class="section">
+    <br/><br/>
+    <div class="container">
+      <div class="section-header">
+        <div class="eyebrow">About SiuCloud</div>
+        <h2>Your Partner for Cloud Success</h2>
+        <p>Founded by Roberto Siu, we deliver practical, results-first cloud advisory for SMBs—without jargon or unnecessary complexity.</p>
+        <div class="hero-illustration">
+          <svg class="illustration" role="img" aria-label="Compass illustration" viewBox="0 0 120 120" fill="none">
+            <circle class="stroke-muted" cx="60" cy="60" r="40" stroke-width="2"/>
+            <path class="stroke-accent" stroke-width="3" d="M60 25v10M60 85v10M25 60h10M85 60h10"/>
+            <path class="fill-accent" d="M60 60l-18 8 8-18 18-8-8 18z"/>
+          </svg>
+        </div>
+      </div>
+      <div class="about-grid">
+        <div class="card">
+          <h3>What We Focus On</h3>
+          <ul>
+            <li><i class="fa-solid fa-map-signs list-icon"></i><strong>Clear Strategy:</strong> A roadmap aligned to your goals.</li>
+            <li><i class="fa-solid fa-money-bill-wave list-icon"></i><strong>Cost Optimization:</strong> Reduce waste and spend smarter.</li>
+            <li><i class="fa-solid fa-lock list-icon"></i><strong>Security:</strong> Hardened access, encryption, compliance readiness.</li>
+            <li><i class="fa-solid fa-cloud-arrow-up list-icon"></i><strong>Migration:</strong> Lift‑and‑shift or modernization, zero‑drama.</li>
+            <li><i class="fa-solid fa-chart-line list-icon"></i><strong>Scale:</strong> Performance tuning, auto‑scaling, resilience.</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>Our Approach</h3>
+          <ol>
+            <li><strong>Listen & Understand:</strong> Goals first—no jargon.</li>
+            <li><strong>Analyze & Advise:</strong> Find savings, risks, and performance wins.</li>
+            <li><strong>Strategize & Plan:</strong> Simple, step‑by‑step plan.</li>
+            <li><strong>Implement & Optimize:</strong> Secure, efficient execution.</li>
+            <li><strong>Enable & Empower:</strong> Upskill your team to operate confidently.</li>
+          </ol>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="stats" class="section">
+    <div class="container">
+      <div class="section-header">
+        <div class="eyebrow">Impact</div>
+        <h2>Results in Numbers</h2>
+      </div>
+      <div class="stats">
+        <div class="card stat"><strong data-count="88">0</strong><span>% Client Satisfaction Rate</span></div>
+        <div class="card stat"><strong data-count="48">0</strong><span>% Average Cloud Cost Savings</span></div>
+        <div class="card stat"><strong data-count="438">0</strong><span>Successful Cloud Projects</span></div>
+        <div class="card stat"><strong data-count="12">0</strong><span>Years of Focused Experience</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="services" class="section">
+    <div><img src="https://raw.githubusercontent.com/SIUNETWORKSGitHub/SIU-RESUME/refs/heads/master/docs/images/New_picture1.png"/></div>
+    <div class="container">
+      <div class="section-header">
+        <div class="eyebrow">Services</div>
+        <h2>Cloud Solutions Made Simple</h2>
+      </div>
+      <div class="grid-3">
+        <div class="card service-card"><h4><i class="fa-solid fa-map-signs list-icon"></i> Strategy</h4><p>Discovery, platform fit, and roadmap.</p></div>
+        <div class="card service-card"><h4><i class="fa-solid fa-money-bill-wave list-icon"></i> FinOps</h4><p>Audit usage and spend smarter.</p></div>
+        <div class="card service-card"><h4><i class="fa-solid fa-lock list-icon"></i> Security</h4><p>Access hardening and encryption.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="casestudies" class="section">
+    <div class="container">
+      <div class="section-header"><h2>Success Stories</h2></div>
+      <div class="grid-2">
+        <div class="card"><h4>E‑commerce: 38% Savings</h4><p>Optimized AWS costs in 4 months.</p></div>
+        <div class="card"><h4>Healthcare: Secure Migration</h4><p>Safe data transition to Azure.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="testimonials" class="section">
+    <div class="container">
+      <div class="section-header"><h2>What Clients Say</h2></div>
+      <div class="grid-2">
+        <div class="card quote"><p>“SiuCloud transformed how we view cloud spending.”</p></div>
+        <div class="card quote"><p>“Migration felt daunting; SiuCloud made it smooth.”</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="faq" class="section">
+    <div class="container">
+      <div class="section-header"><h2>FAQ</h2></div>
+      <details class="faq"><summary>Which cloud platforms?</summary><div class="faq-content">AWS, Azure, and Google Cloud.</div></details>
+    </div>
+  </section>
+
+  <section id="consultation" class="section">
+    <div class="container">
+      <div class="section-header"><h2>Ready to Transform?</h2></div>
+      <div class="hero-actions">
+        <a class="btn" href="https://calendly.com/antonyroberth" target="_blank">Book on Calendly</a>
+      </div>
+    </div>
+  </section>
+
   <footer>
     <div class="container">
-      <div class="footer-links" aria-label="Footer links">
-        <a href="https://www.linkedin.com/in/siunetworks/" target="_blank" rel="noopener"><i class="fa-brands fa-linkedin"></i> LinkedIn</a>
-        <a href="https://github.com/SIUNETWORKSGitHub" target="_blank" rel="noopener"><i class="fa-brands fa-github"></i> GitHub</a>
-        <a href="https://siucloud.org/" target="_blank" rel="noopener"><i class="fa-solid fa-arrow-up-right-from-square"></i> Blog</a>
+      <div class="footer-links">
+        <a href="https://www.linkedin.com/in/siunetworks/" target="_blank">LinkedIn</a>
+        <a href="https://github.com/SIUNETWORKSGitHub" target="_blank">GitHub</a>
       </div>
-      <p class="copyright">© 2014-2026 SiuCloud.org · Design modernized for performance and accessibility.</p>
+      <p class="copyright">© 2014-2026 SiuCloud.org</p>
     </div>
   </footer>
 
@@ -274,7 +441,7 @@
     signOutBtn.addEventListener("click", () => signOutRedirect());
 
     userManager.signinCallback().then((user) => {
-        // FIXED LOGIC: Removes 'code' but keeps the '#' so links keep working
+        // SMART CLEANING: Removes 'code' but leaves '#' so navigation works
         const url = new URL(window.location.href);
         url.searchParams.delete("code");
         url.searchParams.delete("state");
