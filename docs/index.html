@@ -115,31 +115,27 @@
   <section id="about" class="section" style="background: #0f1418; padding-block: 120px;">
     <div class="container">
       <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 60px; align-items: center;">
+        
         <div>
           <div class="eyebrow" style="color: var(--accent); font-weight: 700; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 15px;">Who We Are</div>
           <h2 style="font-size: 2.8rem; margin-bottom: 25px; line-height: 1.2;">Your Trusted Partner in <br>Cloud Evolution</h2>
           <p style="font-size: 1.15rem; line-height: 1.8; color: var(--text); margin-bottom: 25px;">
-            At <strong>SiuCloud</strong>, we don't just provide services; we build resilient digital foundations. We understand that moving to the cloud or managing a hybrid environment is a critical business decision. 
+            At <strong>SiuCloud</strong>, we build resilient digital foundations to help your business evolve securely. 
           </p>
           <p style="color: #93a1ad; line-height: 1.8; font-size: 1.05rem;">
-            Our mission is to bridge the gap between complex technology and your business goals. By combining deep technical expertise with a transparent approach, we ensure your data is secure and your infrastructure is ready for tomorrow.
+            Our mission is to bridge the gap between complex technology and your growth goals.
           </p>
         </div>
 
         <div style="display: grid; gap: 25px;">
           <div style="background: rgba(255,255,255,0.02); padding: 30px; border-radius: var(--radius); border: 1px solid var(--border); transition: all 0.3s; cursor: default;" onmouseover="this.style.borderColor='var(--accent)'; this.style.background='rgba(0,194,168,0.03)';" onmouseout="this.style.borderColor='var(--border)'; this.style.background='rgba(255,255,255,0.02)';">
             <h4 style="margin-bottom: 10px; font-size: 1.2rem;"><i class="fa-solid fa-shield-halved" style="color: var(--accent); margin-right: 12px;"></i> Security Focused</h4>
-            <p style="font-size: 0.95rem; color: #93a1ad; margin: 0; line-height: 1.6;">We implement enterprise-grade security protocols for every cloud and hybrid deployment.</p>
+            <p style="font-size: 0.95rem; color: #93a1ad; margin: 0; line-height: 1.6;">Enterprise-grade security protocols for cloud and hybrid deployment.</p>
           </div>
 
           <div style="background: rgba(255,255,255,0.02); padding: 30px; border-radius: var(--radius); border: 1px solid var(--border); transition: all 0.3s; cursor: default;" onmouseover="this.style.borderColor='var(--accent)'; this.style.background='rgba(0,194,168,0.03)';" onmouseout="this.style.borderColor='var(--border)'; this.style.background='rgba(255,255,255,0.02)';">
             <h4 style="margin-bottom: 10px; font-size: 1.2rem;"><i class="fa-solid fa-handshake" style="color: var(--accent); margin-right: 12px;"></i> Partnership Driven</h4>
-            <p style="font-size: 0.95rem; color: #93a1ad; margin: 0; line-height: 1.6;">We operate as an extension of your team, ensuring you never navigate the cloud alone.</p>
-          </div>
-
-          <div style="background: rgba(255,255,255,0.02); padding: 30px; border-radius: var(--radius); border: 1px solid var(--border); transition: all 0.3s; cursor: default;" onmouseover="this.style.borderColor='var(--accent)'; this.style.background='rgba(0,194,168,0.03)';" onmouseout="this.style.borderColor='var(--border)'; this.style.background='rgba(255,255,255,0.02)';">
-            <h4 style="margin-bottom: 10px; font-size: 1.2rem;"><i class="fa-solid fa-layer-group" style="color: var(--accent); margin-right: 12px;"></i> Hybrid Expertise</h4>
-            <p style="font-size: 0.95rem; color: #93a1ad; margin: 0; line-height: 1.6;">Specialized in seamless integration between on-premise hardware and cloud scalability.</p>
+            <p style="font-size: 0.95rem; color: #93a1ad; margin: 0; line-height: 1.6;">We operate as an extension of your team.</p>
           </div>
         </div>
       </div>
@@ -172,14 +168,8 @@
   <section id="faq" class="section">
     <div class="container" style="display: flex; flex-direction: column; align-items: center; text-align: center;">
       <h2 style="margin-bottom: 10px;">FAQ</h2>
-      <p style="color: #93a1ad; max-width: 600px; margin-bottom: 40px;">
-        Have questions about migration or hybrid setups? We have answers. 
-      </p>
       <div style="background: var(--panel); border: 1px solid var(--accent); padding: 40px; border-radius: var(--radius); width: 100%; max-width: 850px;">
         <h3 style="color: var(--text); margin-bottom: 15px;">Ready to simplify your cloud?</h3>
-        <p style="color: #93a1ad; margin-bottom: 25px;">
-          Create your account now to access our specialized cloud resources.
-        </p>
         <button class="btn" id="faqSignIn">
           <i class="fa-solid fa-user-plus"></i> Sign Up & Get Started
         </button>
@@ -216,8 +206,19 @@
         if (signInBtn) signInBtn.onclick = () => userManager.signinRedirect();
         if (faqSignInBtn) faqSignInBtn.onclick = () => userManager.signinRedirect();
         
-        // FIXED SIGNOUT LINE
-        if (signOutBtn) signOutBtn.onclick = () => signOutRedirect();
+        // --- THE FINAL LOGOUT FIX ---
+        if (signOutBtn) {
+          signOutBtn.onclick = (e) => {
+            e.preventDefault();
+            // Force URL to match AWS exactly (No trailing slash)
+            const logoutUri = "https://siucloud.org";
+            const clientId = "2atbpmss0eh84md5mlqj1jgch7";
+            const domain = "us-east-2c6pp0v70h.auth.us-east-2.amazoncognito.com";
+            
+            // Redirect directly to the correct AWS logout endpoint
+            window.location.href = `https://${domain}/logout?client_id=${clientId}&logout_uri=${encodeURIComponent(logoutUri)}`;
+          };
+        }
 
         userManager.signinCallback().then((user) => {
             const url = new URL(window.location.href);
