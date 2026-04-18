@@ -53,41 +53,26 @@
     .brand { display: flex; align-items: center; gap: 10px; font-weight: 700; }
     .brand .dot { width: 10px; height: 10px; border-radius: 50%; background: var(--accent); }
 
-    /* BUTTONS */
-    .btn { background: var(--accent); color: #000; padding: 12px 24px; border-radius: 50px; font-weight: 600; text-decoration: none; display: inline-flex; align-items: center; gap: 8px; border:none; cursor: pointer; }
-    .btn.alt { background: transparent; color: var(--accent); border: 1px solid var(--accent); }
-    
     /* AUTH UI */
     #user-info { display: none; align-items: center; gap: 10px; color: var(--accent); font-weight: 600; }
     #signOut { cursor: pointer; font-size: 0.75rem; color: var(--muted); border: 1px solid var(--border); border-radius: 4px; padding: 4px 10px; background: transparent; color: white; }
 
     .container { width: min(100% - 2rem, var(--maxw)); margin-inline: auto; }
     .section { padding-block: 80px; scroll-margin-top: 100px; }
-    img { width: 100%; height: auto; display: block; }
+    img { width: 100%; height: auto; display: block; border-radius: var(--radius); }
     
     /* SERVICES GRID SYSTEM */
     .services-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      grid-template-columns: repeat(3, 1fr);
       gap: 30px;
-      margin-top: 40px;
-    }
-    .service-item {
+      margin-top: 20px;
       text-align: center;
-      background: var(--panel);
-      padding: 20px;
-      border-radius: var(--radius);
-      border: 1px solid var(--border);
     }
-    .service-item img {
-      border-radius: var(--radius);
-      margin-bottom: 20px;
-      height: 200px;
-      object-fit: cover;
-    }
-    .service-item h4 { color: var(--accent); margin-bottom: 10px; font-size: 1.2rem; }
-    .service-item p { line-height: 1.6; color: var(--text); }
+    .service-desc h4 { color: var(--accent); margin-bottom: 10px; }
+    .service-desc p { font-size: 0.95rem; line-height: 1.5; color: var(--text); }
 
+    .btn { background: var(--accent); color: #000; padding: 12px 24px; border-radius: 50px; font-weight: 600; text-decoration: none; display: inline-flex; align-items: center; gap: 8px; border:none; cursor: pointer; }
     footer { border-top: 1px solid var(--border); background: var(--bg-soft); padding-block: 40px; text-align: center; }
   </style>
 </head>
@@ -114,13 +99,8 @@
   </div>
 
   <header id="home">
-    <img src="https://raw.githubusercontent.com/SIUNETWORKSGitHub/SIU-RESUME/refs/heads/master/docs/images/New_picture.png" style="width: 100vw;"/>
     <div class="container" style="text-align: center; padding-block: 40px;">
       <h1>Your Cloud, Simplified</h1>
-      <div style="display: flex; justify-content: center; gap: 15px;">
-        <a class="btn" href="#consultation">Book a Call</a>
-        <a class="btn alt" href="#services">Explore Services</a>
-      </div>
     </div>
   </header>
 
@@ -133,48 +113,31 @@
 
   <section id="services" class="section">
     <div class="container">
-      <div style="text-align: center; margin-bottom: 20px;">
+      <div style="text-align: center; margin-bottom: 30px;">
         <h2>Cloud Solutions Made Simple</h2>
-        <p>Strategy, FinOps, and Security hardening.</p>
       </div>
 
+      <img src="https://raw.githubusercontent.com/SIUNETWORKSGitHub/SIU-RESUME/refs/heads/master/docs/images/New_picture1.png" alt="SiuCloud Services" style="margin-bottom: 30px; width: 100%;">
+
       <div class="services-grid">
-        <div class="service-item">
-          <img src="https://raw.githubusercontent.com/SIUNETWORKSGitHub/SIU-RESUME/refs/heads/master/docs/images/New_picture1.png" alt="Cloud Security">
-          <h4>Cloud & Hybrid Security</h4>
+        <div class="service-desc">
+          <h4>Security</h4>
           <p>Save and secure your data in the cloud or hybrid.</p>
         </div>
-
-        <div class="service-item">
-          <img src="https://raw.githubusercontent.com/SIUNETWORKSGitHub/SIU-RESUME/refs/heads/master/docs/images/New_picture.png" alt="Cloud Strategy">
+        <div class="service-desc">
           <h4>Partnership</h4>
           <p>We do things together.</p>
         </div>
-
-        <div class="service-item">
-          <img src="https://raw.githubusercontent.com/SIUNETWORKSGitHub/SIU-RESUME/refs/heads/master/docs/images/New_picture1.png" alt="Cloud Help Desk">
-          <h4>Team Specialized</h4>
+        <div class="service-desc">
+          <h4>Specialized Support</h4>
           <p>Integrated Help desk support with team specialized on cloud.</p>
         </div>
       </div>
     </div>
   </section>
 
-  <section id="casestudies" class="section">
-    <div class="container"><h2>Success Stories</h2></div>
-  </section>
-
-  <section id="testimonials" class="section">
-    <div class="container"><h2>Testimonials</h2></div>
-  </section>
-
-  <section id="faq" class="section">
-    <div class="container"><h2>FAQ</h2></div>
-  </section>
-
   <section id="consultation" class="section">
     <div class="container" style="text-align: center;">
-      <h2>Ready to Transform?</h2>
       <a class="btn" href="https://calendly.com/antonyroberth" target="_blank">Book on Calendly</a>
     </div>
   </section>
@@ -183,4 +146,38 @@
     <div class="container">
       <div style="margin-bottom: 20px;">
         <a href="https://www.linkedin.com/in/siucloud/" target="_blank" style="color:white; text-decoration:none; margin-right:20px;"><i class="fa-brands fa-linkedin"></i> LinkedIn</a>
-        <a href
+        <a href="https://github.com/SIUNETWORKSGitHub" target="_blank" style="color:white; text-decoration:none;"><i class="fa-brands fa-github"></i> GitHub</a>
+      </div>
+      <p>© 2014-2026 SiuCloud.org</p>
+    </div>
+  </footer>
+
+  <script type="module">
+    import { userManager, signOutRedirect } from "./main.js";
+
+    const signInBtn = document.getElementById("signIn");
+    const signOutBtn = document.getElementById("signOut");
+    const userInfo = document.getElementById("user-info");
+    const userEmail = document.getElementById("user-email");
+
+    signInBtn.addEventListener("click", () => userManager.signinRedirect());
+    signOutBtn.addEventListener("click", () => signOutRedirect());
+
+    userManager.signinCallback().then((user) => {
+        const url = new URL(window.location.href);
+        url.searchParams.delete("code");
+        url.searchParams.delete("state");
+        window.history.replaceState({}, document.title, url.pathname + url.hash);
+        if (user) showUser(user);
+    }).catch(() => {
+        userManager.getUser().then((user) => { if (user) showUser(user); });
+    });
+
+    function showUser(user) {
+        signInBtn.style.display = "none";
+        userInfo.style.display = "inline-flex";
+        userEmail.textContent = user.profile.email;
+    }
+  </script>
+</body>
+</html>
