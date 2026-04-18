@@ -17,7 +17,7 @@ export async function signOutRedirect() {
   
   // TO DO: Go to Cognito Console -> App Integration and copy your "Domain"
   // It looks like: https://something.auth.us-east-2.amazoncognito.com
-  const cognitoDomain = "REPLACE_WITH_YOUR_COGNITO_DOMAIN"; 
+  const cognitoDomain = "https://us-east-2c6pp0v70h.auth.us-east-2.amazoncognito.com";
   
   window.location.href = `${cognitoDomain}/logout?client_id=${clientId}&logout_uri=${encodeURIComponent(logoutUri)}`;
 }
