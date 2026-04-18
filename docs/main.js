@@ -1,18 +1,23 @@
-window.addEventListener( 'DOMContentLoaded', (Event) =>{
-    getVisitCount();
-})    
-const functionApi = '';
+// docs/main.js
+import { UserManager } from "https://esm.sh/oidc-client-ts@2.2.4";
 
-const getVisitCount = () => {
-    let count = 30;
-    fetch(functionApi).then(response => {
-        return response.json()
-    }).then(response =>{
-        console.log("Website called function API.");
-        count = response.count;
-        document.getElementById("counter").innerText = count;
-    }).catch(function(error){
-        console.log(error);
-    });
-    return count;
+const cognitoAuthConfig = {
+  authority: "https://cognito-idp.us-east-2.amazonaws.com/us-east-2_C6pp0v70h",
+  client_id: "2atbpmss0eh84md5mlqj1jgch7",
+  redirect_uri: "https://siucloud.org/", // Ensure this matches AWS exactly
+  response_type: "code",
+  scope: "phone openid email"
+};
+
+export const userManager = new UserManager(cognitoAuthConfig);
+
+export async function signOutRedirect() {
+  const clientId = "2atbpmss0eh84md5mlqj1jgch7";
+  const logoutUri = "https://siucloud.org/";
+  
+  // TO DO: Go to Cognito Console -> App Integration and copy your "Domain"
+  // It looks like: https://something.auth.us-east-2.amazoncognito.com
+  const cognitoDomain = "REPLACE_WITH_YOUR_COGNITO_DOMAIN"; 
+  
+  window.location.href = `${cognitoDomain}/logout?client_id=${clientId}&logout_uri=${encodeURIComponent(logoutUri)}`;
 }
