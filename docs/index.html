@@ -103,49 +103,6 @@
     </div>
   </header>
 
-  <section id="about" class="section" style="background: var(--bg-soft);">
-    <div class="container">
-      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 50px; align-items: center;">
-        <div>
-          <div class="eyebrow" style="color: var(--accent); font-weight: 700; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 10px;">Who We Are</div>
-          <h2 style="font-size: 2.5rem; margin-bottom: 20px;">Your Trusted Partner in Cloud Evolution</h2>
-          <p style="font-size: 1.1rem; line-height: 1.7; color: var(--text); margin-bottom: 20px;">
-            At <strong>SiuCloud</strong>, we build resilient digital foundations to help your business evolve securely. 
-          </p>
-        </div>
-
-        <div style="display: grid; gap: 20px;">
-          <div style="background: var(--panel); padding: 25px; border-radius: var(--radius); border-left: 4px solid var(--accent);">
-            <h4><i class="fa-solid fa-shield-halved"></i> Security Focused</h4>
-            <p>We implement enterprise-grade security protocols for every deployment.</p>
-          </div>
-          <div style="background: var(--panel); padding: 25px; border-radius: var(--radius); border-left: 4px solid var(--accent);">
-            <h4><i class="fa-solid fa-handshake"></i> Partnership Driven</h4>
-            <p>We operate as an extension of your team.</p>
-          </div>
-          <div style="background: var(--panel); padding: 25px; border-radius: var(--radius); border-left: 4px solid var(--accent);">
-            <h4><i class="fa-solid fa-layer-group"></i> Hybrid Expertise</h4>
-            <p>Specialized in integration between on-premise hardware and cloud.</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section id="services" class="section">
-    <div class="container">
-      <div style="text-align: center; margin-bottom: 30px;">
-        <h2>Cloud Solutions Made Simple</h2>
-      </div>
-      <img src="https://raw.githubusercontent.com/SIUNETWORKSGitHub/SIU-RESUME/refs/heads/master/docs/images/New_picture1.png" alt="SiuCloud Services" style="margin-bottom: 30px; width: 100%;">
-      <div class="services-grid">
-        <div class="service-desc"><h4>Specialized Support</h4><p>Integrated Help desk support.</p></div>
-        <div class="service-desc"><h4>Partnership</h4><p>We do things together.</p></div>
-        <div class="service-desc"><h4>Security</h4><p>Save and secure your data.</p></div>
-      </div>
-    </div>
-  </section>
-
   <section id="faq" class="section">
     <div class="container" style="display: flex; flex-direction: column; align-items: center; text-align: center;">
       <h2 style="margin-bottom: 10px;">FAQ</h2>
@@ -158,30 +115,17 @@
     </div>
   </section>
 
-  <section id="consultation" class="section">
-    <div class="container" style="text-align: center;">
-      <a class="btn" href="https://calendly.com/antonyroberth" target="_blank">Book on Calendly</a>
-    </div>
-  </section>
-
-  <footer>
-    <div class="container">
-      <div style="margin-bottom: 20px;">
-        <a href="https://www.linkedin.com/in/siucloud/" target="_blank" style="color:white; text-decoration:none; margin-right:20px;"><i class="fa-brands fa-linkedin"></i> LinkedIn</a>
-        <a href="https://github.com/SIUNETWORKSGitHub" target="_blank" style="color:white; text-decoration:none;"><i class="fa-brands fa-github"></i> GitHub</a>
-      </div>
-      <p>© 2014-2026 SiuCloud.org</p>
-    </div>
-  </footer>
-
   <script type="module">
     import { userManager, signOutRedirect } from "./main.js";
 
+    const clientId = "2atbpmss0eh84md5mlqj1jgch7";
+    const domain = "us-east-2c6pp0v70h.auth.us-east-2.amazoncognito.com";
+    const redirectUri = "https://siucloud.org";
+
     // EXPOSE TO GLOBAL WINDOW SCOPE
-    // This allows the HTML 'onclick' attributes to find the login function
     window.triggerLogin = (e) => {
         if (e) e.preventDefault();
-        console.log("Handshake Triggered: Redirecting to AWS Cognito...");
+        console.log("Handshake Triggered: Switching to Authorization Code flow...");
         userManager.signinRedirect().catch(err => {
             console.error(err);
             alert("Error: " + err.message);
@@ -191,12 +135,25 @@
     window.addEventListener('load', () => {
         const signOutBtn = document.getElementById("signOut");
 
+        // --- THE AGGRESSIVE AUTH FIX FOR PKCE ERROR ---
+        if (userManager && userManager.settings) {
+            userManager.settings.response_type = "code"; 
+            userManager.settings.useCodeChallenge = true; 
+            userManager.settings.metadata = {
+                issuer: "https://cognito-idp.us-east-2.amazonaws.com/us-east-2_C6pp0v70h",
+                authorization_endpoint: `https://${domain}/oauth2/authorize`,
+                token_endpoint: `https://${domain}/oauth2/token`,
+                userinfo_endpoint: `https://${domain}/oauth2/userInfo`,
+                end_session_endpoint: `https://${domain}/logout?client_id=${clientId}&logout_uri=${encodeURIComponent(redirectUri)}`,
+                jwks_uri: "https://cognito-idp.us-east-2.amazonaws.com/us-east-2_C6pp0v70h/.well-known/jwks.json"
+            };
+        }
+
         if (signOutBtn) signOutBtn.onclick = (e) => {
             e.preventDefault();
             signOutRedirect();
         };
 
-        // Handle the login callback from Cognito
         userManager.signinCallback().then((user) => {
             const url = new URL(window.location.href);
             window.history.replaceState({}, document.title, url.pathname + url.hash);
