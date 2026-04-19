@@ -86,7 +86,7 @@
         <a href="#services">Services</a>
         <a href="#faq">FAQ</a>
         <a href="#consultation">Consultation</a>
-        <a href="javascript:void(0)" id="signIn"><i class="fa-solid fa-user-lock"></i> Sign In</a>
+        <a href="javascript:void(0)" id="signIn" onclick="window.triggerLogin(event)"><i class="fa-solid fa-user-lock"></i> Sign In</a>
         <span id="user-info">
             <i class="fa-solid fa-circle-user"></i> <span id="user-email"></span>
             <button id="signOut">Logout</button>
@@ -110,25 +110,22 @@
           <div class="eyebrow" style="color: var(--accent); font-weight: 700; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 10px;">Who We Are</div>
           <h2 style="font-size: 2.5rem; margin-bottom: 20px;">Your Trusted Partner in Cloud Evolution</h2>
           <p style="font-size: 1.1rem; line-height: 1.7; color: var(--text); margin-bottom: 20px;">
-            At <strong>SiuCloud</strong>, we don't just provide services; we build resilient digital foundations. We understand that moving to the cloud or managing a hybrid environment is a critical business decision. 
-          </p>
-          <p style="color: #93a1ad; line-height: 1.7;">
-            Our mission is to bridge the gap between complex technology and your business goals. By combining deep technical expertise with a transparent, partnership-first approach, we ensure your data is secure, your costs are optimized, and your infrastructure is ready for tomorrow.
+            At <strong>SiuCloud</strong>, we build resilient digital foundations to help your business evolve securely. 
           </p>
         </div>
 
         <div style="display: grid; gap: 20px;">
           <div style="background: var(--panel); padding: 25px; border-radius: var(--radius); border-left: 4px solid var(--accent);">
-            <h4 style="margin-bottom: 8px;"><i class="fa-solid fa-shield-halved" style="color: var(--accent); margin-right: 10px;"></i> Security Focused</h4>
-            <p style="font-size: 0.9rem; color: #93a1ad; margin: 0;">We implement enterprise-grade security protocols for every cloud and hybrid deployment.</p>
+            <h4><i class="fa-solid fa-shield-halved"></i> Security Focused</h4>
+            <p>We implement enterprise-grade security protocols for every deployment.</p>
           </div>
           <div style="background: var(--panel); padding: 25px; border-radius: var(--radius); border-left: 4px solid var(--accent);">
-            <h4 style="margin-bottom: 8px;"><i class="fa-solid fa-handshake" style="color: var(--accent); margin-right: 10px;"></i> Partnership Driven</h4>
-            <p style="font-size: 0.9rem; color: #93a1ad; margin: 0;">We operate as an extension of your team, ensuring you never navigate the cloud alone.</p>
+            <h4><i class="fa-solid fa-handshake"></i> Partnership Driven</h4>
+            <p>We operate as an extension of your team.</p>
           </div>
           <div style="background: var(--panel); padding: 25px; border-radius: var(--radius); border-left: 4px solid var(--accent);">
-            <h4 style="margin-bottom: 8px;"><i class="fa-solid fa-layer-group" style="color: var(--accent); margin-right: 10px;"></i> Hybrid Expertise</h4>
-            <p style="font-size: 0.9rem; color: #93a1ad; margin: 0;">Specialized in seamless integration between on-premise hardware and cloud scalability.</p>
+            <h4><i class="fa-solid fa-layer-group"></i> Hybrid Expertise</h4>
+            <p>Specialized in integration between on-premise hardware and cloud.</p>
           </div>
         </div>
       </div>
@@ -142,18 +139,9 @@
       </div>
       <img src="https://raw.githubusercontent.com/SIUNETWORKSGitHub/SIU-RESUME/refs/heads/master/docs/images/New_picture1.png" alt="SiuCloud Services" style="margin-bottom: 30px; width: 100%;">
       <div class="services-grid">
-        <div class="service-desc">
-          <h4>Specialized Support</h4>
-          <p>Integrated Help desk support with team specialized on cloud.</p>
-        </div>
-        <div class="service-desc">
-          <h4>Partnership</h4>
-          <p>We do things together.</p>
-        </div>
-        <div class="service-desc">
-          <h4>Security</h4>
-          <p>Save and secure your data in the cloud or hybrid.</p>
-        </div>
+        <div class="service-desc"><h4>Specialized Support</h4><p>Integrated Help desk support.</p></div>
+        <div class="service-desc"><h4>Partnership</h4><p>We do things together.</p></div>
+        <div class="service-desc"><h4>Security</h4><p>Save and secure your data.</p></div>
       </div>
     </div>
   </section>
@@ -161,15 +149,9 @@
   <section id="faq" class="section">
     <div class="container" style="display: flex; flex-direction: column; align-items: center; text-align: center;">
       <h2 style="margin-bottom: 10px;">FAQ</h2>
-      <p style="color: #93a1ad; max-width: 600px; margin-bottom: 40px;">
-        Have questions about migration or hybrid setups? We have answers. 
-      </p>
       <div style="background: var(--panel); border: 1px solid var(--accent); padding: 40px; border-radius: var(--radius); width: 100%; max-width: 850px;">
         <h3 style="color: var(--text); margin-bottom: 15px;">Ready to simplify your cloud?</h3>
-        <p style="color: #93a1ad; margin-bottom: 25px;">
-          Create your account now to access our specialized cloud resources.
-        </p>
-        <button class="btn" id="faqSignIn">
+        <button class="btn" id="faqSignIn" onclick="window.triggerLogin(event)">
           <i class="fa-solid fa-user-plus"></i> Sign Up & Get Started
         </button>
       </div>
@@ -195,22 +177,28 @@
   <script type="module">
     import { userManager, signOutRedirect } from "./main.js";
 
+    // EXPOSE TO GLOBAL WINDOW SCOPE
+    // This allows the HTML 'onclick' attributes to find the login function
+    window.triggerLogin = (e) => {
+        if (e) e.preventDefault();
+        console.log("Handshake Triggered: Redirecting to AWS Cognito...");
+        userManager.signinRedirect().catch(err => {
+            console.error(err);
+            alert("Error: " + err.message);
+        });
+    };
+
     window.addEventListener('load', () => {
-        const signInBtn = document.getElementById("signIn");
-        const faqSignInBtn = document.getElementById("faqSignIn");
         const signOutBtn = document.getElementById("signOut");
-        const userInfo = document.getElementById("user-info");
-        const userEmail = document.getElementById("user-email");
 
-        if (signInBtn) signInBtn.onclick = () => userManager.signinRedirect();
-        if (faqSignInBtn) faqSignInBtn.onclick = () => userManager.signinRedirect();
-        if (signOutBtn) signOutBtn.onclick = () => signOutRedirect();
+        if (signOutBtn) signOutBtn.onclick = (e) => {
+            e.preventDefault();
+            signOutRedirect();
+        };
 
+        // Handle the login callback from Cognito
         userManager.signinCallback().then((user) => {
             const url = new URL(window.location.href);
-            url.searchParams.delete("code");
-            url.searchParams.delete("state");
-            url.searchParams.delete("session_state");
             window.history.replaceState({}, document.title, url.pathname + url.hash);
             if (user) showUser(user);
         }).catch(() => {
@@ -218,10 +206,10 @@
         });
 
         function showUser(user) {
-            if (signInBtn) signInBtn.style.display = "none";
-            if (faqSignInBtn) faqSignInBtn.style.display = "none"; 
-            if (userInfo) userInfo.style.display = "inline-flex";
-            if (userEmail) userEmail.textContent = user.profile.email;
+            document.getElementById("signIn").style.display = "none";
+            if(document.getElementById("faqSignIn")) document.getElementById("faqSignIn").style.display = "none";
+            document.getElementById("user-info").style.display = "inline-flex";
+            document.getElementById("user-email").textContent = user.profile.email;
         }
     });
   </script>
