@@ -3,158 +3,224 @@
 <head>
   <meta charset="utf-8" />
   <title>SiuCloud | Your Cloud, Simplified</title>
-  <meta name="description" content="Cloud strategy, optimization, and security for SMBs—simple, effective, and growth-ready." />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="author" content="SiuCloud.org" />
-
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
 
   <style>
     :root {
-      --bg: #0b0f12;            /* charcoal */
-      --bg-soft: #12171b;       /* slate */
+      --bg: #0b0f12;
+      --bg-soft: #12171b;
       --panel: rgba(255,255,255,0.03);
-      --text: #e6edf3;          /* light */
-      --muted: #93a1ad;         /* medium gray */
-      --accent: #00c2a8;        /* teal */
-      --accent-2: #00a08f;      /* darker teal */
+      --text: #e6edf3;
+      --accent: #00c2a8;
       --border: rgba(230, 237, 243, 0.12);
       --radius: 14px;
-      --radius-sm: 10px;
       --maxw: 1100px;
-      --space: clamp(16px, 2.2vw, 24px);
-      --space-lg: clamp(28px, 4vw, 56px);
-      --illus-size: clamp(120px, 12vw, 160px);
     }
 
-    /* Reset & base */
     *, *::before, *::after { box-sizing: border-box; }
-    html, body { height: 100%; scroll-behavior: smooth; }
+    html { scroll-behavior: smooth; }
     body {
       margin: 0;
-      font-family: "Inter", system-ui, -apple-system, sans-serif;
+      font-family: "Inter", sans-serif;
       color: var(--text);
-      background: linear-gradient(180deg, var(--bg) 0%, var(--bg-soft) 100%);
+      background: var(--bg);
+      padding-top: 70px;
     }
-    a { color: var(--accent); text-decoration: none; }
-    a:hover { color: var(--accent-2); }
-    h1, h2, h3, h4 { margin: 0 0 0.6em; line-height: 1.15; color: var(--text); }
-    
-    .container { width: min(100% - 2rem, var(--maxw)); margin-inline: auto; }
-    .section { padding-block: var(--space-lg); }
 
-    /* Buttons */
-    .btn {
-      display: inline-flex; align-items: center; gap: 10px;
-      color: #041716;
-      background: linear-gradient(90deg, var(--accent), var(--accent-2));
-      border: none; border-radius: 999px;
-      padding: 12px 20px; font-weight: 600;
-      transition: transform 150ms ease;
-      cursor: pointer;
-    }
-    .btn:hover { transform: translateY(-2px); }
-    .btn.alt { background: transparent; color: var(--accent); border: 1px solid var(--border); }
-
-    /* Navigation */
+    /* NAVIGATION */
     .nav-wrap {
-      position: sticky; top: 0; z-index: 50;
-      background: rgba(18, 23, 27, 0.7);
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 9999;
+      background: rgba(11, 15, 18, 0.95);
       border-bottom: 1px solid var(--border);
-      backdrop-filter: blur(6px);
+      backdrop-filter: blur(10px);
     }
-    .nav { display: flex; align-items: center; justify-content: space-between; padding: 10px 0; }
-    .brand { display: flex; align-items: center; gap: 10px; font-weight: 700; color: var(--text); }
-    .brand .dot { width: 10px; height: 10px; border-radius: 50%; background: var(--accent); display: inline-block; }
-    .nav-links { display: flex; gap: clamp(10px, 2vw, 20px); }
-    .nav-links a { color: var(--text); font-weight: 500; padding: 6px; }
+    .nav {
+      width: min(100% - 2rem, var(--maxw));
+      margin-inline: auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding-block: 15px;
+    }
+    .nav-links { display: flex; gap: 1.5rem; align-items: center; }
+    .nav-links a { color: var(--text); text-decoration: none; font-weight: 500; font-size: 0.95rem; }
+    .nav-links a:hover { color: var(--accent); }
+    .brand { display: flex; align-items: center; gap: 10px; font-weight: 700; }
+    .brand .dot { width: 10px; height: 10px; border-radius: 50%; background: var(--accent); }
+
+    #user-info { display: none; align-items: center; gap: 10px; color: var(--accent); font-weight: 600; }
+    #signOut { cursor: pointer; font-size: 0.75rem; color: #93a1ad; border: 1px solid var(--border); border-radius: 4px; padding: 4px 10px; background: transparent; color: white; transition: 0.2s; }
+    #signOut:hover { background: #ff4d4d; color: white; border-color: #ff4d4d; }
+
+    .container { width: min(100% - 2rem, var(--maxw)); margin-inline: auto; }
+    .section { padding-block: 100px; scroll-margin-top: 100px; }
     
-    #user-info { display: none; align-items: center; gap: 12px; color: var(--accent); font-weight: 600; }
-    #signOut { cursor: pointer; font-size: 0.8em; color: var(--muted); border: 1px solid var(--border); border-radius: 6px; padding: 4px 10px; background: var(--panel); }
+    img { width: 100%; height: auto; display: block; border-radius: var(--radius); }
+    
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 30px;
+      margin-top: 20px;
+      text-align: center;
+    }
+    .service-desc h4 { color: var(--accent); margin-bottom: 10px; }
 
-    footer { border-top: 1px solid var(--border); background: var(--bg-soft); padding-block: var(--space); text-align: center; }
-    img { width: 100vw; display: block; }
+    .btn { background: var(--accent); color: #000; padding: 12px 24px; border-radius: 50px; font-weight: 600; text-decoration: none; border:none; cursor: pointer; display: inline-flex; align-items: center; gap: 8px; transition: transform 0.2s; }
+    .btn:hover { transform: scale(1.05); }
+    
+    footer { border-top: 1px solid var(--border); background: var(--bg-soft); padding-block: 40px; text-align: center; }
   </style>
-
-  <script async src="https://www.googletagmanager.com/gtag/js?id=AW-17764280720"></script> 
-  <script> 
-    window.dataLayer = window.dataLayer || []; 
-    function gtag(){dataLayer.push(arguments);} 
-    gtag('js', new Date()); 
-    gtag('config', 'AW-17764280720'); 
-  </script> 
 </head>
 
 <body>
   <div class="nav-wrap">
-    <div class="container nav">
-      <div class="brand">
-        <span class="dot"></span>
-        <span>SiuCloud</span>
-      </div>
-
-      <nav class="nav-links" id="navLinks">
+    <div class="nav">
+      <div class="brand"><span class="dot"></span><span>SiuCloud</span></div>
+      <nav class="nav-links">
         <a href="#home">Home</a>
+        <a href="#about">About</a>
         <a href="#services">Services</a>
         <a href="#faq">FAQ</a>
         <a href="#consultation">Consultation</a>
-        
-        <a href="javascript:void(0)" id="signIn" onclick="window.triggerLogin(event)">
-          <i class="fa-solid fa-user-lock"></i> Sign In
-        </a>
-        
+        <a href="javascript:void(0)" id="signIn"><i class="fa-solid fa-user-lock"></i> Sign In</a>
         <span id="user-info">
             <i class="fa-solid fa-circle-user"></i> <span id="user-email"></span>
             <button id="signOut">Logout</button>
         </span>
       </nav>
-
-      <div class="nav-cta">
-        <a class="btn alt" href="https://siucloud.org/images/Siu1.pdf" target="_blank">
-          <i class="fa-solid fa-download"></i> Catalog
-        </a>
-      </div>
     </div>
   </div>
 
-  <header id="home" class="section">
-    <img src="https://raw.githubusercontent.com/SIUNETWORKSGitHub/SIU-RESUME/refs/heads/master/docs/images/New_picture.png"/>
-    <div class="container" style="text-align: center; margin-top: 40px;">
-      <h1>Your Cloud, Simplified</h1>
-      <p style="max-width: 800px; margin-inline: auto;">
-        We help SMBs cut cloud complexity and costs while improving security and performance.
+  <header id="home" style="min-height: 85vh; display: flex; flex-direction: column; align-items: center; justify-content: center; background: linear-gradient(180deg, var(--bg) 0%, #1a1f24 100%); padding-bottom: 80px;">
+    <img src="https://raw.githubusercontent.com/SIUNETWORKSGitHub/SIU-RESUME/refs/heads/master/docs/images/New_picture.png" style="width: 100vw; border-radius: 0; margin-top: -70px;"/>
+    
+    <div class="container" style="text-align: center; margin-top: 60px;">
+      <h1 style="font-size: clamp(2.5rem, 6vw, 4rem); margin-bottom: 20px; letter-spacing: -1px;">Your Cloud, Simplified</h1>
+      <p style="color: var(--accent); font-size: 1.4rem; font-weight: 500; max-width: 800px; margin-inline: auto;">
+        Practical results-first cloud advisory for SMBs.
       </p>
-      <div style="margin-top: 30px;">
-        <a class="btn" href="#consultation"><i class="fa-solid fa-calendar-check"></i> Book a Free Call</a>
+      <div style="margin-top: 40px;">
+        <a class="btn" href="#consultation" style="padding: 18px 36px; font-size: 1.1rem;">Get Started Now</a>
       </div>
     </div>
   </header>
 
-  <footer id="consultation">
+  <div style="width: 100%; height: 1px; background: linear-gradient(90deg, transparent, var(--accent), transparent); opacity: 0.3;"></div>
+
+  <section id="about" class="section" style="background: #0f1418; padding-block: 120px;">
     <div class="container">
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 60px; align-items: center;">
+        <div>
+          <div class="eyebrow" style="color: var(--accent); font-weight: 700; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 15px;">Who We Are</div>
+          <h2 style="font-size: 2.8rem; margin-bottom: 25px; line-height: 1.2;">Your Trusted Partner in <br>Cloud Evolution</h2>
+          <p style="font-size: 1.15rem; line-height: 1.8; color: var(--text); margin-bottom: 25px;">
+            At <strong>SiuCloud</strong>, we build resilient digital foundations to help your business evolve securely.
+          </p>
+        </div>
+
+        <div style="display: grid; gap: 25px;">
+          <div style="background: rgba(255,255,255,0.02); padding: 30px; border-radius: var(--radius); border: 1px solid var(--border); transition: all 0.3s;">
+            <h4 style="margin-bottom: 10px;"><i class="fa-solid fa-shield-halved" style="color: var(--accent); margin-right: 12px;"></i> Security Focused</h4>
+            <p style="font-size: 0.95rem; color: #93a1ad; margin: 0;">Enterprise-grade security protocols for every cloud deployment.</p>
+          </div>
+          <div style="background: rgba(255,255,255,0.02); padding: 30px; border-radius: var(--radius); border: 1px solid var(--border); transition: all 0.3s;">
+            <h4 style="margin-bottom: 10px;"><i class="fa-solid fa-handshake" style="color: var(--accent); margin-right: 12px;"></i> Partnership Driven</h4>
+            <p style="font-size: 0.95rem; color: #93a1ad; margin: 0;">We operate as an extension of your team.</p>
+          </div>
+          <div style="background: rgba(255,255,255,0.02); padding: 30px; border-radius: var(--radius); border: 1px solid var(--border); transition: all 0.3s;">
+            <h4 style="margin-bottom: 10px;"><i class="fa-solid fa-layer-group" style="color: var(--accent); margin-right: 12px;"></i> Hybrid Expertise</h4>
+            <p style="font-size: 0.95rem; color: #93a1ad; margin: 0;">Seamless integration between hardware and cloud scalability.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="services" class="section">
+    <div class="container">
+      <div style="text-align: center; margin-bottom: 30px;">
+        <h2>Cloud Solutions Made Simple</h2>
+      </div>
+      <img src="https://raw.githubusercontent.com/SIUNETWORKSGitHub/SIU-RESUME/refs/heads/master/docs/images/New_picture1.png" alt="SiuCloud Services" style="margin-bottom: 30px; width: 100%;">
+      <div class="services-grid">
+        <div class="service-desc"><h4>Specialized Support</h4><p>Team specialized on cloud support.</p></div>
+        <div class="service-desc"><h4>Partnership</h4><p>We do things together.</p></div>
+        <div class="service-desc"><h4>Security</h4><p>Safe and secure cloud data.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="faq" class="section">
+    <div class="container" style="display: flex; flex-direction: column; align-items: center; text-align: center;">
+      <h2 style="margin-bottom: 10px;">FAQ</h2>
+      <div style="background: var(--panel); border: 1px solid var(--accent); padding: 40px; border-radius: var(--radius); width: 100%; max-width: 850px;">
+        <h3 style="color: var(--text); margin-bottom: 15px;">Ready to simplify your cloud?</h3>
+        <button class="btn" id="faqSignIn"><i class="fa-solid fa-user-plus"></i> Sign Up & Get Started</button>
+      </div>
+    </div>
+  </section>
+
+  <section id="consultation" class="section">
+    <div class="container" style="text-align: center;">
+      <a class="btn" href="https://calendly.com/antonyroberth" target="_blank">Book on Calendly</a>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container">
+      <div style="margin-bottom: 20px;">
+        <a href="https://www.linkedin.com/in/siucloud/" target="_blank" style="color:white; text-decoration:none; margin-right:20px;"><i class="fa-brands fa-linkedin"></i> LinkedIn</a>
+        <a href="https://github.com/SIUNETWORKSGitHub" target="_blank" style="color:white; text-decoration:none;"><i class="fa-brands fa-github"></i> GitHub</a>
+      </div>
       <p>© 2014-2026 SiuCloud.org</p>
     </div>
   </footer>
 
   <script type="module">
-    // Cache-buster v=FINAL ensures GitHub serves the newest logic
-    import { userManager, signOutRedirect } from "./main.js?v=FINAL";
-
-    // GLOBAL TRIGGER: Attached to window so the HTML 'onclick' can find it immediately
-    window.triggerLogin = (e) => {
-        if (e) e.preventDefault();
-        console.log("SiuCloud Auth: Triggering AWS Login...");
-        userManager.signinRedirect().catch(err => alert("Auth Error: " + err.message));
-    };
+    import { userManager, signOutRedirect } from "./main.js";
 
     window.addEventListener('load', () => {
+        const signInBtn = document.getElementById("signIn");
+        const faqSignInBtn = document.getElementById("faqSignIn");
         const signOutBtn = document.getElementById("signOut");
+        const userInfo = document.getElementById("user-info");
+        const userEmail = document.getElementById("user-email");
 
+        const clientId = "2atbpmss0eh84md5mlqj1jgch7";
+        const domain = "us-east-2c6pp0v70h.auth.us-east-2.amazoncognito.com";
+        const redirectUri = "https://siucloud.org";
+
+        // --- THE AGGRESSIVE AUTH FIX ---
+        // This forces the library to use "Authorization Code" flow with PKCE
+        if (userManager && userManager.settings) {
+            userManager.settings.response_type = "code"; 
+            userManager.settings.useCodeChallenge = true; 
+            
+            userManager.settings.metadata = {
+                issuer: "https://cognito-idp.us-east-2.amazonaws.com/us-east-2_C6pp0v70h",
+                authorization_endpoint: `https://${domain}/oauth2/authorize`,
+                token_endpoint: `https://${domain}/oauth2/token`,
+                userinfo_endpoint: `https://${domain}/oauth2/userInfo`,
+                end_session_endpoint: `https://${domain}/logout?client_id=${clientId}&logout_uri=${encodeURIComponent(redirectUri)}`,
+                jwks_uri: "https://cognito-idp.us-east-2.amazonaws.com/us-east-2_C6pp0v70h/.well-known/jwks.json"
+            };
+        }
+
+        if (signInBtn) signInBtn.onclick = () => userManager.signinRedirect();
+        if (faqSignInBtn) faqSignInBtn.onclick = () => userManager.signinRedirect();
+        
         if (signOutBtn) {
             signOutBtn.onclick = (e) => {
                 e.preventDefault();
-                signOutRedirect();
+                userManager.clearStaleState();
+                userManager.removeUser().then(() => {
+                    window.location.href = `https://${domain}/logout?client_id=${clientId}&logout_uri=${encodeURIComponent(redirectUri)}`;
+                });
             };
         }
 
@@ -165,14 +231,16 @@
             url.searchParams.delete("session_state");
             window.history.replaceState({}, document.title, url.pathname + url.hash);
             if (user) showUser(user);
-        }).catch(() => {
+        }).catch((err) => {
+            console.warn("Auth check:", err);
             userManager.getUser().then((user) => { if (user) showUser(user); });
         });
 
         function showUser(user) {
-            document.getElementById("signIn").style.display = "none";
-            document.getElementById("user-info").style.display = "inline-flex";
-            document.getElementById("user-email").textContent = user.profile.email;
+            if (signInBtn) signInBtn.style.display = "none";
+            if (faqSignInBtn) faqSignInBtn.style.display = "none"; 
+            if (userInfo) userInfo.style.display = "inline-flex";
+            if (userEmail) userEmail.textContent = user.profile.email;
         }
     });
   </script>
