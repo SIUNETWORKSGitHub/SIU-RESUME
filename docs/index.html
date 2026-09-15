@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
  
- <title>SiuCloud | Your Cloud, Simplified</title>
+  <title>SiuCloud | Your Cloud, Simplified</title>
   <meta name="description" content="Practical results-first cloud advisory for SMBs: security, cost optimization, migrations, and cloud operations." />
  
   <!-- Performance: preconnect helps font load -->
@@ -14,56 +14,58 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
  
+  <!-- Microsoft Authentication Library (MSAL v2) -->
+  <script src="https://alcdn.msauth.net/browser/2.38.0/js/msal-browser.min.js"></script>
+
   <style>
     :root{
       --bg:#0b0f12;
-     --bg-soft:#12171b;
-     --panel:rgba(255,255,255,0.03);
+      --bg-soft:#12171b;
+      --panel:rgba(255,255,255,0.03);
       --text:#e6edf3;
       --muted:#93a1ad;
-     --accent:#00c2a8;
-     --border:rgba(230,237,243,0.12);
+      --accent:#00c2a8;
+      --border:rgba(230,237,243,0.12);
       --radius:14px;
       --maxw:1100px;
- 
       --shadow: 0 10px 30px rgba(0,0,0,0.35);
     }
  
-   *,*::before,*::after{box-sizing:border-box}
-   html{scroll-behavior:smooth}
+    *,*::before,*::after{box-sizing:border-box}
+    html{scroll-behavior:smooth}
     body{
       margin:0;
-     font-family:Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
-     color:var(--text);
-     background:var(--bg);
-     padding-top:72px; /* fixed header offset */
+      font-family:Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      color:var(--text);
+      background:var(--bg);
+      padding-top:72px; /* fixed header offset */
       line-height:1.5;
     }
  
     /* Accessibility: skip link */
     .skip-link{
-     position:absolute;
+      position:absolute;
       left:-999px;
       top:8px;
       padding:10px 14px;
-     background:var(--accent);
+      background:var(--accent);
       color:#000;
-     border-radius:10px;
+      border-radius:10px;
       z-index:10000;
       font-weight:700;
     }
-   .skip-link:focus{left:12px}
+    .skip-link:focus{left:12px}
  
     a{color:inherit}
-   img{max-width:100%; height:auto; display:block}
+    img{max-width:100%; height:auto; display:block}
  
     .container{
       width:min(100% - 2rem, var(--maxw));
-     margin-inline:auto;
+      margin-inline:auto;
     }
     .section{
-     padding-block:80px;
-     scroll-margin-top:100px;
+      padding-block:80px;
+      scroll-margin-top:100px;
     }
  
     /* Header / Nav */
@@ -71,35 +73,35 @@
       position:fixed;
       inset:0 0 auto 0;
       z-index:9999;
-     background:rgba(11,15,18,0.92);
-     border-bottom:1px solid var(--border);
-     backdrop-filter:blur(10px);
+      background:rgba(11,15,18,0.92);
+      border-bottom:1px solid var(--border);
+      backdrop-filter:blur(10px);
     }
     .nav{
       width:min(100% - 2rem, var(--maxw));
-     margin-inline:auto;
+      margin-inline:auto;
       display:flex;
-     align-items:center;
-     justify-content:space-between;
-     padding-block:14px;
+      align-items:center;
+      justify-content:space-between;
+      padding-block:14px;
       gap:16px;
     }
     .brand{
       display:flex;
-     align-items:center;
+      align-items:center;
       gap:10px;
       font-weight:800;
-     letter-spacing:0.2px;
-     white-space:nowrap;
+      letter-spacing:0.2px;
+      white-space:nowrap;
     }
     .brand .dot{
-     width:10px;height:10px;border-radius:999px;background:var(--accent);
+      width:10px;height:10px;border-radius:999px;background:var(--accent);
       box-shadow: 0 0 0 4px rgba(0,194,168,0.12);
     }
  
     .nav-actions{
       display:flex;
-     align-items:center;
+      align-items:center;
       gap:10px;
     }
  
@@ -107,31 +109,31 @@
     .nav-links{
       display:flex;
       gap:1.2rem;
-     align-items:center;
+      align-items:center;
     }
     .nav-links a{
-     text-decoration:none;
+      text-decoration:none;
       font-weight:600;
-     font-size:0.95rem;
-     color:var(--text);
+      font-size:0.95rem;
+      color:var(--text);
     }
     .nav-links a:hover{color:var(--accent)}
     .nav-links a:focus-visible,
-   .icon-btn:focus-visible,
-   .btn:focus-visible{
+    .icon-btn:focus-visible,
+    .btn:focus-visible{
       outline:2px solid var(--accent);
-     outline-offset:3px;
-     border-radius:10px;
+      outline-offset:3px;
+      border-radius:10px;
     }
  
     /* Mobile menu */
     .icon-btn{
       appearance:none;
       border:1px solid var(--border);
-     background:transparent;
-     color:var(--text);
+      background:transparent;
+      color:var(--text);
       padding:10px 12px;
-     border-radius:12px;
+      border-radius:12px;
       cursor:pointer;
       display:none; /* shown on mobile */
     }
@@ -139,65 +141,65 @@
     .mobile-panel{
       display:none;
       border-top:1px solid var(--border);
-     background:rgba(11,15,18,0.96);
+      background:rgba(11,15,18,0.96);
     }
     .mobile-links{
       width:min(100% - 2rem, var(--maxw));
-     margin-inline:auto;
+      margin-inline:auto;
       padding:14px 0 18px;
       display:flex;
-     flex-direction:column;
+      flex-direction:column;
       gap:12px;
     }
     .mobile-links a{ text-decoration:none; font-weight:600; color:var(--text); }
     .mobile-links a:hover{ color:var(--accent); }
  
     @media (max-width: 820px){
-     .nav-links{display:none}
-     .icon-btn{display:inline-flex; align-items:center; gap:10px}
+      .nav-links{display:none}
+      .icon-btn{display:inline-flex; align-items:center; gap:10px}
     }
  
     /* Buttons */
     .btn{
-     background:var(--accent);
+      background:var(--accent);
       color:#000;
       padding:12px 20px;
-     border-radius:999px;
+      border-radius:999px;
       font-weight:800;
-     text-decoration:none;
+      text-decoration:none;
       border:none;
       cursor:pointer;
-     display:inline-flex;
-     align-items:center;
+      display:inline-flex;
+      align-items:center;
       gap:10px;
       transition: transform .15s ease, filter .15s ease;
     }
     .btn:hover{ transform: translateY(-1px); filter:brightness(1.05); }
  
     .btn-ghost{
-     background:transparent;
+      background:transparent;
       border:1px solid var(--border);
-     color:var(--text);
+      color:var(--text);
       font-weight:700;
     }
  
     /* User info */
     #user-info{
       display:none;
-     align-items:center;
+      align-items:center;
       gap:10px;
-     color:var(--accent);
+      color:var(--accent);
       font-weight:700;
-     white-space:nowrap;
+      white-space:nowrap;
     }
     #signOut{
       cursor:pointer;
-     font-size:0.85rem;
+      font-size:0.85rem;
       border:1px solid var(--border);
-     border-radius:999px;
+      border-radius:999px;
       padding:8px 12px;
-     background:transparent;
-     color:var(--text);
+      background:transparent;
+      color:var(--text);
     }
  
     /* Hero */
@@ -205,46 +207,46 @@
       width:100%;
       border-radius:0;
       max-height: 520px;
-     object-fit:cover;
+      object-fit:cover;
     }
     .hero{
-     text-align:center;
+      text-align:center;
       padding: 36px 0 0;
     }
     .hero h1{
       font-size: clamp(2rem, 3.2vw, 3rem);
       margin: 14px 0 10px;
-     letter-spacing:-0.02em;
+      letter-spacing:-0.02em;
     }
     .hero p{ color:var(--muted); margin:0 0 24px; }
  
     /* About */
     .about{
-     background:var(--bg-soft);
+      background:var(--bg-soft);
     }
     .about-grid{
       display:grid;
-     grid-template-columns: repeat(2, minmax(0, 1fr));
+      grid-template-columns: repeat(2, minmax(0, 1fr));
       gap:50px;
-     align-items:center;
+      align-items:center;
     }
     @media (max-width: 900px){
-     .about-grid{grid-template-columns:1fr}
+      .about-grid{grid-template-columns:1fr}
     }
  
     .eyebrow{
-     color:var(--accent);
+      color:var(--accent);
       font-weight:800;
-     text-transform:uppercase;
-     letter-spacing:2px;
-     margin-bottom:10px;
-     font-size:0.8rem;
+      text-transform:uppercase;
+      letter-spacing:2px;
+      margin-bottom:10px;
+      font-size:0.8rem;
     }
  
     .card{
-     background:var(--panel);
+      background:var(--panel);
       padding:22px;
-     border-radius:var(--radius);
+      border-radius:var(--radius);
       border:1px solid var(--border);
       box-shadow: var(--shadow);
     }
@@ -254,47 +256,47 @@
     .card h4{
       margin:0 0 10px;
       display:flex;
-     align-items:center;
+      align-items:center;
       gap:10px;
     }
     .card p{ margin:0; color:var(--muted); }
  
     /* Services */
     .services-head{
-     text-align:center;
-     margin-bottom:24px;
+      text-align:center;
+      margin-bottom:24px;
     }
     .services-grid{
       display:grid;
-     grid-template-columns: repeat(3, minmax(0, 1fr));
+      grid-template-columns: repeat(3, minmax(0, 1fr));
       gap:22px;
       margin-top:18px;
     }
     @media (max-width: 900px){
-     .services-grid{grid-template-columns:1fr}
+      .services-grid{grid-template-columns:1fr}
     }
     .service{
       text-align:left;
     }
     .service h4{
       margin:0 0 8px;
-     color:var(--accent);
+      color:var(--accent);
     }
     .service p{
       margin:0;
-     color:var(--muted);
+      color:var(--muted);
     }
  
     /* FAQ / CTA */
     .cta{
-     text-align:center;
+      text-align:center;
     }
     .cta-box{
-     margin-inline:auto;
+      margin-inline:auto;
       max-width:860px;
       padding:32px;
-     border-radius:var(--radius);
-     background:var(--panel);
+      border-radius:var(--radius);
+      background:var(--panel);
       border:1px solid rgba(0,194,168,0.35);
       box-shadow: var(--shadow);
     }
@@ -303,10 +305,10 @@
  
     footer{
       border-top:1px solid var(--border);
-     background:var(--bg-soft);
-     padding-block:40px;
-     text-align:center;
-     color:var(--muted);
+      background:var(--bg-soft);
+      padding-block:40px;
+      text-align:center;
+      color:var(--muted);
     }
 
     /* Floating Copilot Studio Chatbot Widget */
@@ -315,7 +317,7 @@
       bottom: 24px;
       right: 24px;
       z-index: 9998;
-      display: none; /* Controlled by auth state */
+      display: none; /* Only displayed after verified Entra login */
       flex-direction: column;
       align-items: flex-end;
     }
@@ -367,7 +369,7 @@
     <div class="nav">
       <div class="brand" aria-label="SiuCloud">
         <span class="dot" aria-hidden="true"></span>
-       <span>SiuCloud</span>
+        <span>SiuCloud</span>
       </div>
  
       <nav class="nav-links" aria-label="Primary">
@@ -379,8 +381,8 @@
  
         <button class="btn btn-ghost" id="signIn" type="button">
           <i class="fa-solid fa-user-lock" aria-hidden="true"></i>
-         <span>Sign In</span>
-       </button>
+          <span>Sign In</span>
+        </button>
  
         <span id="user-info">
           <i class="fa-solid fa-circle-user" aria-hidden="true"></i>
@@ -392,8 +394,8 @@
       <div class="nav-actions">
         <button class="icon-btn" id="menuBtn" type="button" aria-expanded="false" aria-controls="mobilePanel">
           <i class="fa-solid fa-bars" aria-hidden="true"></i>
-         <span>Menu</span>
-       </button>
+          <span>Menu</span>
+        </button>
       </div>
     </div>
  
@@ -406,8 +408,8 @@
         <a href="#consultation">Consultation</a>
         <button class="btn btn-ghost" id="signInMobile" type="button">
           <i class="fa-solid fa-user-lock" aria-hidden="true"></i>
-         <span>Sign In</span>
-       </button>
+          <span>Sign In</span>
+        </button>
         <span id="user-info-mobile" style="display:none; align-items:center; gap:10px; color:var(--accent); font-weight:800;">
           <i class="fa-solid fa-circle-user" aria-hidden="true"></i>
           <span id="user-email-mobile"></span>
@@ -419,15 +421,15 @@
  
   <header id="home">
     <img
-     class="hero-img"
-     src="https://raw.githubusercontent.com/SIUNETWORKSGitHub/SIU-RESUME/refs/heads/master/docs/images/New_picture.png"
-     alt="SiuCloud"
-     loading="eager"
-     fetchpriority="high"
+      class="hero-img"
+      src="https://raw.githubusercontent.com/SIUNETWORKSGitHub/SIU-RESUME/refs/heads/master/docs/images/New_picture.png"
+      alt="SiuCloud"
+      loading="eager"
+      fetchpriority="high"
     />
     <div class="container hero">
       <h1>Your Cloud, Simplified</h1>
-     <p>Practical results-first cloud advisory for SMBs.</p>
+      <p>Practical results-first cloud advisory for SMBs.</p>
     </div>
   </header>
  
@@ -439,7 +441,7 @@
             <div class="eyebrow">Who We Are</div>
             <h2 style="font-size:clamp(1.7rem, 2.6vw, 2.5rem); margin:0 0 14px;">
               Your Trusted Partner in Cloud Evolution
-           </h2>
+            </h2>
             <p style="font-size:1.05rem; line-height:1.75; margin:0 0 14px;">
               At <strong>SiuCloud</strong>, we don’t just provide services; we build resilient digital foundations.
             </p>
@@ -450,13 +452,13 @@
  
           <div style="display:grid; gap:16px;">
             <div class="card card-accent">
-             <h4><i class="fa-solid fa-shield-halved" aria-hidden="true"></i> Security Focused</h4>
-             <p>Enterprise-grade security patterns for cloud and hybrid deployments.</p>
-           </div>
+              <h4><i class="fa-solid fa-shield-halved" aria-hidden="true"></i> Security Focused</h4>
+              <p>Enterprise-grade security patterns for cloud and hybrid deployments.</p>
+            </div>
             <div class="card card-accent">
-             <h4><i class="fa-solid fa-handshake" aria-hidden="true"></i> Partnership Driven</h4>
-             <p>We operate as an extension of your team with clear documentation and handoff.</p>
-           </div>
+              <h4><i class="fa-solid fa-handshake" aria-hidden="true"></i> Partnership Driven</h4>
+              <p>We operate as an extension of your team with clear documentation and handoff.</p>
+            </div>
           </div>
         </div>
       </div>
@@ -470,24 +472,24 @@
         </div>
  
         <img
-         src="https://raw.githubusercontent.com/SIUNETWORKSGitHub/SIU-RESUME/refs/heads/master/docs/images/New_picture1.png"
-         alt="SiuCloud Services"
-         loading="lazy"
-         style="margin-bottom:22px; border-radius: var(--radius); border:1px solid var(--border);"
+          src="https://raw.githubusercontent.com/SIUNETWORKSGitHub/SIU-RESUME/refs/heads/master/docs/images/New_picture1.png"
+          alt="SiuCloud Services"
+          loading="lazy"
+          style="margin-bottom:22px; border-radius: var(--radius); border:1px solid var(--border);"
         />
  
         <div class="services-grid">
           <div class="card service">
-           <h4>Specialized Support</h4>
-           <p>Help desk integration, escalation paths, and pragmatic operational runbooks.</p>
+            <h4>Specialized Support</h4>
+            <p>Help desk integration, escalation paths, and pragmatic operational runbooks.</p>
           </div>
           <div class="card service">
-           <h4>Partnership</h4>
-           <p>We build alongside your team and leave behind documentation and repeatable tooling.</p>
+            <h4>Partnership</h4>
+            <p>We build alongside your team and leave behind documentation and repeatable tooling.</p>
           </div>
           <div class="card service">
-           <h4>Security</h4>
-           <p>Secure-by-default identity, logging, backup, and guardrails to protect your data.</p>
+            <h4>Security</h4>
+            <p>Secure-by-default identity, logging, backup, and guardrails to protect your data.</p>
           </div>
         </div>
       </div>
@@ -498,13 +500,13 @@
         <h2 style="margin:0 0 12px;">FAQ</h2>
  
         <div class="cta-box">
-         <h3>Ready to simplify your cloud?</h3>
-         <p>Create an account to access resources and get started.</p>
+          <h3>Ready to simplify your cloud?</h3>
+          <p>Create an account to access resources and get started.</p>
  
           <button class="btn" id="faqSignIn" type="button">
             <i class="fa-solid fa-user-plus" aria-hidden="true"></i>
-           <span>Sign Up & Get Started</span>
-         </button>
+            <span>Sign Up & Get Started</span>
+          </button>
         </div>
       </div>
     </section>
@@ -539,72 +541,92 @@
     </div>
   </footer>
  
-  <script type="module">
-    import { userManager, signOutRedirect } from "./main.js";
- 
-    const clientId = "2atbpmss0eh84md5mlqj1jgch7";
-    const domain = "us-east-2c6pp0v70h.auth.us-east-2.amazoncognito.com";
-    const redirectUri = "https://siucloud.org";
- 
+  <script>
+    // 1. MSAL Configuration for Microsoft Entra ID
+    const msalConfig = {
+      auth: {
+        clientId: "YOUR_ENTRA_CLIENT_ID", // Replace with your Microsoft Entra App Registration Client ID
+        authority: "https://login.microsoftonline.com/common", // Supports multi-tenant/helpdesk.miami accounts
+        redirectUri: "https://siucloud.org"
+      },
+      cache: {
+        cacheLocation: "sessionStorage",
+        storeAuthStateInCookie: false
+      }
+    };
+
+    const msalInstance = new msal.PublicClientApplication(msalConfig);
+
+    // 2. Mobile Menu Toggle Logic
     function toggleMobile(open) {
       const panel = document.getElementById("mobilePanel");
       const btn = document.getElementById("menuBtn");
       const isOpen = open ?? panel.hasAttribute("hidden");
       if (isOpen) {
-       panel.removeAttribute("hidden");
-       panel.style.display = "block";
-       btn.setAttribute("aria-expanded", "true");
+        panel.removeAttribute("hidden");
+        panel.style.display = "block";
+        btn.setAttribute("aria-expanded", "true");
       } else {
-       panel.setAttribute("hidden", "");
-       panel.style.display = "none";
-       btn.setAttribute("aria-expanded", "false");
+        panel.setAttribute("hidden", "");
+        panel.style.display = "none";
+        btn.setAttribute("aria-expanded", "false");
       }
     }
- 
-    function showUser(user) {
-      const email = user?.profile?.email || "Signed in";
- 
-      // Desktop
-     document.getElementById("signIn").style.display = "none";
+
+    // 3. UI Authentication Display Handler
+    function handleUserUI(account) {
+      if (!account) return;
+
+      const email = account.username || account.name;
+      
+      // Strict Domain Validation Enforcement
+      if (!email.toLowerCase().endsWith("@helpdesk.miami")) {
+        alert("Access restricted: Only @helpdesk.miami associates are authorized to access Siucloud AI.");
+        handleSignOut();
+        return;
+      }
+
+      // Update Desktop Nav
+      document.getElementById("signIn").style.display = "none";
       const faqBtn = document.getElementById("faqSignIn");
       if (faqBtn) faqBtn.style.display = "none";
- 
-      const userInfo = document.getElementById("user-info");
-     userInfo.style.display = "inline-flex";
-     document.getElementById("user-email").textContent = email;
- 
-      // Mobile
-     document.getElementById("signInMobile").style.display = "none";
-      const userInfoMobile = document.getElementById("user-info-mobile");
-     userInfoMobile.style.display = "inline-flex";
-     document.getElementById("user-email-mobile").textContent = email;
+      document.getElementById("user-info").style.display = "inline-flex";
+      document.getElementById("user-email").textContent = email;
 
-      // Show Siucloud AI Chat Widget for authenticated users
+      // Update Mobile Nav
+      document.getElementById("signInMobile").style.display = "none";
+      document.getElementById("user-info-mobile").style.display = "inline-flex";
+      document.getElementById("user-email-mobile").textContent = email;
+
+      // Reveal Chat Widget ONLY for verified helpdesk.miami accounts
       const chatWidget = document.getElementById("siucloud-chat-widget");
       if (chatWidget) chatWidget.style.display = "flex";
     }
- 
-    function wireAuthButtons() {
-      const login = (e) => {
-        if (e) e.preventDefault();
-       userManager.signinRedirect();
-      };
- 
-     document.getElementById("signIn").addEventListener("click", login);
-     document.getElementById("signInMobile").addEventListener("click", login);
-      const faqBtn = document.getElementById("faqSignIn");
-      if (faqBtn) faqBtn.addEventListener("click", login);
- 
-     document.getElementById("signOut").addEventListener("click", (e) => {
-       e.preventDefault();
-       signOutRedirect();
-      });
-     document.getElementById("signOutMobile").addEventListener("click", (e) => {
-       e.preventDefault();
-       signOutRedirect();
-      });
+
+    // 4. Interactive MSAL Sign-In Flow
+    async function handleSignIn() {
+      try {
+        const loginResponse = await msalInstance.loginPopup({
+          scopes: ["User.Read", "openid", "profile", "email"]
+        });
+        handleUserUI(loginResponse.account);
+      } catch (error) {
+        console.error("Microsoft Entra ID Authentication Error:", error);
+      }
     }
 
+    // 5. MSAL Sign-Out Flow
+    async function handleSignOut() {
+      const currentAccount = msalInstance.getAllAccounts()[0];
+      if (currentAccount) {
+        await msalInstance.logoutPopup({
+          account: currentAccount
+        });
+      }
+      window.location.reload();
+    }
+
+    // 6. Chat Widget Toggle Event Listener
     function wireChatWidget() {
       const toggleBtn = document.getElementById("chat-toggle-btn");
       const wrapper = document.getElementById("chat-wrapper");
@@ -618,53 +640,37 @@
           : '<i class="fa-solid fa-headset" aria-hidden="true"></i>';
       });
     }
- 
-    function maybeHandleOidcCallback() {
-      const url = new URL(window.location.href);
-      const hasAuthCode = url.searchParams.has("code");
-      const hasState = url.searchParams.has("state");
- 
-      if (!(hasAuthCode && hasState)) return Promise.resolve(null);
- 
-      return userManager.signinCallback().then((user) => {
-       window.history.replaceState({}, document.title, url.pathname + url.hash);
-        return user;
+
+    // 7. Event Listener Initializations
+    window.addEventListener("load", async () => {
+      await msalInstance.initialize();
+
+      // Handle redirect promise if used
+      msalInstance.handleRedirectPromise().then((tokenResponse) => {
+        const accounts = msalInstance.getAllAccounts();
+        if (accounts.length > 0) {
+          handleUserUI(accounts[0]);
+        }
+      }).catch((error) => {
+        console.error(error);
       });
-    }
- 
-   window.addEventListener("load", async () => {
-      const menuBtn = document.getElementById("menuBtn");
-     menuBtn.addEventListener("click", () => toggleMobile());
- 
-     document.querySelectorAll(".mobile-links a").forEach(a => {
-       a.addEventListener("click", () => toggleMobile(false));
+
+      // Mobile Menu Wire-up
+      document.getElementById("menuBtn").addEventListener("click", () => toggleMobile());
+      document.querySelectorAll(".mobile-links a").forEach(a => {
+        a.addEventListener("click", () => toggleMobile(false));
       });
- 
-     wireAuthButtons();
-     wireChatWidget();
- 
-      if (userManager?.settings) {
-       userManager.settings.response_type = "code";
-       userManager.settings.useCodeChallenge = true;
-       userManager.settings.metadata = {
-          issuer: "https://cognito-idp.us-east-2.amazonaws.com/us-east-2_C6pp0v70h",
-         authorization_endpoint: `https://${domain}/oauth2/authorize`,
-         token_endpoint: `https://${domain}/oauth2/token`,
-         userinfo_endpoint: `https://${domain}/oauth2/userInfo`,
-         end_session_endpoint: `https://${domain}/logout?client_id=${clientId}&logout_uri=${encodeURIComponent(redirectUri)}`,
-          jwks_uri: "https://cognito-idp.us-east-2.amazonaws.com/us-east-2_C6pp0v70h/.well-known/jwks.json"
-        };
-      }
- 
-      try {
-        const callbackUser = await maybeHandleOidcCallback();
-        if (callbackUser) return showUser(callbackUser);
- 
-        const existingUser = await userManager.getUser();
-        if (existingUser) showUser(existingUser);
-      } catch (err) {
-        // Log quietly for debugging
-      }
+
+      // Attach Sign In / Sign Out listeners
+      document.getElementById("signIn").addEventListener("click", handleSignIn);
+      document.getElementById("signInMobile").addEventListener("click", handleSignIn);
+      const faqBtn = document.getElementById("faqSignIn");
+      if (faqBtn) faqBtn.addEventListener("click", handleSignIn);
+
+      document.getElementById("signOut").addEventListener("click", handleSignOut);
+      document.getElementById("signOutMobile").addEventListener("click", handleSignOut);
+
+      wireChatWidget();
     });
   </script>
 </body>
