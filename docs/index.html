@@ -603,27 +603,25 @@
       if (chatWidget) chatWidget.style.display = "flex";
     }
 
-    // Interactive Sign-In Flow
+    // Interactive Sign-In Flow using Redirect (Fixes MFA Error 500121)
     async function handleSignIn() {
       try {
-        const loginResponse = await msalInstance.loginPopup({
+        await msalInstance.loginRedirect({
           scopes: ["User.Read", "openid", "profile", "email"]
         });
-        handleUserUI(loginResponse.account);
       } catch (error) {
         console.error("Microsoft Entra ID Authentication Error:", error);
       }
     }
 
-    // Sign-Out Flow
+    // Sign-Out Flow using Redirect
     async function handleSignOut() {
       const currentAccount = msalInstance.getAllAccounts()[0];
       if (currentAccount) {
-        await msalInstance.logoutPopup({
+        await msalInstance.logoutRedirect({
           account: currentAccount
         });
       }
-      window.location.reload();
     }
 
     // Chat Widget Toggle Listener
@@ -645,13 +643,18 @@
     window.addEventListener("load", async () => {
       await msalInstance.initialize();
 
+      // Handle return response from loginRedirect
       msalInstance.handleRedirectPromise().then((tokenResponse) => {
-        const accounts = msalInstance.getAllAccounts();
-        if (accounts.length > 0) {
-          handleUserUI(accounts[0]);
+        if (tokenResponse && tokenResponse.account) {
+          handleUserUI(tokenResponse.account);
+        } else {
+          const accounts = msalInstance.getAllAccounts();
+          if (accounts.length > 0) {
+            handleUserUI(accounts[0]);
+          }
         }
       }).catch((error) => {
-        console.error(error);
+        console.error("Redirect promise error:", error);
       });
 
       // Mobile Menu Wire-up
