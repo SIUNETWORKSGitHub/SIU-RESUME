@@ -317,7 +317,7 @@
       bottom: 24px;
       right: 24px;
       z-index: 9998;
-      display: none; /* Only displayed after verified Entra login */
+      display: none; /* Controlled by auth state */
       flex-direction: column;
       align-items: flex-end;
     }
@@ -542,11 +542,11 @@
   </footer>
  
   <script>
-    // 1. MSAL Configuration for Microsoft Entra ID
+    // MSAL Configuration for HelpDesk.miami Microsoft Entra ID Tenant
     const msalConfig = {
       auth: {
-        clientId: "YOUR_ENTRA_CLIENT_ID", // Replace with your Microsoft Entra App Registration Client ID
-        authority: "https://login.microsoftonline.com/common", // Supports multi-tenant/helpdesk.miami accounts
+        clientId: "2e250991-da39-4bda-8829-8b49d743adae",
+        authority: "https://login.microsoftonline.com/cffa57bc-21c7-4ad0-b008-a3a7c5680f3c",
         redirectUri: "https://siucloud.org"
       },
       cache: {
@@ -557,7 +557,7 @@
 
     const msalInstance = new msal.PublicClientApplication(msalConfig);
 
-    // 2. Mobile Menu Toggle Logic
+    // Mobile Menu Toggle
     function toggleMobile(open) {
       const panel = document.getElementById("mobilePanel");
       const btn = document.getElementById("menuBtn");
@@ -573,37 +573,37 @@
       }
     }
 
-    // 3. UI Authentication Display Handler
+    // UI Authentication Handler & Domain Security Check
     function handleUserUI(account) {
       if (!account) return;
 
       const email = account.username || account.name;
       
-      // Strict Domain Validation Enforcement
+      // Domain Enforcement Check
       if (!email.toLowerCase().endsWith("@helpdesk.miami")) {
         alert("Access restricted: Only @helpdesk.miami associates are authorized to access Siucloud AI.");
         handleSignOut();
         return;
       }
 
-      // Update Desktop Nav
+      // Update Desktop Nav UI
       document.getElementById("signIn").style.display = "none";
       const faqBtn = document.getElementById("faqSignIn");
       if (faqBtn) faqBtn.style.display = "none";
       document.getElementById("user-info").style.display = "inline-flex";
       document.getElementById("user-email").textContent = email;
 
-      // Update Mobile Nav
+      // Update Mobile Nav UI
       document.getElementById("signInMobile").style.display = "none";
       document.getElementById("user-info-mobile").style.display = "inline-flex";
       document.getElementById("user-email-mobile").textContent = email;
 
-      // Reveal Chat Widget ONLY for verified helpdesk.miami accounts
+      // Reveal Chat Widget for Verified Accounts
       const chatWidget = document.getElementById("siucloud-chat-widget");
       if (chatWidget) chatWidget.style.display = "flex";
     }
 
-    // 4. Interactive MSAL Sign-In Flow
+    // Interactive Sign-In Flow
     async function handleSignIn() {
       try {
         const loginResponse = await msalInstance.loginPopup({
@@ -615,7 +615,7 @@
       }
     }
 
-    // 5. MSAL Sign-Out Flow
+    // Sign-Out Flow
     async function handleSignOut() {
       const currentAccount = msalInstance.getAllAccounts()[0];
       if (currentAccount) {
@@ -626,7 +626,7 @@
       window.location.reload();
     }
 
-    // 6. Chat Widget Toggle Event Listener
+    // Chat Widget Toggle Listener
     function wireChatWidget() {
       const toggleBtn = document.getElementById("chat-toggle-btn");
       const wrapper = document.getElementById("chat-wrapper");
@@ -641,11 +641,10 @@
       });
     }
 
-    // 7. Event Listener Initializations
+    // Event Listener Initializations
     window.addEventListener("load", async () => {
       await msalInstance.initialize();
 
-      // Handle redirect promise if used
       msalInstance.handleRedirectPromise().then((tokenResponse) => {
         const accounts = msalInstance.getAllAccounts();
         if (accounts.length > 0) {
