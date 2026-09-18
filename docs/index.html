@@ -359,6 +359,89 @@
     .chat-iframe-wrapper.active {
       display: block;
     }
+
+    /* Modal Pop-up Form Styles */
+    .modal-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.75);
+      backdrop-filter: blur(8px);
+      z-index: 10001;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 16px;
+    }
+
+    .modal-overlay.active {
+      display: flex;
+    }
+
+    .modal-card {
+      background: var(--bg-soft);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      width: min(100%, 500px);
+      padding: 28px;
+      position: relative;
+    }
+
+    .modal-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 18px;
+    }
+
+    .modal-header h3 {
+      margin: 0;
+      font-size: 1.3rem;
+      color: var(--text);
+    }
+
+    .close-modal-btn {
+      background: transparent;
+      border: none;
+      color: var(--muted);
+      font-size: 1.2rem;
+      cursor: pointer;
+    }
+
+    .close-modal-btn:hover {
+      color: var(--accent);
+    }
+
+    .form-group {
+      margin-bottom: 14px;
+      text-align: left;
+    }
+
+    .form-group label {
+      display: block;
+      font-size: 0.85rem;
+      font-weight: 600;
+      margin-bottom: 6px;
+      color: var(--muted);
+    }
+
+    .form-group input,
+    .form-group textarea {
+      width: 100%;
+      padding: 10px 14px;
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      color: var(--text);
+      font-family: inherit;
+      font-size: 0.95rem;
+    }
+
+    .form-group input:focus,
+    .form-group textarea:focus {
+      outline: none;
+      border-color: var(--accent);
+    }
   </style>
 </head>
  
@@ -377,7 +460,7 @@
         <a href="#about">About</a>
         <a href="#services">Services</a>
         <a href="#faq">FAQ</a>
-        <a href="#consultation">Consultation</a>
+        <a href="javascript:void(0)" onclick="openConsultationModal()">Consultation</a>
  
         <button class="btn btn-ghost" id="signIn" type="button">
           <i class="fa-solid fa-user-lock" aria-hidden="true"></i>
@@ -405,7 +488,7 @@
         <a href="#about">About</a>
         <a href="#services">Services</a>
         <a href="#faq">FAQ</a>
-        <a href="#consultation">Consultation</a>
+        <a href="javascript:void(0)" onclick="openConsultationModal()">Consultation</a>
         <button class="btn btn-ghost" id="signInMobile" type="button">
           <i class="fa-solid fa-user-lock" aria-hidden="true"></i>
           <span>Sign In</span>
@@ -513,13 +596,49 @@
  
     <section id="consultation" class="section">
       <div class="container" style="text-align:center;">
-        <a class="btn" href="https://calendly.com/antonyroberth" target="_blank" rel="noopener noreferrer">
-          Book on Calendly
-        </a>
+        <button class="btn" type="button" onclick="openConsultationModal()">
+          <i class="fa-solid fa-calendar-check" aria-hidden="true"></i>
+          <span>Schedule Consultation Form</span>
+        </button>
       </div>
     </section>
   </main>
  
+  <!-- Modal Consultation Form Pop-Up -->
+  <div id="consultationModal" class="modal-overlay">
+    <div class="modal-card">
+      <div class="modal-header">
+        <h3>Schedule Consultation</h3>
+        <button class="close-modal-btn" onclick="closeConsultationModal()">&times;</button>
+      </div>
+      <form id="consultationForm" onsubmit="handleFormSubmit(event)">
+        <div class="form-group">
+          <label for="modalFullName">Full Name *</label>
+          <input type="text" id="modalFullName" required placeholder="Lesly Magdalena Siu">
+        </div>
+        <div class="form-group">
+          <label for="modalEmail">Email Address *</label>
+          <input type="email" id="modalEmail" required placeholder="lesly.siu@siucloud.org">
+        </div>
+        <div class="form-group">
+          <label for="modalPhone">Phone Number *</label>
+          <input type="tel" id="modalPhone" required placeholder="305 748 9090">
+        </div>
+        <div class="form-group">
+          <label for="modalWebsite">Website / Company Name *</label>
+          <input type="text" id="modalWebsite" required placeholder="dell.com">
+        </div>
+        <div class="form-group">
+          <label for="modalNeeds">Brief Description of Needs *</label>
+          <textarea id="modalNeeds" rows="3" required placeholder="Would like to set up MFA for user on Entra ID."></textarea>
+        </div>
+        <button type="submit" class="btn" style="width: 100%; justify-content: center; margin-top: 10px;">
+          <span>Submit Consultation Request</span>
+        </button>
+      </form>
+    </div>
+  </div>
+
   <!-- Floating Siucloud AI Widget Container -->
   <div id="siucloud-chat-widget" class="chat-widget-container" aria-label="Siucloud AI Support Chat">
     <div id="chat-wrapper" class="chat-iframe-wrapper">
@@ -556,6 +675,31 @@
     };
 
     const msalInstance = new msal.PublicClientApplication(msalConfig);
+
+    // Modal Control Functions
+    function openConsultationModal() {
+      document.getElementById("consultationModal").classList.add("active");
+    }
+
+    function closeConsultationModal() {
+      document.getElementById("consultationModal").classList.remove("active");
+    }
+
+    function handleFormSubmit(e) {
+      e.preventDefault();
+      
+      const payload = {
+        fullName: document.getElementById("modalFullName").value,
+        email: document.getElementById("modalEmail").value,
+        phone: document.getElementById("modalPhone").value,
+        website: document.getElementById("modalWebsite").value,
+        needs: document.getElementById("modalNeeds").value
+      };
+
+      alert("Thank you! Your request has been successfully submitted to the SiuCloud team.");
+      closeConsultationModal();
+      document.getElementById("consultationForm").reset();
+    }
 
     // Mobile Menu Toggle
     function toggleMobile(open) {
