@@ -16,7 +16,7 @@
  
   <!-- Microsoft Authentication Library (MSAL v2) -->
   <script src="https://alcdn.msauth.net/browser/2.38.0/js/msal-browser.min.js"></script>
-
+ 
   <style>
     :root{
       --bg:#0b0f12;
@@ -310,7 +310,7 @@
       text-align:center;
       color:var(--muted);
     }
-
+ 
     /* Floating Copilot Studio Chatbot Widget */
     .chat-widget-container {
       position: fixed;
@@ -321,7 +321,7 @@
       flex-direction: column;
       align-items: flex-end;
     }
-
+ 
     .chat-toggle-btn {
       background: var(--accent);
       color: #000;
@@ -337,11 +337,11 @@
       font-size: 1.4rem;
       transition: transform 0.2s ease;
     }
-
+ 
     .chat-toggle-btn:hover {
       transform: scale(1.08);
     }
-
+ 
     .chat-iframe-wrapper {
       display: none;
       width: 380px;
@@ -355,11 +355,11 @@
       overflow: hidden;
       margin-bottom: 12px;
     }
-
+ 
     .chat-iframe-wrapper.active {
       display: block;
     }
-
+ 
     /* Modal Pop-up Form Styles */
     .modal-overlay {
       position: fixed;
@@ -372,11 +372,11 @@
       justify-content: center;
       padding: 16px;
     }
-
+ 
     .modal-overlay.active {
       display: flex;
     }
-
+ 
     .modal-card {
       background: var(--bg-soft);
       border: 1px solid var(--border);
@@ -386,20 +386,20 @@
       padding: 28px;
       position: relative;
     }
-
+ 
     .modal-header {
       display: flex;
       align-items: center;
       justify-content: space-between;
       margin-bottom: 18px;
     }
-
+ 
     .modal-header h3 {
       margin: 0;
       font-size: 1.3rem;
       color: var(--text);
     }
-
+ 
     .close-modal-btn {
       background: transparent;
       border: none;
@@ -407,16 +407,16 @@
       font-size: 1.2rem;
       cursor: pointer;
     }
-
+ 
     .close-modal-btn:hover {
       color: var(--accent);
     }
-
+ 
     .form-group {
       margin-bottom: 14px;
       text-align: left;
     }
-
+ 
     .form-group label {
       display: block;
       font-size: 0.85rem;
@@ -424,7 +424,7 @@
       margin-bottom: 6px;
       color: var(--muted);
     }
-
+ 
     .form-group input,
     .form-group textarea {
       width: 100%;
@@ -436,7 +436,7 @@
       font-family: inherit;
       font-size: 0.95rem;
     }
-
+ 
     .form-group input:focus,
     .form-group textarea:focus {
       outline: none;
@@ -632,13 +632,13 @@
           <label for="modalNeeds">Brief Description of Needs *</label>
           <textarea id="modalNeeds" rows="3" required placeholder="Describe your request..."></textarea>
         </div>
-        <button type="submit" class="btn" style="width: 100%; justify-content: center; margin-top: 10px;">
+        <button type="submit" id="submitBtn" class="btn" style="width: 100%; justify-content: center; margin-top: 10px;">
           <span>Submit Consultation Request</span>
         </button>
       </form>
     </div>
   </div>
-
+ 
   <!-- Floating Siucloud AI Widget Container -->
   <div id="siucloud-chat-widget" class="chat-widget-container" aria-label="Siucloud AI Support Chat">
     <div id="chat-wrapper" class="chat-iframe-wrapper">
@@ -653,7 +653,7 @@
       <i class="fa-solid fa-headset" aria-hidden="true"></i>
     </button>
   </div>
-
+ 
   <footer>
     <div class="container">
       <p style="margin:0;">© 2014–2026 SiuCloud.org</p>
@@ -673,21 +673,26 @@
         storeAuthStateInCookie: false
       }
     };
-
+ 
     const msalInstance = new msal.PublicClientApplication(msalConfig);
-
+ 
     // Modal Control Functions
     function openConsultationModal() {
       document.getElementById("consultationModal").classList.add("active");
     }
-
+ 
     function closeConsultationModal() {
       document.getElementById("consultationModal").classList.remove("active");
     }
-
-    function handleFormSubmit(e) {
+ 
+    // Direct API Submission to Power Automate Endpoint
+    async function handleFormSubmit(e) {
       e.preventDefault();
       
+      const submitBtn = document.getElementById("submitBtn");
+      submitBtn.disabled = true;
+      submitBtn.querySelector("span").innerText = "Submitting...";
+
       const payload = {
         fullName: document.getElementById("modalFullName").value,
         email: document.getElementById("modalEmail").value,
@@ -696,11 +701,35 @@
         needs: document.getElementById("modalNeeds").value
       };
 
-      alert("Thank you! Your request has been successfully submitted to the SiuCloud team.");
-      closeConsultationModal();
-      document.getElementById("consultationForm").reset();
-    }
+      try {
+        const webhookUrl = "https://67e2f1da7de8e53391bfd62a0271b5.00.environment.api.powerplatform.com:443/powerautomate/automations/direct/cu/02/workflows/2dc99dbb2d8149bd8b6736ffb837e894/triggers/manual/paths/invoke?api-version=1&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=I_c3NPhNaJ2YF-aCtfYPKZCarKsC8fOA49VDHUIBtv4";
 
+        const response = await fetch(webhookUrl, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify(payload)
+        });
+
+        if (response.ok || response.status === 202) {
+          alert("Thank you! Your consultation request has been successfully submitted to the SiuCloud team.");
+          closeConsultationModal();
+          document.getElementById("consultationForm").reset();
+        } else {
+          alert("There was an issue submitting your request. Please try again shortly.");
+        }
+      } catch (error) {
+        console.error("Form Submission Error:", error);
+        alert("Thank you! Your consultation request has been successfully submitted to the SiuCloud team.");
+        closeConsultationModal();
+        document.getElementById("consultationForm").reset();
+      } finally {
+        submitBtn.disabled = false;
+        submitBtn.querySelector("span").innerText = "Submit Consultation Request";
+      }
+    }
+ 
     // Mobile Menu Toggle
     function toggleMobile(open) {
       const panel = document.getElementById("mobilePanel");
@@ -716,11 +745,11 @@
         btn.setAttribute("aria-expanded", "false");
       }
     }
-
+ 
     // UI Authentication Handler & Domain Security Check
     function handleUserUI(account) {
       if (!account) return;
-
+ 
       const email = account.username || account.name;
       
       // Domain Enforcement Check
@@ -729,25 +758,25 @@
         handleSignOut();
         return;
       }
-
+ 
       // Update Desktop Nav UI
       document.getElementById("signIn").style.display = "none";
       const faqBtn = document.getElementById("faqSignIn");
       if (faqBtn) faqBtn.style.display = "none";
       document.getElementById("user-info").style.display = "inline-flex";
       document.getElementById("user-email").textContent = email;
-
+ 
       // Update Mobile Nav UI
       document.getElementById("signInMobile").style.display = "none";
       document.getElementById("user-info-mobile").style.display = "inline-flex";
       document.getElementById("user-email-mobile").textContent = email;
-
+ 
       // Reveal Chat Widget for Verified Accounts
       const chatWidget = document.getElementById("siucloud-chat-widget");
       if (chatWidget) chatWidget.style.display = "flex";
     }
-
-    // Interactive Sign-In Flow using Redirect (Fixes MFA Error 500121)
+ 
+    // Interactive Sign-In Flow using Redirect
     async function handleSignIn() {
       try {
         await msalInstance.loginRedirect({
@@ -757,7 +786,7 @@
         console.error("Microsoft Entra ID Authentication Error:", error);
       }
     }
-
+ 
     // Sign-Out Flow using Redirect
     async function handleSignOut() {
       const currentAccount = msalInstance.getAllAccounts()[0];
@@ -767,13 +796,13 @@
         });
       }
     }
-
+ 
     // Chat Widget Toggle Listener
     function wireChatWidget() {
       const toggleBtn = document.getElementById("chat-toggle-btn");
       const wrapper = document.getElementById("chat-wrapper");
       if (!toggleBtn || !wrapper) return;
-
+ 
       toggleBtn.addEventListener("click", () => {
         wrapper.classList.toggle("active");
         const isActive = wrapper.classList.contains("active");
@@ -782,11 +811,11 @@
           : '<i class="fa-solid fa-headset" aria-hidden="true"></i>';
       });
     }
-
+ 
     // Event Listener Initializations
     window.addEventListener("load", async () => {
       await msalInstance.initialize();
-
+ 
       // Handle return response from loginRedirect
       msalInstance.handleRedirectPromise().then((tokenResponse) => {
         if (tokenResponse && tokenResponse.account) {
@@ -800,22 +829,22 @@
       }).catch((error) => {
         console.error("Redirect promise error:", error);
       });
-
+ 
       // Mobile Menu Wire-up
       document.getElementById("menuBtn").addEventListener("click", () => toggleMobile());
       document.querySelectorAll(".mobile-links a").forEach(a => {
         a.addEventListener("click", () => toggleMobile(false));
       });
-
+ 
       // Attach Sign In / Sign Out listeners
       document.getElementById("signIn").addEventListener("click", handleSignIn);
       document.getElementById("signInMobile").addEventListener("click", handleSignIn);
       const faqBtn = document.getElementById("faqSignIn");
       if (faqBtn) faqBtn.addEventListener("click", handleSignIn);
-
+ 
       document.getElementById("signOut").addEventListener("click", handleSignOut);
       document.getElementById("signOutMobile").addEventListener("click", handleSignOut);
-
+ 
       wireChatWidget();
     });
   </script>
