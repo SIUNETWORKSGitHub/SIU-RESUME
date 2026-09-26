@@ -301,7 +301,14 @@
       box-shadow: var(--shadow);
     }
     .cta-box h3{ margin:0 0 14px; }
-    .cta-box p{ margin:0 0 18px; color:var(--muted); }
+    .cta-box p{ margin:0 0 18px; color:var(--muted); line-height:1.6; }
+    .cta-actions{
+      display:flex;
+      justify-content:center;
+      gap:14px;
+      flex-wrap:wrap;
+      margin-top:20px;
+    }
  
     footer{
       border-top:1px solid var(--border);
@@ -584,22 +591,22 @@
  
         <div class="cta-box">
           <h3>Ready to simplify your cloud?</h3>
-          <p>Create an account to access resources and get started.</p>
+          <p id="faq-subtext">
+            If you are already a member, please <strong>Sign In</strong> to access our private SiuCloud AI assistant.<br />
+            If you want to become a member and get access to our professional support team, please <strong>Schedule Consultation</strong> below.
+          </p>
  
-          <button class="btn" id="faqSignIn" type="button">
-            <i class="fa-solid fa-user-plus" aria-hidden="true"></i>
-            <span>Sign Up & Get Started</span>
-          </button>
+          <div class="cta-actions">
+            <button class="btn btn-ghost" id="faqSignIn" type="button">
+              <i class="fa-solid fa-user-lock" aria-hidden="true"></i>
+              <span>Sign In</span>
+            </button>
+            <button class="btn" type="button" onclick="openConsultationModal()">
+              <i class="fa-solid fa-calendar-check" aria-hidden="true"></i>
+              <span>Schedule Consultation Form</span>
+            </button>
+          </div>
         </div>
-      </div>
-    </section>
- 
-    <section id="consultation" class="section">
-      <div class="container" style="text-align:center;">
-        <button class="btn" type="button" onclick="openConsultationModal()">
-          <i class="fa-solid fa-calendar-check" aria-hidden="true"></i>
-          <span>Schedule Consultation Form</span>
-        </button>
       </div>
     </section>
   </main>
@@ -763,6 +770,12 @@
       document.getElementById("signIn").style.display = "none";
       const faqBtn = document.getElementById("faqSignIn");
       if (faqBtn) faqBtn.style.display = "none";
+      
+      const faqSubtext = document.getElementById("faq-subtext");
+      if (faqSubtext) {
+        faqSubtext.innerHTML = `Welcome back, <strong>${email}</strong>! You now have full access to our private SiuCloud AI support widget in the bottom right corner.`;
+      }
+
       document.getElementById("user-info").style.display = "inline-flex";
       document.getElementById("user-email").textContent = email;
  
