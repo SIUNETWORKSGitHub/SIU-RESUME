@@ -32,13 +32,18 @@
     }
  
     *,*::before,*::after{box-sizing:border-box}
-    html{scroll-behavior:smooth}
+    
+    /* Scroll Snapping configuration */
+    html{
+      scroll-behavior:smooth;
+      scroll-snap-type: y mandatory;
+    }
+    
     body{
       margin:0;
       font-family:Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
       color:var(--text);
       background:var(--bg);
-      padding-top:72px; /* fixed header offset */
       line-height:1.5;
     }
  
@@ -64,13 +69,16 @@
       margin-inline:auto;
     }
     
-    .section{
-      padding-block:80px;
-      scroll-margin-top:72px;
-      min-height: calc(100vh - 72px);
+    /* Page sections strictly isolated using Scroll Snap */
+    .snap-section{
+      scroll-snap-align: start;
+      scroll-snap-stop: always;
+      height: 100vh;
+      padding-top: 72px; /* Accounts for fixed nav */
       display: flex;
       flex-direction: column;
       justify-content: center;
+      position: relative;
     }
     
     .section-soft {
@@ -110,7 +118,7 @@
       box-shadow: 0 0 0 4px rgba(0,194,168,0.12);
     }
 
-    /* Brand Text Alternating Animation */
+    /* Brand Text Alternating Animation (4 seconds each) */
     .brand-text {
       display: grid;
       align-items: center;
@@ -120,21 +128,14 @@
       text-decoration: none;
       color: inherit;
     }
-    .brand-title {
-      animation: fadeToggle1 8s infinite;
-    }
-    .brand-phone {
-      animation: fadeToggle2 8s infinite;
-      opacity: 0;
-      color: var(--accent);
-    }
+    .brand-title { animation: fadeToggle1 8s infinite; }
+    .brand-phone { animation: fadeToggle2 8s infinite; opacity: 0; color: var(--accent); }
 
     @keyframes fadeToggle1 {
       0%, 45% { opacity: 1; pointer-events: auto; visibility: visible; }
       50%, 95% { opacity: 0; pointer-events: none; visibility: hidden; }
       100% { opacity: 1; pointer-events: auto; visibility: visible; }
     }
-    
     @keyframes fadeToggle2 {
       0%, 45% { opacity: 0; pointer-events: none; visibility: hidden; }
       50%, 95% { opacity: 1; pointer-events: auto; visibility: visible; }
@@ -160,13 +161,6 @@
       color:var(--text);
     }
     .nav-links a:hover{color:var(--accent)}
-    .nav-links a:focus-visible,
-    .icon-btn:focus-visible,
-    .btn:focus-visible{
-      outline:2px solid var(--accent);
-      outline-offset:3px;
-      border-radius:10px;
-    }
  
     /* Mobile menu */
     .icon-btn{
@@ -177,9 +171,8 @@
       padding:10px 12px;
       border-radius:12px;
       cursor:pointer;
-      display:none; /* shown on mobile */
+      display:none; 
     }
- 
     .mobile-panel{
       display:none;
       border-top:1px solid var(--border);
@@ -217,7 +210,6 @@
       transition: transform .15s ease, filter .15s ease;
     }
     .btn:hover{ transform: translateY(-1px); filter:brightness(1.05); }
- 
     .btn-ghost{
       background:transparent;
       border:1px solid var(--border);
@@ -244,22 +236,36 @@
       color:var(--text);
     }
  
-    /* Hero */
-    #home { scroll-margin-top: 72px; }
+    /* Word-by-Word Animation */
+    .animate-title span {
+      display: inline-block;
+      animation: wordColorPulse 10s infinite;
+      animation-delay: calc(var(--i) * 2s);
+      color: var(--text);
+    }
+    @keyframes wordColorPulse {
+      0%, 15% { color: var(--accent); text-shadow: 0 0 12px rgba(0, 194, 168, 0.4); }
+      20%, 100% { color: var(--text); text-shadow: none; }
+    }
+
+    /* Hero Section */
     .hero-img{
       width:100%;
-      border-radius:0;
-      height: 55vh;
-      max-height: 650px;
+      height: 45vh;
       object-fit:cover;
+      flex: 0 0 auto;
     }
     .hero{
       text-align:center;
-      padding: 36px 0 80px;
+      padding-top: 36px;
+      flex: 1 1 auto;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
     }
     .hero h1{
       font-size: clamp(2rem, 3.2vw, 3rem);
-      margin: 14px 0 10px;
+      margin: 0 0 10px;
       letter-spacing:-0.02em;
     }
     .hero p{ color:var(--muted); margin:0 0 24px; font-size: 1.1rem; }
@@ -274,7 +280,6 @@
       max-width: 800px;
       margin-inline: auto;
     }
- 
     .eyebrow{
       color:var(--accent);
       font-weight:800;
@@ -284,51 +289,58 @@
       font-size:0.8rem;
     }
  
-    .card{
-      background:var(--panel);
-      padding:24px;
-      border-radius:var(--radius);
-      border:1px solid var(--border);
-      box-shadow: var(--shadow);
-    }
-    .card-accent{
-      border-left:4px solid var(--accent);
-    }
-    .card h4{
-      margin:0 0 10px;
-      display:flex;
-      align-items:center;
-      gap:10px;
-      font-size: 1.15rem;
-    }
-    .card p{ margin:0; color:var(--muted); line-height: 1.6; }
- 
-    /* Services */
-    .services-head{
-      text-align:center;
-      margin-bottom:34px;
-    }
+    /* Services Card Highlights (6 Seconds per card, 18 Sec total) */
+    .services-head{ text-align:center; margin-bottom:34px; }
     .services-grid{
       display:grid;
       grid-template-columns: repeat(3, minmax(0, 1fr));
       gap:24px;
       margin-top:18px;
     }
-    @media (max-width: 900px){
-      .services-grid{grid-template-columns:1fr}
+    @media (max-width: 900px){ .services-grid{grid-template-columns:1fr} }
+    
+    .card-seq {
+      background: var(--panel);
+      padding: 24px;
+      border-radius: var(--radius);
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow);
+      text-align: left;
+      animation: cardFocus 18s infinite;
     }
-    .service{
-      text-align:left;
+    
+    .card-seq h4 {
+      margin: 0 0 12px;
+      color: var(--accent);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 1.15rem;
     }
-    .service h4{
-      margin:0 0 12px;
-      color:var(--accent);
+    
+    .card-seq p { margin: 0; color: var(--muted); line-height: 1.6; }
+
+    .card-seq:nth-child(1) { animation-delay: 0s; }
+    .card-seq:nth-child(2) { animation-delay: 6s; }
+    .card-seq:nth-child(3) { animation-delay: 12s; }
+
+    @keyframes cardFocus {
+      0%, 30% { 
+        border-color: var(--accent);
+        box-shadow: 0 10px 30px rgba(0, 194, 168, 0.25);
+        background: rgba(0, 194, 168, 0.05);
+        transform: translateY(-5px);
+      }
+      33%, 100% {
+        border-color: var(--border);
+        box-shadow: var(--shadow);
+        background: var(--panel);
+        transform: translateY(0);
+      }
     }
  
     /* CTA Box / Ready Section */
-    .cta{
-      text-align:center;
-    }
+    .cta{ text-align:center; }
     .cta-box{
       margin-inline:auto;
       max-width:860px;
@@ -383,12 +395,7 @@
       transition: transform 0.3s ease;
     }
     details[open] summary::after { transform: rotate(180deg); }
-    details p {
-      margin-top: 16px;
-      margin-bottom: 0;
-      color: var(--muted);
-      line-height: 1.7;
-    }
+    details p { margin-top: 16px; margin-bottom: 0; color: var(--muted); line-height: 1.7; }
  
     footer{
       border-top:1px solid var(--border);
@@ -396,6 +403,9 @@
       padding-block:40px;
       text-align:center;
       color:var(--muted);
+      position: absolute;
+      bottom: 0;
+      width: 100%;
     }
  
     /* Floating Copilot Studio Chatbot Widget */
@@ -404,11 +414,10 @@
       bottom: 24px;
       right: 24px;
       z-index: 9998;
-      display: none; /* Controlled by auth state */
+      display: none; 
       flex-direction: column;
       align-items: flex-end;
     }
- 
     .chat-toggle-btn {
       background: var(--accent);
       color: #000;
@@ -424,11 +433,7 @@
       font-size: 1.4rem;
       transition: transform 0.2s ease;
     }
- 
-    .chat-toggle-btn:hover {
-      transform: scale(1.08);
-    }
- 
+    .chat-toggle-btn:hover { transform: scale(1.08); }
     .chat-iframe-wrapper {
       display: none;
       width: 380px;
@@ -442,12 +447,9 @@
       overflow: hidden;
       margin-bottom: 12px;
     }
+    .chat-iframe-wrapper.active { display: block; }
  
-    .chat-iframe-wrapper.active {
-      display: block;
-    }
- 
-    /* Modal Pop-up Form Styles */
+    /* Modal Pop-up Form */
     .modal-overlay {
       position: fixed;
       inset: 0;
@@ -459,11 +461,7 @@
       justify-content: center;
       padding: 16px;
     }
- 
-    .modal-overlay.active {
-      display: flex;
-    }
- 
+    .modal-overlay.active { display: flex; }
     .modal-card {
       background: var(--bg-soft);
       border: 1px solid var(--border);
@@ -473,47 +471,18 @@
       padding: 28px;
       position: relative;
     }
- 
     .modal-header {
       display: flex;
       align-items: center;
       justify-content: space-between;
       margin-bottom: 18px;
     }
- 
-    .modal-header h3 {
-      margin: 0;
-      font-size: 1.3rem;
-      color: var(--text);
-    }
- 
-    .close-modal-btn {
-      background: transparent;
-      border: none;
-      color: var(--muted);
-      font-size: 1.2rem;
-      cursor: pointer;
-    }
- 
-    .close-modal-btn:hover {
-      color: var(--accent);
-    }
- 
-    .form-group {
-      margin-bottom: 14px;
-      text-align: left;
-    }
- 
-    .form-group label {
-      display: block;
-      font-size: 0.85rem;
-      font-weight: 600;
-      margin-bottom: 6px;
-      color: var(--muted);
-    }
- 
-    .form-group input,
-    .form-group textarea {
+    .modal-header h3 { margin: 0; font-size: 1.3rem; color: var(--text); }
+    .close-modal-btn { background: transparent; border: none; color: var(--muted); font-size: 1.2rem; cursor: pointer; }
+    .close-modal-btn:hover { color: var(--accent); }
+    .form-group { margin-bottom: 14px; text-align: left; }
+    .form-group label { display: block; font-size: 0.85rem; font-weight: 600; margin-bottom: 6px; color: var(--muted); }
+    .form-group input, .form-group textarea {
       width: 100%;
       padding: 10px 14px;
       background: var(--panel);
@@ -523,18 +492,11 @@
       font-family: inherit;
       font-size: 0.95rem;
     }
- 
-    .form-group input:focus,
-    .form-group textarea:focus {
-      outline: none;
-      border-color: var(--accent);
-    }
+    .form-group input:focus, .form-group textarea:focus { outline: none; border-color: var(--accent); }
   </style>
 </head>
  
 <body>
-  <a class="skip-link" href="#main">Skip to content</a>
- 
   <div class="nav-wrap" role="banner">
     <div class="nav">
       <div class="brand" aria-label="SiuCloud USA">
@@ -592,31 +554,42 @@
     </div>
   </div>
  
-  <header id="home">
-    <img
-      class="hero-img"
-      src="https://raw.githubusercontent.com/SIUNETWORKSGitHub/SIU-RESUME/refs/heads/master/docs/images/New_picture.png"
-      alt="SiuCloud"
-      loading="eager"
-      fetchpriority="high"
-    />
-    <div class="container hero">
-      <h1>Your Cloud, Simplified</h1>
-      <p>Practical, results-first cloud advisory for SMBs.</p>
-    </div>
-  </header>
- 
   <main id="main">
-    <section id="about" class="section section-soft">
+    
+    <!-- Home Section -->
+    <header id="home" class="snap-section">
+      <img
+        class="hero-img"
+        src="https://raw.githubusercontent.com/SIUNETWORKSGitHub/SIU-RESUME/refs/heads/master/docs/images/New_picture.png"
+        alt="SiuCloud Environment"
+        loading="eager"
+      />
+      <div class="container hero">
+        <h1 class="animate-title">
+          <span style="--i:1">Your</span>
+          <span style="--i:2">Cloud,</span>
+          <span style="--i:3">Simplified.</span>
+        </h1>
+        <p>Practical, results-first cloud advisory for SMBs.</p>
+      </div>
+    </header>
+ 
+    <!-- About Section -->
+    <section id="about" class="snap-section section-soft">
       <div class="container">
         <div class="about-grid">
           <div>
             <div class="eyebrow">Who We Are</div>
-            <h2 style="font-size:clamp(1.7rem, 2.6vw, 2.5rem); margin:0 0 14px;">
-              Your Trusted Partner in Cloud Evolution
+            <h2 class="animate-title" style="font-size:clamp(1.7rem, 2.6vw, 2.5rem); margin:0 0 14px;">
+              <span style="--i:1">Your</span>
+              <span style="--i:2">Trusted</span>
+              <span style="--i:3">Partner</span>
+              <span style="--i:4">in</span>
+              <span style="--i:5">Cloud</span>
+              <span style="--i:6">Evolution</span>
             </h2>
             <p style="font-size:1.05rem; line-height:1.75; margin:0 0 14px;">
-              At <strong>SiuCloud</strong>, we do more than provide services—we build resilient digital foundations. As your core provider for multi-cloud service support, we improve and optimize your entire cloud infrastructure. We operate as a direct extension of your internal IT department by providing Helpdesk support and IT meeting training.
+              At <strong>SiuCloud</strong>, we do more than provide services...we build resilient digital foundations. As your core provider for multi-cloud service support, we improve and optimize your entire cloud infrastructure. We operate as a direct extension of your internal IT department by providing Helpdesk support and IT meeting training.
             </p>
             <p style="color:var(--muted); line-height:1.75; margin:0;">
               Our mission is to bridge the gap between complex technology and your business goals, empowering your local staff and ensuring your infrastructure drives growth rather than slowing it down.
@@ -626,30 +599,36 @@
       </div>
     </section>
  
-    <section id="services" class="section">
+    <!-- Services Section -->
+    <section id="services" class="snap-section">
       <div class="container">
         <div class="services-head">
-          <h2 style="margin:0 0 10px;">Cloud Solutions Made Simple</h2>
-          <p style="margin:0; color:var(--muted);">Security, operations, and cost optimization—implemented with minimal disruption.</p>
+          <h2 class="animate-title" style="margin:0 0 10px;">
+            <span style="--i:1">Cloud</span>
+            <span style="--i:2">Solutions</span>
+            <span style="--i:3">Made</span>
+            <span style="--i:4">Simple</span>
+          </h2>
+          <p style="margin:0; color:var(--muted);">Security, operations, and cost optimization....implemented with minimal disruption.</p>
         </div>
  
         <img
           src="https://raw.githubusercontent.com/SIUNETWORKSGitHub/SIU-RESUME/refs/heads/master/docs/images/New_picture1.png"
           alt="SiuCloud Services"
           loading="lazy"
-          style="margin-bottom:32px; border-radius: var(--radius); border:1px solid var(--border);"
+          style="margin-bottom:32px; border-radius: var(--radius); border:1px solid var(--border); width: 100%; max-height: 250px; object-fit: cover;"
         />
  
         <div class="services-grid">
-          <div class="card service card-accent">
+          <div class="card-seq">
             <h4><i class="fa-solid fa-shield-halved" aria-hidden="true"></i> Enterprise-Grade Security</h4>
             <p>Secure-by-default identity, logging, backups, and guardrails protect your data across cloud and hybrid deployments.</p>
           </div>
-          <div class="card service card-accent">
+          <div class="card-seq">
             <h4><i class="fa-solid fa-headset" aria-hidden="true"></i> Specialized Support</h4>
             <p>Benefit from seamless help desk integration, clear escalation paths, and pragmatic operational runbooks designed for minimal disruption.</p>
           </div>
-          <div class="card service card-accent">
+          <div class="card-seq">
             <h4><i class="fa-solid fa-handshake" aria-hidden="true"></i> Partnership Driven</h4>
             <p>We operate as an extension of your team, building alongside you and leaving behind clear documentation and repeatable tooling for a smooth handoff.</p>
           </div>
@@ -657,10 +636,17 @@
       </div>
     </section>
     
-    <section id="ready" class="section section-soft cta">
+    <!-- CTA / Ready Section -->
+    <section id="ready" class="snap-section section-soft cta">
       <div class="container">
         <div class="cta-box">
-          <h3>Ready to simplify your cloud?</h3>
+          <h3 class="animate-title">
+            <span style="--i:1">Ready</span>
+            <span style="--i:2">to</span>
+            <span style="--i:3">simplify</span>
+            <span style="--i:4">your</span>
+            <span style="--i:5">cloud?</span>
+          </h3>
           <p id="cta-subtext">
             <strong>For Members:</strong> Sign in securely using Microsoft Entra ID to access your Siucloud dashboard. Consult our private Siucloud AI chatbot widget for instant, intelligent support.<br /><br />
             <strong>For New Clients:</strong> Partner with our professional support team to transform your infrastructure.
@@ -680,7 +666,8 @@
       </div>
     </section>
  
-    <section id="faq" class="section">
+    <!-- FAQ Section -->
+    <section id="faq" class="snap-section">
       <div class="container">
         <div class="services-head">
           <h2 style="margin:0 0 10px;">Frequently Asked Questions</h2>
@@ -714,6 +701,12 @@
           </details>
         </div>
       </div>
+      
+      <footer>
+        <div class="container">
+          <p style="margin:0;">© 2014–2027 SiuCloud.org</p>
+        </div>
+      </footer>
     </section>
   </main>
  
@@ -766,12 +759,6 @@
       <i class="fa-solid fa-headset" aria-hidden="true"></i>
     </button>
   </div>
- 
-  <footer>
-    <div class="container">
-      <p style="margin:0;">© 2014–2027 SiuCloud.org</p>
-    </div>
-  </footer>
  
   <script>
     // MSAL Configuration for HelpDesk.miami Microsoft Entra ID Tenant
