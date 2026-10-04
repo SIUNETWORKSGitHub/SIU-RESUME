@@ -36,13 +36,11 @@
     /* Scroll Snapping configuration */
     html{
       scroll-behavior:smooth;
-      /* Use proximity snapping on mobile so users can read tall content without the browser fighting them */
       scroll-snap-type: y proximity; 
     }
     
     @media (min-width: 900px) {
       html {
-        /* On desktop where screens are wide, strict snapping works beautifully */
         scroll-snap-type: y mandatory;
       }
     }
@@ -81,10 +79,9 @@
     .snap-section{
       scroll-snap-align: start;
       scroll-snap-stop: always;
-      /* min-height ensures tall mobile content won't overlap into other sections */
       min-height: 100vh; 
-      padding-top: 100px; /* Accounts for fixed nav */
-      padding-bottom: 60px; /* Breathing room at bottom */
+      padding-top: 100px;
+      padding-bottom: 60px;
       display: flex;
       flex-direction: column;
       justify-content: center;
@@ -128,7 +125,7 @@
       box-shadow: 0 0 0 4px rgba(0,194,168,0.12);
     }
 
-    /* Brand Text Alternating Animation (4 seconds each) */
+    /* Brand Text Alternating Animation */
     .brand-text {
       display: grid;
       align-items: center;
@@ -300,7 +297,7 @@
       font-size:0.8rem;
     }
  
-    /* Services Card Highlights (6 Seconds per card, 18 Sec total) */
+    /* Services Card Highlights */
     .services-head{ text-align:center; margin-bottom:34px; }
     .services-grid{
       display:grid;
@@ -754,7 +751,29 @@
     </div>
   </div>
  
-  <!-- Floating Siucloud AI Widget Container -->
+  <!-- Public Gemini AI Chat Widget Container (Visible to all public visitors) -->
+  <div id="gemini-chat-widget" style="position: fixed; bottom: 24px; right: 24px; z-index: 9997; display: flex; flex-direction: column; align-items: flex-end;">
+    <div id="gemini-chat-box" style="display: none; width: 360px; height: 500px; max-width: calc(100vw - 32px); max-height: calc(100vh - 100px); background: #12171b; border: 1px solid rgba(230,237,243,0.12); border-radius: 14px; box-shadow: 0 10px 30px rgba(0,0,0,0.35); flex-direction: column; overflow: hidden; margin-bottom: 12px;">
+      <div style="background: #00c2a8; color: #000; padding: 14px; font-weight: bold; display: flex; justify-content: space-between; align-items: center;">
+        <span>✦ SiuCloud Public AI</span>
+        <button id="close-gemini" style="background: none; border: none; font-size: 1.1rem; cursor: pointer; color: #000;">✕</button>
+      </div>
+      <div id="gemini-messages" style="flex: 1; padding: 14px; overflow-y: auto; font-size: 0.9rem; color: #e6edf3;">
+        <div style="margin-bottom: 10px; background: rgba(255,255,255,0.05); padding: 10px; border-radius: 8px;">
+          Welcome to SiuCloud! I am your public cloud advisory assistant. How can I help you today?
+        </div>
+      </div>
+      <div style="padding: 10px; border-top: 1px solid rgba(230,237,243,0.12); display: flex; gap: 8px;">
+        <input type="text" id="gemini-input" placeholder="Ask about our cloud services..." style="flex: 1; background: #0b0f12; border: 1px solid rgba(230,237,243,0.12); color: #fff; padding: 8px 12px; border-radius: 8px; outline: none;">
+        <button id="gemini-send" style="background: #00c2a8; color: #000; border: none; padding: 8px 14px; border-radius: 8px; font-weight: bold; cursor: pointer;">Send</button>
+      </div>
+    </div>
+    <button id="gemini-toggle-btn" style="background: #00c2a8; color: #000; border: none; width: 56px; height: 56px; border-radius: 50%; cursor: pointer; font-size: 1.4rem; box-shadow: 0 10px 30px rgba(0,0,0,0.35); display: flex; align-items: center; justify-content: center;">
+      ✦
+    </button>
+  </div>
+
+  <!-- Private Copilot Studio Chatbot Widget Container (Hidden until user logs in via MSAL) -->
   <div id="siucloud-chat-widget" class="chat-widget-container" aria-label="Siucloud AI Support Chat">
     <div id="chat-wrapper" class="chat-iframe-wrapper">
       <iframe
@@ -888,9 +907,12 @@
       document.getElementById("user-info-mobile").style.display = "inline-flex";
       document.getElementById("user-email-mobile").textContent = email;
  
-      // Reveal Chat Widget for Verified Accounts
-      const chatWidget = document.getElementById("siucloud-chat-widget");
-      if (chatWidget) chatWidget.style.display = "flex";
+      // Hide Public Gemini Widget & Reveal Private Copilot Widget for Verified Accounts
+      const publicGeminiWidget = document.getElementById("gemini-chat-widget");
+      if (publicGeminiWidget) publicGeminiWidget.style.display = "none";
+
+      const privateChatWidget = document.getElementById("siucloud-chat-widget");
+      if (privateChatWidget) privateChatWidget.style.display = "flex";
     }
  
     // Interactive Sign-In Flow using Redirect
@@ -914,7 +936,7 @@
       }
     }
  
-    // Chat Widget Toggle Listener
+    // Private Chat Widget Toggle Listener
     function wireChatWidget() {
       const toggleBtn = document.getElementById("chat-toggle-btn");
       const wrapper = document.getElementById("chat-wrapper");
@@ -927,6 +949,51 @@
           ? '<i class="fa-solid fa-xmark" aria-hidden="true"></i>' 
           : '<i class="fa-solid fa-headset" aria-hidden="true"></i>';
       });
+    }
+
+    // Public Gemini Widget Logic
+    function wireGeminiWidget() {
+      const geminiToggle = document.getElementById("gemini-toggle-btn");
+      const geminiBox = document.getElementById("gemini-chat-box");
+      const closeGemini = document.getElementById("close-gemini");
+      const geminiInput = document.getElementById("gemini-input");
+      const geminiSend = document.getElementById("gemini-send");
+      const geminiMessages = document.getElementById("gemini-messages");
+
+      if (!geminiToggle || !geminiBox || !closeGemini) return;
+
+      geminiToggle.addEventListener("click", () => {
+        geminiBox.style.display = geminiBox.style.display === "none" ? "flex" : "none";
+      });
+
+      closeGemini.addEventListener("click", () => geminiBox.style.display = "none");
+
+      async function sendGeminiMessage() {
+        const text = geminiInput.value.trim();
+        if (!text) return;
+
+        geminiMessages.innerHTML += `<div style="text-align: right; margin-bottom: 10px;"><span style="background: #00c2a8; color: #000; padding: 8px 12px; border-radius: 8px; display: inline-block;">${text}</span></div>`;
+        geminiInput.value = "";
+        geminiMessages.scrollTop = geminiMessages.scrollHeight;
+
+        try {
+          const res = await fetch("/api/chat", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ message: text })
+          });
+          const data = await res.json();
+          const reply = data.reply || "Sorry, I am unable to answer right now.";
+
+          geminiMessages.innerHTML += `<div style="margin-bottom: 10px; background: rgba(255,255,255,0.05); padding: 10px; border-radius: 8px;">${reply}</div>`;
+          geminiMessages.scrollTop = geminiMessages.scrollHeight;
+        } catch (err) {
+          geminiMessages.innerHTML += `<div style="margin-bottom: 10px; color: #ff6b6b;">Connection error. Please try again later.</div>`;
+        }
+      }
+
+      geminiSend.addEventListener("click", sendGeminiMessage);
+      geminiInput.addEventListener("keypress", (e) => { if (e.key === "Enter") sendGeminiMessage(); });
     }
  
     // Event Listener Initializations
@@ -964,6 +1031,7 @@
       document.getElementById("signOutMobile").addEventListener("click", handleSignOut);
  
       wireChatWidget();
+      wireGeminiWidget();
     });
   </script>
 </body>
