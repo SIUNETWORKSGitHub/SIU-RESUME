@@ -1,11 +1,19 @@
 import { GoogleGenerativeAI } from "@google/generative-ai";
 
 export default async function handler(req, res) {
-  // 1. Enforce CORS Security
-  const allowedOrigins = ["https://siucloud.org", "http://localhost:3000"];
+  // 1. Enforce CORS Security (Expanded for all domain variations)
+  const allowedOrigins = [
+    "https://siucloud.org",
+    "https://www.siucloud.org",
+    "https://siunetworksgithub.github.io",
+    "http://localhost:3000"
+  ];
   const origin = req.headers.origin;
 
   if (allowedOrigins.includes(origin)) {
+    res.setHeader("Access-Control-Allow-Origin", origin);
+  } else if (origin && origin.endsWith(".vercel.app")) {
+    // Allow Vercel preview URLs
     res.setHeader("Access-Control-Allow-Origin", origin);
   }
   
