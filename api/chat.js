@@ -1,7 +1,7 @@
 import { GoogleGenerativeAI } from "@google/generative-ai";
 
 export default async function handler(req, res) {
-  // 1. Enforce CORS Security (Expanded for all domain variations)
+  // 1. Enforce CORS Security
   const allowedOrigins = [
     "https://siucloud.org",
     "https://www.siucloud.org",
@@ -13,7 +13,6 @@ export default async function handler(req, res) {
   if (allowedOrigins.includes(origin)) {
     res.setHeader("Access-Control-Allow-Origin", origin);
   } else if (origin && origin.endsWith(".vercel.app")) {
-    // Allow Vercel preview URLs
     res.setHeader("Access-Control-Allow-Origin", origin);
   }
   
@@ -21,7 +20,6 @@ export default async function handler(req, res) {
   res.setHeader("Access-Control-Allow-Methods", "POST, OPTIONS");
   res.setHeader("Access-Control-Allow-Headers", "Content-Type");
 
-  // Handle preflight browser check
   if (req.method === "OPTIONS") {
     return res.status(200).end();
   }
@@ -36,13 +34,11 @@ export default async function handler(req, res) {
       return res.status(400).json({ error: "Invalid request payload." });
     }
 
-    // 2. Retrieve GEMINI_API_KEY securely from environment variables
     const apiKey = process.env.GEMINI_API_KEY;
     if (!apiKey) {
-      return res.status(500).json({ error: "API key is missing on the server." });
+      return res.status(500).json({ error: "API key is missing on server." });
     }
 
-    // 3. System Context & Instructions
     const systemInstruction = `
       You are the official public AI Virtual Assistant for SiuCloud (siucloud.org).
       Tagline: "Your Cloud, Simplified."
@@ -55,19 +51,29 @@ export default async function handler(req, res) {
       Instruction: Answer visitor queries briefly and politely. If visitors request a formal consultation, guide them to use the "Schedule Consultation Form" on the site or call 305 440 9192.
     `;
 
-    // 4. Connect to Gemini 1.5 Flash Model
-    const genAI = new GoogleGenerativeAI(apiKey);
-    const model = genAI.getGenerativeModel({
-      model: "gemini-1.5-flash",
-      systemInstruction: systemInstruction,
-    });
-
-    const result = await model.generateContent(message);
-    const responseText = result.response.text();
+    // 4. Initialize Gemini with gemini-2.5-flash / gemini-1.5-flash fallback
+    const genAI = new GoogleGenerativeAI(apiKey.trim());
+    
+    let responseText = "";
+    try {
+      const model = genAI.getGenerativeModel({
+        model: "gemini-2.5-flash",
+        systemInstruction: systemInstruction,
+      });
+      const result = await model.generateContent(message);
+      responseText = result.response.text();
+    } catch (modelErr) {
+      console.warn("Fallback to gemini-1.5-flash:", modelErr.message);
+      const fallbackModel = genAI.getGenerativeModel({
+        model: "gemini-1.5-flash",
+      });
+      const result = await fallbackModel.generateContent(`${systemInstruction}\n\nUser Question: ${message}`);
+      responseText = result.response.text();
+    }
 
     return res.status(200).json({ reply: responseText });
   } catch (error) {
-    console.error("Gemini Bridge Error:", error);
-    return res.status(500).json({ error: "Unable to process request at this time." });
+    console.error("Gemini Bridge Detailed Error:", error);
+    return res.status(500).json({ error: error.message || "Unable to process request." });
   }
 }
