@@ -951,7 +951,7 @@
       });
     }
 
-    // Public Gemini Widget Logic
+    // Public Gemini Widget Logic (Targeting Vercel Production Endpoint)
     function wireGeminiWidget() {
       const geminiToggle = document.getElementById("gemini-toggle-btn");
       const geminiBox = document.getElementById("gemini-chat-box");
@@ -977,7 +977,7 @@
         geminiMessages.scrollTop = geminiMessages.scrollHeight;
 
         try {
-          const res = await fetch("/api/chat", {
+          const res = await fetch("https://siucloud-usa.vercel.app/api/chat", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({ message: text })
