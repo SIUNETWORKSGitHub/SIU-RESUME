@@ -1,7 +1,5 @@
-import { GoogleGenerativeAI } from "@google/generative-ai";
-
 export default async function handler(req, res) {
-  // 1. Enforce CORS Security
+  // 1. CORS Headers
   const allowedOrigins = [
     "https://siucloud.org",
     "https://www.siucloud.org",
@@ -10,10 +8,8 @@ export default async function handler(req, res) {
   ];
   const origin = req.headers.origin;
 
-  if (allowedOrigins.includes(origin)) {
-    res.setHeader("Access-Control-Allow-Origin", origin);
-  } else if (origin && origin.endsWith(".vercel.app")) {
-    res.setHeader("Access-Control-Allow-Origin", origin);
+  if (allowedOrigins.includes(origin) || (origin && origin.endsWith(".vercel.app"))) {
+    res.setHeader("Access-Control-Allow-Origin", origin || "*");
   }
   
   res.setHeader("Access-Control-Allow-Credentials", "true");
@@ -34,46 +30,50 @@ export default async function handler(req, res) {
       return res.status(400).json({ error: "Invalid request payload." });
     }
 
-    const apiKey = process.env.GEMINI_API_KEY;
+    const apiKey = (process.env.GEMINI_API_KEY || "").trim();
     if (!apiKey) {
-      return res.status(500).json({ error: "API key is missing on server." });
+      return res.status(500).json({ error: "API key missing on server." });
     }
 
-    const systemInstruction = `
-      You are the official public AI Virtual Assistant for SiuCloud (siucloud.org).
-      Tagline: "Your Cloud, Simplified."
-      Mission: Practical, results-first cloud advisory for Small to Medium Businesses (SMBs).
-      Core Pillars:
-      1. Cloud Advisory: Hybrid strategy across Azure, AWS, and VMware.
-      2. Cost Optimization: FinOps strategies and cloud spend reduction.
-      3. Security & Governance: Enterprise-grade security guardrails and compliance.
-      
-      Instruction: Answer visitor queries briefly and politely. If visitors request a formal consultation, guide them to use the "Schedule Consultation Form" on the site or call 305 440 9192.
-    `;
+    const promptText = `
+You are the official public AI Virtual Assistant for SiuCloud (siucloud.org).
+Tagline: "Your Cloud, Simplified."
+Mission: Practical, results-first cloud advisory for Small to Medium Businesses (SMBs).
+Core Pillars: Cloud Advisory, Cost Optimization (FinOps), Security & Governance.
+Instruction: Answer visitor queries briefly and politely. For formal consultations, guide them to use the "Schedule Consultation Form" on the site or call 305 440 9192.
 
-    // 4. Initialize Gemini with gemini-2.5-flash / gemini-1.5-flash fallback
-    const genAI = new GoogleGenerativeAI(apiKey.trim());
-    
-    let responseText = "";
-    try {
-      const model = genAI.getGenerativeModel({
-        model: "gemini-2.5-flash",
-        systemInstruction: systemInstruction,
+User: ${message}
+`;
+
+    // 2. Direct REST API Call to Gemini
+    const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${apiKey}`;
+
+    const response = await fetch(url, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        contents: [
+          {
+            parts: [{ text: promptText }]
+          }
+        ]
+      })
+    });
+
+    const data = await response.json();
+
+    if (!response.ok) {
+      console.error("Google API Raw Error:", JSON.stringify(data));
+      return res.status(response.status).json({ 
+        error: data.error?.message || "Google API returned an error." 
       });
-      const result = await model.generateContent(message);
-      responseText = result.response.text();
-    } catch (modelErr) {
-      console.warn("Fallback to gemini-1.5-flash:", modelErr.message);
-      const fallbackModel = genAI.getGenerativeModel({
-        model: "gemini-1.5-flash",
-      });
-      const result = await fallbackModel.generateContent(`${systemInstruction}\n\nUser Question: ${message}`);
-      responseText = result.response.text();
     }
 
-    return res.status(200).json({ reply: responseText });
+    const replyText = data.candidates?.[0]?.content?.parts?.[0]?.text || "No response text returned.";
+    return res.status(200).json({ reply: replyText });
+
   } catch (error) {
-    console.error("Gemini Bridge Detailed Error:", error);
-    return res.status(500).json({ error: error.message || "Unable to process request." });
+    console.error("Serverless Catch Error:", error);
+    return res.status(500).json({ error: error.message || "Internal server error." });
   }
 }
