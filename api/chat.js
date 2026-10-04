@@ -1,20 +1,8 @@
 export default async function handler(req, res) {
-  // 1. CORS Headers
-  const allowedOrigins = [
-    "https://siucloud.org",
-    "https://www.siucloud.org",
-    "https://siunetworksgithub.github.io",
-    "http://localhost:3000"
-  ];
-  const origin = req.headers.origin;
-
-  if (allowedOrigins.includes(origin) || (origin && origin.endsWith(".vercel.app"))) {
-    res.setHeader("Access-Control-Allow-Origin", origin || "*");
-  }
-  
-  res.setHeader("Access-Control-Allow-Credentials", "true");
-  res.setHeader("Access-Control-Allow-Methods", "POST, OPTIONS");
-  res.setHeader("Access-Control-Allow-Headers", "Content-Type");
+  // Allow wildcard origin to prevent cross-domain CORS preflight blocking
+  res.setHeader("Access-Control-Allow-Origin", "*");
+  res.setHeader("Access-Control-Allow-Methods", "GET, POST, OPTIONS");
+  res.setHeader("Access-Control-Allow-Headers", "Content-Type, Authorization");
 
   if (req.method === "OPTIONS") {
     return res.status(200).end();
@@ -45,7 +33,7 @@ Instruction: Answer visitor queries briefly and politely. For formal consultatio
 User: ${message}
 `;
 
-    // 2. Direct REST API Call to Gemini 2.5 Flash
+    // Direct REST API Call to Gemini 2.5 Flash
     const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${apiKey}`;
 
     const response = await fetch(url, {
