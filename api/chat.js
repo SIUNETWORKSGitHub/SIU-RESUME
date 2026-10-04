@@ -1,5 +1,5 @@
 export default async function handler(req, res) {
-  // Allow wildcard origin to prevent cross-domain CORS preflight blocking
+  // CORS Headers
   res.setHeader("Access-Control-Allow-Origin", "*");
   res.setHeader("Access-Control-Allow-Methods", "GET, POST, OPTIONS");
   res.setHeader("Access-Control-Allow-Headers", "Content-Type, Authorization");
@@ -10,6 +10,14 @@ export default async function handler(req, res) {
 
   if (req.method !== "POST") {
     return res.status(405).json({ error: "Method not allowed" });
+  }
+
+  // 1. GEO-BLOCKING CHECK (Allow USA Traffic Only)
+  const country = req.headers["x-vercel-ip-country"] || "US";
+  if (country !== "US") {
+    return res.status(403).json({ 
+      error: "Public AI assistant is currently restricted to visitors within the United States." 
+    });
   }
 
   try {
@@ -31,9 +39,9 @@ Core Pillars: Cloud Advisory, Cost Optimization (FinOps), Security & Governance.
 
 Instructions:
 1. Answer visitor queries briefly and politely.
-2. Highlight that full, priority access to our highly trained, private SiuCloud AI assistant is exclusively reserved for members.
-3. Actively encourage visitors to click "Become a Member" or "Sign In via Entra ID" to unlock member-only AI consultation features.
-4. For formal consultations, guide them to use the "Schedule Consultation Form" on the site or call 305 440 9192.
+2. Emphasize that full, priority access to our custom-trained, private SiuCloud AI assistant—featuring advanced advisory workflows and tailored cloud insights—is exclusively reserved for members.
+3. Actively invite visitors to click "Become a Member" or "Sign In via Entra ID" on siucloud.org to unlock these exclusive AI consultation features.
+4. For formal consultations or direct inquiries, guide them to fill out the "Schedule Consultation Form" on the site, call 305 440 9192, or email info@helpdesk.miami.
 
 User: ${message}
 `;
