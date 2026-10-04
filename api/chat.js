@@ -33,8 +33,8 @@ Instruction: Answer visitor queries briefly and politely. For formal consultatio
 User: ${message}
 `;
 
-    // Direct REST API Call to Gemini 2.5 Flash
-    const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${apiKey}`;
+    // Direct REST API Call targeting active gemini-3.8-flash model
+    const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-3.8-flash:generateContent?key=${apiKey}`;
 
     const response = await fetch(url, {
       method: "POST",
