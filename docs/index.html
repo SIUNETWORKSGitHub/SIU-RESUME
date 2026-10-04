@@ -951,7 +951,7 @@
       });
     }
 
-    // Public Gemini Widget Logic (Targeting Full Vercel Production Endpoint with Extended Debugging)
+    // Public Gemini Widget Logic with Automatic Member-Conversion Fallback
     function wireGeminiWidget() {
       const geminiToggle = document.getElementById("gemini-toggle-btn");
       const geminiBox = document.getElementById("gemini-chat-box");
@@ -986,7 +986,14 @@
           const data = await res.json();
           
           if (!res.ok) {
-            geminiMessages.innerHTML += `<div style="margin-bottom: 10px; color: #ff6b6b;">Error (${res.status}): ${data.error || "Failed to fetch response"}</div>`;
+            let fallbackMsg = `Error (${res.status}): ${data.error || "Failed to fetch response"}`;
+            
+            // Turn high demand or rate limit spikes into member acquisition prompts
+            if (res.status === 503 || res.status === 429) {
+              fallbackMsg = `Public AI server is currently experiencing high demand.<br/><br/>💡 <strong>Upgrade your experience:</strong> <a href="#ready" onclick="document.getElementById('gemini-chat-box').style.display='none';" style="color: #00c2a8; text-decoration: underline;">Become a Member</a> or <a href="#ready" onclick="handleSignIn()" style="color: #00c2a8; text-decoration: underline;">Sign In via Entra ID</a> to access our dedicated, private SiuCloud AI Assistant with zero wait time!`;
+            }
+
+            geminiMessages.innerHTML += `<div style="margin-bottom: 10px; background: rgba(255,107,107,0.1); border: 1px solid #ff6b6b; padding: 10px; border-radius: 8px;">${fallbackMsg}</div>`;
             geminiMessages.scrollTop = geminiMessages.scrollHeight;
             return;
           }
