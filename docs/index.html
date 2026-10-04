@@ -951,7 +951,7 @@
       });
     }
 
-    // Public Gemini Widget Logic (Targeting Relative Vercel Route)
+    // Public Gemini Widget Logic (Targeting Full Vercel Production Endpoint with Extended Debugging)
     function wireGeminiWidget() {
       const geminiToggle = document.getElementById("gemini-toggle-btn");
       const geminiBox = document.getElementById("gemini-chat-box");
@@ -977,18 +977,26 @@
         geminiMessages.scrollTop = geminiMessages.scrollHeight;
 
         try {
-          const res = await fetch("/api/chat", {
+          const res = await fetch("https://siucloud-usa.vercel.app/api/chat", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({ message: text })
           });
-          const data = await res.json();
-          const reply = data.reply || "Sorry, I am unable to answer right now.";
 
+          const data = await res.json();
+          
+          if (!res.ok) {
+            geminiMessages.innerHTML += `<div style="margin-bottom: 10px; color: #ff6b6b;">Error (${res.status}): ${data.error || "Failed to fetch response"}</div>`;
+            geminiMessages.scrollTop = geminiMessages.scrollHeight;
+            return;
+          }
+
+          const reply = data.reply || "Sorry, I am unable to answer right now.";
           geminiMessages.innerHTML += `<div style="margin-bottom: 10px; background: rgba(255,255,255,0.05); padding: 10px; border-radius: 8px;">${reply}</div>`;
           geminiMessages.scrollTop = geminiMessages.scrollHeight;
         } catch (err) {
-          geminiMessages.innerHTML += `<div style="margin-bottom: 10px; color: #ff6b6b;">Connection error. Please try again later.</div>`;
+          geminiMessages.innerHTML += `<div style="margin-bottom: 10px; color: #ff6b6b;">Connection error: ${err.message}</div>`;
+          geminiMessages.scrollTop = geminiMessages.scrollHeight;
         }
       }
 
