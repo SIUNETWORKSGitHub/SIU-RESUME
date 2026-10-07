@@ -243,6 +243,33 @@
         box-shadow: 0 0 0 0 rgba(0, 194, 168, 0);
       }
     }
+
+    /* Word-by-Word Animation (Color Pulse Every 3 Seconds) */
+    .animate-title span {
+      display: inline-block;
+      animation: wordColorPulse 3s infinite;
+      animation-delay: calc(var(--i) * 0.4s);
+      color: var(--text);
+    }
+    @keyframes wordColorPulse {
+      0%, 20% { color: var(--accent); text-shadow: 0 0 12px rgba(0, 194, 168, 0.5); }
+      35%, 100% { color: var(--text); text-shadow: none; }
+    }
+
+    /* Clickable Badge Styles */
+    .badge-btn {
+      border: none;
+      font-size: 0.68rem;
+      font-weight: 700;
+      padding: 4px 10px;
+      border-radius: 999px;
+      cursor: pointer;
+      transition: transform 0.2s ease, filter 0.2s ease;
+    }
+    .badge-btn:hover {
+      transform: scale(1.08);
+      filter: brightness(1.2);
+    }
  
     /* User info */
     #user-info{
@@ -261,18 +288,6 @@
       padding:8px 12px;
       background:transparent;
       color:var(--text);
-    }
- 
-    /* Word-by-Word Animation */
-    .animate-title span {
-      display: inline-block;
-      animation: wordColorPulse 10s infinite;
-      animation-delay: calc(var(--i) * 2s);
-      color: var(--text);
-    }
-    @keyframes wordColorPulse {
-      0%, 15% { color: var(--accent); text-shadow: 0 0 12px rgba(0, 194, 168, 0.4); }
-      20%, 100% { color: var(--text); text-shadow: none; }
     }
 
     /* Hero Section */
@@ -669,7 +684,11 @@
       <div class="container">
         <div style="text-align: center; margin-bottom: 24px;">
           <div class="eyebrow">NEXT-GEN SMB AI PLATFORM</div>
-          <h2 style="font-size: clamp(1.8rem, 3vw, 2.5rem); margin: 6px 0 8px;">Dual-AI Architectural Ecosystem</h2>
+          <h2 class="animate-title" style="font-size: clamp(1.8rem, 3vw, 2.5rem); margin: 6px 0 8px;">
+            <span style="--i:1">Dual-AI</span>
+            <span style="--i:2">Architectural</span>
+            <span style="--i:3">Ecosystem</span>
+          </h2>
           <p style="color: var(--muted); max-width: 680px; margin: 0 auto; font-size: 0.95rem;">
             Instant basic cloud answers for guests, backed by custom-trained AI and guaranteed engineering escalation for members.
           </p>
@@ -682,7 +701,11 @@
           <div style="background: var(--panel); border: 1px solid var(--border); border-top: 4px solid #93a1ad; padding: 20px; border-radius: var(--radius); box-shadow: var(--shadow);">
             <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 10px;">
               <h3 style="margin: 0; font-size: 1.15rem; color: #fff;"><i class="fa-solid fa-sparkles" style="color: #93a1ad; margin-right: 6px;"></i> Public AI Assistant</h3>
-              <span style="font-size: 0.68rem; background: rgba(147, 161, 173, 0.15); color: #93a1ad; padding: 3px 8px; border-radius: 999px; font-weight: 700;">BASIC / GUEST</span>
+              
+              <!-- Clickable Badge: Triggers Free Schedule Consultation Form -->
+              <button class="badge-btn" onclick="openConsultationModal()" style="background: rgba(147, 161, 173, 0.15); color: #93a1ad;">
+                BASIC / GUEST
+              </button>
             </div>
             <p style="color: var(--muted); font-size: 0.88rem; margin-bottom: 10px; line-height: 1.4;">
               <strong>Limited & Untrained:</strong> For quick general questions and basic site information.
@@ -698,7 +721,11 @@
           <div style="background: var(--panel); border: 1px solid var(--border); border-top: 4px solid var(--accent); padding: 20px; border-radius: var(--radius); box-shadow: var(--shadow);">
             <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 10px;">
               <h3 style="margin: 0; font-size: 1.15rem; color: #fff;"><i class="fa-solid fa-robot" style="color: var(--accent); margin-right: 6px;"></i> SiuCloud AI (Private)</h3>
-              <span style="font-size: 0.68rem; background: rgba(0, 194, 168, 0.2); color: var(--accent); padding: 3px 8px; border-radius: 999px; font-weight: 700;">MEMBERS ONLY</span>
+              
+              <!-- Clickable Badge: Triggers Entra ID Sign-In -->
+              <button class="badge-btn" onclick="handleSignIn()" style="background: rgba(0, 194, 168, 0.2); color: var(--accent);">
+                MEMBERS ONLY
+              </button>
             </div>
             <p style="color: var(--muted); font-size: 0.88rem; margin-bottom: 10px; line-height: 1.4;">
               <strong>Custom-Trained & Automated:</strong> Grounded in Dataverse & Claude Sonnet 5 for deep support.
@@ -712,9 +739,14 @@
 
         </div>
 
-        <!-- Membership Comparison Table -->
+        <!-- Membership Comparison Table Heading (Animated Word Color Pulse) -->
         <div style="text-align: center; margin-bottom: 12px;">
-          <h3 style="font-size: 1.25rem; margin: 0 0 4px;">SiuCloud Support Membership Perks</h3>
+          <h3 class="animate-title" style="font-size: 1.25rem; margin: 0 0 4px;">
+            <span style="--i:1">SiuCloud</span>
+            <span style="--i:2">Support</span>
+            <span style="--i:3">Membership</span>
+            <span style="--i:4">Perks</span>
+          </h3>
         </div>
 
         <div style="overflow-x: auto; background: var(--panel); border: 1px solid var(--border); border-radius: var(--radius); box-shadow: var(--shadow);">
