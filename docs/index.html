@@ -71,7 +71,7 @@
     img{max-width:100%; height:auto; display:block}
  
     .container{
-      width:min(100% - 2rem, var(--maxw));
+      width:min(100% - 1.5rem, var(--maxw));
       margin-inline:auto;
     }
     
@@ -80,8 +80,8 @@
       scroll-snap-align: start;
       scroll-snap-stop: always;
       min-height: 100vh; 
-      padding-top: 100px;
-      padding-bottom: 60px;
+      padding-top: 90px;
+      padding-bottom: 40px;
       display: flex;
       flex-direction: column;
       justify-content: center;
@@ -259,15 +259,16 @@
     /* Clickable Badge Styles */
     .badge-btn {
       border: none;
-      font-size: 0.68rem;
+      font-size: 0.65rem;
       font-weight: 700;
-      padding: 4px 10px;
+      padding: 4px 8px;
       border-radius: 999px;
       cursor: pointer;
       transition: transform 0.2s ease, filter 0.2s ease;
+      white-space: nowrap;
     }
     .badge-btn:hover {
-      transform: scale(1.08);
+      transform: scale(1.06);
       filter: brightness(1.2);
     }
  
@@ -328,8 +329,8 @@
       font-weight:800;
       text-transform:uppercase;
       letter-spacing:2px;
-      margin-bottom:10px;
-      font-size:0.8rem;
+      margin-bottom:8px;
+      font-size:0.78rem;
     }
  
     /* Services Card Highlights */
@@ -387,7 +388,7 @@
     .cta-box{
       margin-inline:auto;
       max-width:860px;
-      padding:40px 32px;
+      padding:36px 24px;
       border-radius:var(--radius);
       background: linear-gradient(145deg, var(--bg-soft), var(--bg));
       border: 2px solid rgba(0,194,168,0.5);
@@ -682,35 +683,34 @@
     <!-- Dual-AI Showcase & Member Benefits Section -->
     <section id="ai-ecosystem" class="snap-section section-soft">
       <div class="container">
-        <div style="text-align: center; margin-bottom: 24px;">
+        <div style="text-align: center; margin-bottom: 18px;">
           <div class="eyebrow">NEXT-GEN SMB AI PLATFORM</div>
-          <h2 class="animate-title" style="font-size: clamp(1.8rem, 3vw, 2.5rem); margin: 6px 0 8px;">
+          
+          <!-- Reduced Title Size to Fit Cellphone Displays Seamlessly -->
+          <h2 class="animate-title" style="font-size: clamp(1.3rem, 2.5vw, 1.8rem); margin: 4px 0 0; font-weight: 800; line-height: 1.2;">
             <span style="--i:1">Dual-AI</span>
             <span style="--i:2">Architectural</span>
             <span style="--i:3">Ecosystem</span>
           </h2>
-          <p style="color: var(--muted); max-width: 680px; margin: 0 auto; font-size: 0.95rem;">
-            Instant basic cloud answers for guests, backed by custom-trained AI and guaranteed engineering escalation for members.
-          </p>
         </div>
 
-        <!-- Compact Dual AI Feature Cards -->
-        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 18px; margin-bottom: 24px;">
+        <!-- Mobile-Optimized Grid -->
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 14px; margin-bottom: 20px;">
           
           <!-- Public AI Card -->
-          <div style="background: var(--panel); border: 1px solid var(--border); border-top: 4px solid #93a1ad; padding: 20px; border-radius: var(--radius); box-shadow: var(--shadow);">
-            <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 10px;">
-              <h3 style="margin: 0; font-size: 1.15rem; color: #fff;"><i class="fa-solid fa-sparkles" style="color: #93a1ad; margin-right: 6px;"></i> Public AI Assistant</h3>
+          <div style="background: var(--panel); border: 1px solid var(--border); border-top: 4px solid #93a1ad; padding: 16px; border-radius: var(--radius); box-shadow: var(--shadow);">
+            <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 8px;">
+              <h3 style="margin: 0; font-size: 1.05rem; color: #fff;"><i class="fa-solid fa-sparkles" style="color: #93a1ad; margin-right: 6px;"></i> Public AI Assistant</h3>
               
               <!-- Clickable Badge: Triggers Free Schedule Consultation Form -->
               <button class="badge-btn" onclick="openConsultationModal()" style="background: rgba(147, 161, 173, 0.15); color: #93a1ad;">
                 BASIC / GUEST
               </button>
             </div>
-            <p style="color: var(--muted); font-size: 0.88rem; margin-bottom: 10px; line-height: 1.4;">
+            <p style="color: var(--muted); font-size: 0.82rem; margin-bottom: 8px; line-height: 1.4;">
               <strong>Limited & Untrained:</strong> For quick general questions and basic site information.
             </p>
-            <ul style="color: var(--text); padding-left: 18px; font-size: 0.85rem; line-height: 1.6; margin: 0;">
+            <ul style="color: var(--text); padding-left: 16px; font-size: 0.8rem; line-height: 1.5; margin: 0;">
               <li>No sign-in required</li>
               <li>Standard usage limits</li>
               <li>Basic cloud FAQ guidance</li>
@@ -718,19 +718,19 @@
           </div>
 
           <!-- Private Member AI Card -->
-          <div style="background: var(--panel); border: 1px solid var(--border); border-top: 4px solid var(--accent); padding: 20px; border-radius: var(--radius); box-shadow: var(--shadow);">
-            <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 10px;">
-              <h3 style="margin: 0; font-size: 1.15rem; color: #fff;"><i class="fa-solid fa-robot" style="color: var(--accent); margin-right: 6px;"></i> SiuCloud AI (Private)</h3>
+          <div style="background: var(--panel); border: 1px solid var(--border); border-top: 4px solid var(--accent); padding: 16px; border-radius: var(--radius); box-shadow: var(--shadow);">
+            <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 8px;">
+              <h3 style="margin: 0; font-size: 1.05rem; color: #fff;"><i class="fa-solid fa-robot" style="color: var(--accent); margin-right: 6px;"></i> SiuCloud AI (Private)</h3>
               
               <!-- Clickable Badge: Triggers Entra ID Sign-In -->
               <button class="badge-btn" onclick="handleSignIn()" style="background: rgba(0, 194, 168, 0.2); color: var(--accent);">
                 MEMBERS ONLY
               </button>
             </div>
-            <p style="color: var(--muted); font-size: 0.88rem; margin-bottom: 10px; line-height: 1.4;">
+            <p style="color: var(--muted); font-size: 0.82rem; margin-bottom: 8px; line-height: 1.4;">
               <strong>Custom-Trained & Automated:</strong> Grounded in Dataverse & Claude Sonnet 5 for deep support.
             </p>
-            <ul style="color: var(--text); padding-left: 18px; font-size: 0.85rem; line-height: 1.6; margin: 0;">
+            <ul style="color: var(--text); padding-left: 16px; font-size: 0.8rem; line-height: 1.5; margin: 0;">
               <li><strong>Automated Team Escalation:</strong> Direct dispatch to our SiuCloud Team</li>
               <li><strong>24-Hour Response Guarantee:</strong> Expert engineer follow-up</li>
               <li>Dedicated tenant capacity pack with zero wait time</li>
@@ -740,8 +740,8 @@
         </div>
 
         <!-- Membership Comparison Table Heading (Animated Word Color Pulse) -->
-        <div style="text-align: center; margin-bottom: 12px;">
-          <h3 class="animate-title" style="font-size: 1.25rem; margin: 0 0 4px;">
+        <div style="text-align: center; margin-bottom: 10px;">
+          <h3 class="animate-title" style="font-size: 1.15rem; margin: 0;">
             <span style="--i:1">SiuCloud</span>
             <span style="--i:2">Support</span>
             <span style="--i:3">Membership</span>
@@ -749,35 +749,36 @@
           </h3>
         </div>
 
+        <!-- Mobile Screen Fitted Table Container -->
         <div style="overflow-x: auto; background: var(--panel); border: 1px solid var(--border); border-radius: var(--radius); box-shadow: var(--shadow);">
-          <table style="width: 100%; border-collapse: collapse; text-align: left; font-size: 0.88rem;">
+          <table style="width: 100%; min-width: 480px; border-collapse: collapse; text-align: left; font-size: 0.82rem;">
             <thead>
               <tr style="border-bottom: 1px solid var(--border); background: rgba(255,255,255,0.03);">
-                <th style="padding: 10px 14px; color: var(--text);">Feature</th>
-                <th style="padding: 10px 14px; color: var(--muted); width: 30%;">Guest Visitor</th>
-                <th style="padding: 10px 14px; color: var(--accent); width: 40%; font-weight: 800;">SiuCloud Member</th>
+                <th style="padding: 8px 12px; color: var(--text);">Feature</th>
+                <th style="padding: 8px 12px; color: var(--muted); width: 30%;">Guest Visitor</th>
+                <th style="padding: 8px 12px; color: var(--accent); width: 42%; font-weight: 800;">SiuCloud Member</th>
               </tr>
             </thead>
             <tbody>
               <tr style="border-bottom: 1px solid var(--border);">
-                <td style="padding: 10px 14px; font-weight: 600;">AI Engine</td>
-                <td style="padding: 10px 14px; color: var(--muted);">Public AI (Limited)</td>
-                <td style="padding: 10px 14px; color: var(--text); font-weight: 700;"><i class="fa-solid fa-check" style="color: var(--accent); margin-right: 6px;"></i> Trained SiuCloud AI (Copilot / Sonnet 5)</td>
+                <td style="padding: 8px 12px; font-weight: 600;">AI Engine</td>
+                <td style="padding: 8px 12px; color: var(--muted);">Public AI (Limited)</td>
+                <td style="padding: 8px 12px; color: var(--text); font-weight: 700;"><i class="fa-solid fa-check" style="color: var(--accent); margin-right: 4px;"></i> Trained SiuCloud AI (Copilot / Sonnet 5)</td>
               </tr>
               <tr style="border-bottom: 1px solid var(--border);">
-                <td style="padding: 10px 14px; font-weight: 600;">Expert Escalation</td>
-                <td style="padding: 10px 14px; color: var(--muted);">Manual Web Form</td>
-                <td style="padding: 10px 14px; color: var(--text); font-weight: 700;"><i class="fa-solid fa-bolt" style="color: var(--accent); margin-right: 6px;"></i> Auto-Escalation (SiuCloud Team &lt; 24 hrs)</td>
+                <td style="padding: 8px 12px; font-weight: 600;">Expert Escalation</td>
+                <td style="padding: 8px 12px; color: var(--muted);">Manual Web Form</td>
+                <td style="padding: 8px 12px; color: var(--text); font-weight: 700;"><i class="fa-solid fa-bolt" style="color: var(--accent); margin-right: 4px;"></i> Auto-Escalation (SiuCloud Team &lt; 24 hrs)</td>
               </tr>
               <tr style="border-bottom: 1px solid var(--border);">
-                <td style="padding: 10px 14px; font-weight: 600;">Cloud & FinOps Optimization</td>
-                <td style="padding: 10px 14px; color: var(--muted);">General Guidance</td>
-                <td style="padding: 10px 14px; color: var(--text); font-weight: 700;"><i class="fa-solid fa-check" style="color: var(--accent); margin-right: 6px;"></i> Custom Azure / AWS / GCP Spend Analysis</td>
+                <td style="padding: 8px 12px; font-weight: 600;">FinOps Optimization</td>
+                <td style="padding: 8px 12px; color: var(--muted);">General Guidance</td>
+                <td style="padding: 8px 12px; color: var(--text); font-weight: 700;"><i class="fa-solid fa-check" style="color: var(--accent); margin-right: 4px;"></i> Custom Azure / AWS / GCP Spend Analysis</td>
               </tr>
               <tr>
-                <td style="padding: 10px 14px; font-weight: 600;">Direct Escalation Channels</td>
-                <td style="padding: 10px 14px; color: var(--muted);">Standard Processing</td>
-                <td style="padding: 10px 14px; color: var(--text); font-weight: 700;"><i class="fa-solid fa-phone" style="color: var(--accent); margin-right: 6px;"></i> Priority Line (305-440-9192 / info@helpdesk.miami)</td>
+                <td style="padding: 8px 12px; font-weight: 600;">Escalation Channels</td>
+                <td style="padding: 8px 12px; color: var(--muted);">Standard Processing</td>
+                <td style="padding: 8px 12px; color: var(--text); font-weight: 700;"><i class="fa-solid fa-phone" style="color: var(--accent); margin-right: 4px;"></i> Priority Line (305-440-9192 / Email)</td>
               </tr>
             </tbody>
           </table>
