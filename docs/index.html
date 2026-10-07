@@ -223,6 +223,26 @@
       color:var(--text);
       font-weight:700;
     }
+
+    /* Pulsing Glow Animation for Consultation Button */
+    .btn-pulse {
+      animation: pulseGlow 2s infinite;
+      box-shadow: 0 0 0 0 rgba(0, 194, 168, 0.7);
+    }
+    @keyframes pulseGlow {
+      0% {
+        transform: scale(1);
+        box-shadow: 0 0 0 0 rgba(0, 194, 168, 0.7);
+      }
+      50% {
+        transform: scale(1.04);
+        box-shadow: 0 0 20px 8px rgba(0, 194, 168, 0.45);
+      }
+      100% {
+        transform: scale(1);
+        box-shadow: 0 0 0 0 rgba(0, 194, 168, 0);
+      }
+    }
  
     /* User info */
     #user-info{
@@ -647,45 +667,45 @@
     <!-- Dual-AI Showcase & Member Benefits Section -->
     <section id="ai-ecosystem" class="snap-section section-soft">
       <div class="container">
-        <div style="text-align: center; margin-bottom: 30px;">
-          <div class="eyebrow">Next-Gen SMB AI Platform</div>
-          <h2 style="font-size: clamp(1.8rem, 3vw, 2.5rem); margin: 6px 0 10px;">Dual-AI Architectural Ecosystem</h2>
-          <p style="color: var(--muted); max-width: 720px; margin: 0 auto; font-size: 1rem;">
-            We separate public cloud guidance from private, deep-dive enterprise support to deliver instant answers to visitors while keeping internal operational data strictly isolated.
+        <div style="text-align: center; margin-bottom: 24px;">
+          <div class="eyebrow">NEXT-GEN SMB AI PLATFORM</div>
+          <h2 style="font-size: clamp(1.8rem, 3vw, 2.5rem); margin: 6px 0 8px;">Dual-AI Architectural Ecosystem</h2>
+          <p style="color: var(--muted); max-width: 680px; margin: 0 auto; font-size: 0.95rem;">
+            Instant basic cloud answers for guests, backed by custom-trained AI and guaranteed engineering escalation for members.
           </p>
         </div>
 
-        <!-- Dual AI Feature Cards -->
-        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; margin-bottom: 30px;">
+        <!-- Compact Dual AI Feature Cards -->
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 18px; margin-bottom: 24px;">
           
           <!-- Public AI Card -->
-          <div style="background: var(--panel); border: 1px solid var(--border); border-top: 4px solid var(--accent); padding: 22px; border-radius: var(--radius); box-shadow: var(--shadow);">
-            <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 12px;">
-              <h3 style="margin: 0; font-size: 1.2rem; color: #fff;"><i class="fa-solid fa-sparkles" style="color: var(--accent); margin-right: 8px;"></i> Public AI Assistant</h3>
-              <span style="font-size: 0.7rem; background: rgba(0,194,168,0.15); color: var(--accent); padding: 3px 8px; border-radius: 999px; font-weight: 700;">GUEST ACCESS</span>
+          <div style="background: var(--panel); border: 1px solid var(--border); border-top: 4px solid #93a1ad; padding: 20px; border-radius: var(--radius); box-shadow: var(--shadow);">
+            <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 10px;">
+              <h3 style="margin: 0; font-size: 1.15rem; color: #fff;"><i class="fa-solid fa-sparkles" style="color: #93a1ad; margin-right: 6px;"></i> Public AI Assistant</h3>
+              <span style="font-size: 0.68rem; background: rgba(147, 161, 173, 0.15); color: #93a1ad; padding: 3px 8px; border-radius: 999px; font-weight: 700;">BASIC / GUEST</span>
             </div>
-            <p style="color: var(--muted); font-size: 0.9rem; margin-bottom: 12px; line-height: 1.5;">
-              Available to all public site visitors 24/7. Powered by Google Gemini 3.8 Flash for instant cloud strategy guidance without sign-in.
+            <p style="color: var(--muted); font-size: 0.88rem; margin-bottom: 10px; line-height: 1.4;">
+              <strong>Limited & Untrained:</strong> For quick general questions and basic site information.
             </p>
-            <ul style="color: var(--text); padding-left: 18px; font-size: 0.85rem; line-height: 1.7; margin: 0;">
-              <li>Zero sign-in or account setup required</li>
-              <li>Instant FinOps & multi-cloud general advisory</li>
-              <li>Automated Consultation Intake Form integration</li>
+            <ul style="color: var(--text); padding-left: 18px; font-size: 0.85rem; line-height: 1.6; margin: 0;">
+              <li>No sign-in required</li>
+              <li>Standard usage limits</li>
+              <li>Basic cloud FAQ guidance</li>
             </ul>
           </div>
 
           <!-- Private Member AI Card -->
-          <div style="background: var(--panel); border: 1px solid var(--border); border-top: 4px solid #0078d4; padding: 22px; border-radius: var(--radius); box-shadow: var(--shadow);">
-            <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 12px;">
-              <h3 style="margin: 0; font-size: 1.2rem; color: #fff;"><i class="fa-solid fa-robot" style="color: #0078d4; margin-right: 8px;"></i> SiuCloud AI (Private)</h3>
-              <span style="font-size: 0.7rem; background: rgba(0,120,212,0.2); color: #60a5fa; padding: 3px 8px; border-radius: 999px; font-weight: 700;">MEMBERS ONLY</span>
+          <div style="background: var(--panel); border: 1px solid var(--border); border-top: 4px solid var(--accent); padding: 20px; border-radius: var(--radius); box-shadow: var(--shadow);">
+            <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 10px;">
+              <h3 style="margin: 0; font-size: 1.15rem; color: #fff;"><i class="fa-solid fa-robot" style="color: var(--accent); margin-right: 6px;"></i> SiuCloud AI (Private)</h3>
+              <span style="font-size: 0.68rem; background: rgba(0, 194, 168, 0.2); color: var(--accent); padding: 3px 8px; border-radius: 999px; font-weight: 700;">MEMBERS ONLY</span>
             </div>
-            <p style="color: var(--muted); font-size: 0.9rem; margin-bottom: 12px; line-height: 1.5;">
-              Enterprise Copilot Studio agent grounded in Dataverse and Claude Sonnet 5. Gated behind Entra ID SSO for verified HelpDesk.miami members.
+            <p style="color: var(--muted); font-size: 0.88rem; margin-bottom: 10px; line-height: 1.4;">
+              <strong>Custom-Trained & Automated:</strong> Grounded in Dataverse & Claude Sonnet 5 for deep support.
             </p>
-            <ul style="color: var(--text); padding-left: 18px; font-size: 0.85rem; line-height: 1.7; margin: 0;">
-              <li>Priority 24/7 Deep Technical Helpdesk Advisory</li>
-              <li>Custom Power Automate workflows & Dataverse grounding</li>
+            <ul style="color: var(--text); padding-left: 18px; font-size: 0.85rem; line-height: 1.6; margin: 0;">
+              <li><strong>Automated Team Escalation:</strong> Direct dispatch to our SiuCloud Team</li>
+              <li><strong>24-Hour Response Guarantee:</strong> Expert engineer follow-up</li>
               <li>Dedicated tenant capacity pack with zero wait time</li>
             </ul>
           </div>
@@ -693,45 +713,39 @@
         </div>
 
         <!-- Membership Comparison Table -->
-        <div style="text-align: center; margin-bottom: 16px;">
-          <h3 style="font-size: 1.35rem; margin: 0 0 6px;">SiuCloud Support Membership Perks</h3>
-          <p style="color: var(--muted); font-size: 0.9rem; margin: 0;">Compare guest browsing features against active SMB support membership benefits.</p>
+        <div style="text-align: center; margin-bottom: 12px;">
+          <h3 style="font-size: 1.25rem; margin: 0 0 4px;">SiuCloud Support Membership Perks</h3>
         </div>
 
         <div style="overflow-x: auto; background: var(--panel); border: 1px solid var(--border); border-radius: var(--radius); box-shadow: var(--shadow);">
-          <table style="width: 100%; border-collapse: collapse; text-align: left; font-size: 0.9rem;">
+          <table style="width: 100%; border-collapse: collapse; text-align: left; font-size: 0.88rem;">
             <thead>
               <tr style="border-bottom: 1px solid var(--border); background: rgba(255,255,255,0.03);">
-                <th style="padding: 12px 16px; color: var(--text);">Support & Architecture Capability</th>
-                <th style="padding: 12px 16px; color: var(--muted); width: 25%;">Guest Visitor</th>
-                <th style="padding: 12px 16px; color: var(--accent); width: 35%; font-weight: 800;">SiuCloud Support Member</th>
+                <th style="padding: 10px 14px; color: var(--text);">Feature</th>
+                <th style="padding: 10px 14px; color: var(--muted); width: 30%;">Guest Visitor</th>
+                <th style="padding: 10px 14px; color: var(--accent); width: 40%; font-weight: 800;">SiuCloud Member</th>
               </tr>
             </thead>
             <tbody>
               <tr style="border-bottom: 1px solid var(--border);">
-                <td style="padding: 12px 16px; font-weight: 600;">AI Engine Access</td>
-                <td style="padding: 12px 16px; color: var(--muted);">Public AI (Standard Quota)</td>
-                <td style="padding: 12px 16px; color: var(--text); font-weight: 700;"><i class="fa-solid fa-check" style="color: var(--accent); margin-right: 6px;"></i> Private SiuCloud AI (Copilot / Sonnet 5)</td>
+                <td style="padding: 10px 14px; font-weight: 600;">AI Engine</td>
+                <td style="padding: 10px 14px; color: var(--muted);">Public AI (Limited)</td>
+                <td style="padding: 10px 14px; color: var(--text); font-weight: 700;"><i class="fa-solid fa-check" style="color: var(--accent); margin-right: 6px;"></i> Trained SiuCloud AI (Copilot / Sonnet 5)</td>
               </tr>
               <tr style="border-bottom: 1px solid var(--border);">
-                <td style="padding: 12px 16px; font-weight: 600;">Cloud Cost Optimization (FinOps)</td>
-                <td style="padding: 12px 16px; color: var(--muted);">General Guidance</td>
-                <td style="padding: 12px 16px; color: var(--text); font-weight: 700;"><i class="fa-solid fa-check" style="color: var(--accent); margin-right: 6px;"></i> Custom Azure / AWS / GCP Spend Analysis</td>
+                <td style="padding: 10px 14px; font-weight: 600;">Expert Escalation</td>
+                <td style="padding: 10px 14px; color: var(--muted);">Manual Web Form</td>
+                <td style="padding: 10px 14px; color: var(--text); font-weight: 700;"><i class="fa-solid fa-bolt" style="color: var(--accent); margin-right: 6px;"></i> Auto-Escalation (SiuCloud Team &lt; 24 hrs)</td>
               </tr>
               <tr style="border-bottom: 1px solid var(--border);">
-                <td style="padding: 12px 16px; font-weight: 600;">Identity & Security Governance</td>
-                <td style="padding: 12px 16px; color: var(--muted);">Basic Information</td>
-                <td style="padding: 12px 16px; color: var(--text); font-weight: 700;"><i class="fa-solid fa-check" style="color: var(--accent); margin-right: 6px;"></i> M365, Entra ID P2 & Security Policy Tuning</td>
-              </tr>
-              <tr style="border-bottom: 1px solid var(--border);">
-                <td style="padding: 12px 16px; font-weight: 600;">Direct Escalation Channels</td>
-                <td style="padding: 12px 16px; color: var(--muted);">Web Form Submission</td>
-                <td style="padding: 12px 16px; color: var(--text); font-weight: 700;"><i class="fa-solid fa-check" style="color: var(--accent); margin-right: 6px;"></i> Priority Line (305-440-9192 / info@helpdesk.miami)</td>
+                <td style="padding: 10px 14px; font-weight: 600;">Cloud & FinOps Optimization</td>
+                <td style="padding: 10px 14px; color: var(--muted);">General Guidance</td>
+                <td style="padding: 10px 14px; color: var(--text); font-weight: 700;"><i class="fa-solid fa-check" style="color: var(--accent); margin-right: 6px;"></i> Custom Azure / AWS / GCP Spend Analysis</td>
               </tr>
               <tr>
-                <td style="padding: 12px 16px; font-weight: 600;">Identity Authentication</td>
-                <td style="padding: 12px 16px; color: var(--muted);">Unauthenticated Access</td>
-                <td style="padding: 12px 16px; color: var(--text); font-weight: 700;"><i class="fa-solid fa-lock" style="color: var(--accent); margin-right: 6px;"></i> Microsoft Entra ID Single Sign-On</td>
+                <td style="padding: 10px 14px; font-weight: 600;">Direct Escalation Channels</td>
+                <td style="padding: 10px 14px; color: var(--muted);">Standard Processing</td>
+                <td style="padding: 10px 14px; color: var(--text); font-weight: 700;"><i class="fa-solid fa-phone" style="color: var(--accent); margin-right: 6px;"></i> Priority Line (305-440-9192 / info@helpdesk.miami)</td>
               </tr>
             </tbody>
           </table>
@@ -751,8 +765,8 @@
             <span style="--i:5">cloud?</span>
           </h3>
           <p id="cta-subtext">
-            <strong>For Members:</strong> Sign in securely using Microsoft Entra ID to access your Siucloud dashboard. Consult our private Siucloud AI chatbot widget for instant, intelligent support.<br /><br />
-            <strong>For New Clients:</strong> Partner with our professional support team to transform your infrastructure.
+            <strong>For Members:</strong> Sign in securely via Entra ID to unlock private Siucloud AI support.<br />
+            <strong>For New Clients:</strong> Partner with our professional support team for instant cloud advisory.
           </p>
  
           <div class="cta-actions">
@@ -760,9 +774,11 @@
               <i class="fa-brands fa-microsoft" aria-hidden="true"></i>
               <span>Sign In via Entra ID</span>
             </button>
-            <button class="btn" type="button" onclick="openConsultationModal()">
+            
+            <!-- Animated Pulsing Free Schedule Consultation Button -->
+            <button class="btn btn-pulse" type="button" onclick="openConsultationModal()">
               <i class="fa-solid fa-calendar-check" aria-hidden="true"></i>
-              <span>Schedule Consultation</span>
+              <span>Free Schedule Consultation</span>
             </button>
           </div>
         </div>
