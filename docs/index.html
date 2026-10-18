@@ -840,11 +840,11 @@
 
     <!-- Dual-AI Showcase & Member Benefits Section -->
     <section id="ai-ecosystem" class="snap-section section-soft">
-      <div class="container">
-        <div style="text-align: center; margin-bottom: 16px;">
+      <div class="container" style="max-width: 960px;">
+        <div style="text-align: center; margin-bottom: 12px;">
           <div class="eyebrow">NEXT-GEN SMB AI PLATFORM</div>
           
-          <h2 class="animate-title" style="font-size: clamp(1.3rem, 2.5vw, 1.8rem); margin: 2px 0 0; font-weight: 800; line-height: 1.2;">
+          <h2 class="animate-title" style="font-size: clamp(1.2rem, 2.2vw, 1.6rem); margin: 2px 0 0; font-weight: 800; line-height: 1.2;">
             <span style="--i:1">Dual-AI</span>
             <span style="--i:2">Architectural</span>
             <span style="--i:3">Ecosystem</span>
@@ -852,68 +852,74 @@
         </div>
 
         <!-- Mobile-Optimized Dual Cards -->
-        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 14px; margin-bottom: 16px;">
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 12px; margin-bottom: 14px;">
           
           <!-- Public AI Card -->
-          <div style="background: var(--panel); border: 1px solid var(--border); border-top: 4px solid #93a1ad; padding: 16px; border-radius: var(--radius); box-shadow: var(--shadow);">
-            <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 8px;">
-              <h3 style="margin: 0; font-size: 1.05rem; color: #fff;"><i class="fa-solid fa-sparkles" style="color: #93a1ad; margin-right: 6px;"></i> Public AI Assistant</h3>
+          <div style="background: var(--panel); border: 1px solid var(--border); border-top: 4px solid #93a1ad; padding: 12px 14px; border-radius: var(--radius); box-shadow: var(--shadow);">
+            <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 4px;">
+              <h3 style="margin: 0; font-size: 0.95rem; color: #fff;"><i class="fa-solid fa-sparkles" style="color: #93a1ad; margin-right: 6px;"></i> Public AI Assistant</h3>
               
               <button class="badge-btn" onclick="openConsultationModal()" style="background: rgba(147, 161, 173, 0.15); color: #93a1ad;">
                 BASIC / GUEST
               </button>
             </div>
-            <p style="color: var(--muted); font-size: 0.82rem; margin-bottom: 8px; line-height: 1.4;">
-              <strong>Limited & Untrained:</strong> For quick general questions and basic site information.
+            <p style="color: var(--muted); font-size: 0.78rem; margin-bottom: 6px; line-height: 1.35;">
+              <strong>Limited & Untrained:</strong> Quick general cloud FAQ guidance.
             </p>
-            <ul style="color: var(--text); padding-left: 16px; font-size: 0.8rem; line-height: 1.5; margin: 0;">
+            <ul style="color: var(--text); padding-left: 16px; font-size: 0.75rem; line-height: 1.4; margin: 0;">
               <li>No sign-in required</li>
               <li>Standard usage limits</li>
-              <li>Basic cloud FAQ guidance</li>
             </ul>
           </div>
 
           <!-- Private Member AI Card -->
-          <div style="background: var(--panel); border: 1px solid var(--border); border-top: 4px solid var(--accent); padding: 16px; border-radius: var(--radius); box-shadow: var(--shadow);">
-            <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 8px;">
-              <h3 style="margin: 0; font-size: 1.05rem; color: #fff;"><i class="fa-solid fa-robot" style="color: var(--accent); margin-right: 6px;"></i> SiuCloud AI (Private)</h3>
+          <div style="background: var(--panel); border: 1px solid var(--border); border-top: 4px solid var(--accent); padding: 12px 14px; border-radius: var(--radius); box-shadow: var(--shadow);">
+            <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 4px;">
+              <h3 style="margin: 0; font-size: 0.95rem; color: #fff;"><i class="fa-solid fa-robot" style="color: var(--accent); margin-right: 6px;"></i> SiuCloud AI (Private)</h3>
               
               <button class="badge-btn" onclick="handleSignIn()" style="background: rgba(0, 194, 168, 0.2); color: var(--accent);">
                 MEMBERS ONLY
               </button>
             </div>
-            <p style="color: var(--muted); font-size: 0.82rem; margin-bottom: 8px; line-height: 1.4;">
-              <strong>Custom-Trained & Automated:</strong> Grounded in Dataverse & Claude Sonnet 5 for deep support.
+            <p style="color: var(--muted); font-size: 0.78rem; margin-bottom: 6px; line-height: 1.35;">
+              <strong>Custom-Trained & Automated:</strong> Grounded in Dataverse & Claude Sonnet 5.
             </p>
-            <ul style="color: var(--text); padding-left: 16px; font-size: 0.8rem; line-height: 1.5; margin: 0;">
-              <li><strong>Automated Team Escalation:</strong> Direct dispatch to our SiuCloud Team</li>
+            <ul style="color: var(--text); padding-left: 16px; font-size: 0.75rem; line-height: 1.4; margin: 0;">
+              <li><strong>Automated Team Escalation:</strong> Direct dispatch to SiuCloud Team</li>
               <li><strong>24-Hour Response Guarantee:</strong> Expert engineer follow-up</li>
-              <li>Dedicated tenant capacity pack with zero wait time</li>
             </ul>
           </div>
 
         </div>
 
-        <!-- Fully Responsive Fluid Video Showcase Container (16:9 Aspect Ratio Fitted) -->
-        <div style="background: var(--panel); border: 1px solid var(--border); border-top: 3px solid var(--accent); border-radius: var(--radius); box-shadow: var(--shadow); padding: 16px;">
-          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; flex-wrap: wrap; gap: 6px;">
-            <h3 style="margin: 0; font-size: 1rem; color: var(--text); font-weight: 800;">
+        <!-- Seamless Video Bridge Card Connecting into 'Become a Member' -->
+        <div style="background: var(--panel); border: 1px solid var(--border); border-top: 3px solid var(--accent); border-radius: var(--radius); box-shadow: var(--shadow); padding: 12px; max-width: 820px; margin-inline: auto;">
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; flex-wrap: wrap; gap: 6px;">
+            <h3 style="margin: 0; font-size: 0.9rem; color: var(--text); font-weight: 800;">
               <i class="fa-solid fa-circle-play" style="color: var(--accent); margin-right: 6px;"></i>
               How Members Interact with SiuCloud AI & Escalations
             </h3>
-            <span style="font-size: 0.7rem; background: rgba(0, 194, 168, 0.15); color: var(--accent); padding: 3px 10px; border-radius: 999px; font-weight: 700; border: 1px solid var(--accent);">
-              MEMBER WALKTHROUGH VIDEO
+            <span style="font-size: 0.65rem; background: rgba(0, 194, 168, 0.15); color: var(--accent); padding: 2px 8px; border-radius: 999px; font-weight: 700; border: 1px solid var(--accent);">
+              MEMBER WALKTHROUGH
             </span>
           </div>
           
-          <!-- Cloudflare Stream Video Player with Edge-to-Edge Fluid Aspect Ratio -->
-          <div style="position: relative; width: 100%; aspect-ratio: 16 / 9; border-radius: 10px; overflow: hidden; border: 1px solid var(--border); background: #000;">
+          <!-- Cloudflare Stream Video Player with Edge-to-Edge Fluid 16:9 Aspect Ratio -->
+          <div style="position: relative; width: 100%; aspect-ratio: 16 / 9; border-radius: 8px; overflow: hidden; border: 1px solid var(--border); background: #000;">
             <iframe
               src="https://iframe.videodelivery.net/67b27f721f1df3de5866ae59017e661c?autoplay=true&muted=true"
               style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none;"
               allow="accelerometer; gyroscope; autoplay; encrypted-media; picture-in-picture;"
               allowfullscreen="true">
             </iframe>
+          </div>
+
+          <!-- Visual Bridge Bar to Next Section -->
+          <div style="margin-top: 10px; text-align: center; display: flex; align-items: center; justify-content: center; gap: 8px; font-size: 0.8rem; color: var(--muted);">
+            <span>Ready to activate your private agent?</span>
+            <a href="#ready" style="color: var(--accent); font-weight: 700; text-decoration: none; display: inline-flex; align-items: center; gap: 4px;">
+              Become a Member <i class="fa-solid fa-arrow-down" style="font-size: 0.7rem;"></i>
+            </a>
           </div>
         </div>
 
