@@ -460,6 +460,68 @@
       100% { box-shadow: 0 0 0 0 rgba(0, 194, 168, 0); }
     }
 
+    /* Wide Member Video Showcase Card */
+    .member-video-card {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-top: 4px solid var(--accent);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 24px;
+      margin-bottom: 24px;
+    }
+
+    .member-video-container {
+      position: relative;
+      width: 100%;
+      padding-top: 56.25%; /* 16:9 Aspect Ratio */
+      border-radius: 12px;
+      overflow: hidden;
+      border: 1px solid var(--border);
+      background: #000;
+    }
+
+    .member-video-container iframe {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      border: none;
+    }
+
+    .member-steps-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 16px;
+      margin-top: 20px;
+    }
+
+    .step-box {
+      background: rgba(255, 255, 255, 0.02);
+      border: 1px solid var(--border);
+      padding: 14px 16px;
+      border-radius: 10px;
+      display: flex;
+      gap: 12px;
+      align-items: flex-start;
+    }
+
+    .step-num {
+      background: rgba(0, 194, 168, 0.15);
+      color: var(--accent);
+      font-weight: 800;
+      font-size: 0.9rem;
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      border: 1px solid var(--accent);
+    }
+
     /* CTA Box / Ready Section */
     .cta{ text-align:center; }
     .cta-box{
@@ -821,7 +883,7 @@
                 </div>
               </div>
 
-              <!-- BACK SIDE (Cloudflare Stream Video Player with New Video ID) -->
+              <!-- BACK SIDE (Cloudflare Stream Video Player) -->
               <div class="flip-card-back">
                 <iframe
                   src="https://iframe.videodelivery.net/f563f32eeb76a2b85cf56eaeb7a1385a?autoplay=true&muted=true"
@@ -844,7 +906,6 @@
         <div style="text-align: center; margin-bottom: 18px;">
           <div class="eyebrow">NEXT-GEN SMB AI PLATFORM</div>
           
-          <!-- Reduced Title Size to Fit Cellphone Displays Seamlessly -->
           <h2 class="animate-title" style="font-size: clamp(1.3rem, 2.5vw, 1.8rem); margin: 4px 0 0; font-weight: 800; line-height: 1.2;">
             <span style="--i:1">Dual-AI</span>
             <span style="--i:2">Architectural</span>
@@ -860,7 +921,6 @@
             <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 8px;">
               <h3 style="margin: 0; font-size: 1.05rem; color: #fff;"><i class="fa-solid fa-sparkles" style="color: #93a1ad; margin-right: 6px;"></i> Public AI Assistant</h3>
               
-              <!-- Clickable Badge: Triggers Free Schedule Consultation Form -->
               <button class="badge-btn" onclick="openConsultationModal()" style="background: rgba(147, 161, 173, 0.15); color: #93a1ad;">
                 BASIC / GUEST
               </button>
@@ -880,7 +940,6 @@
             <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 8px;">
               <h3 style="margin: 0; font-size: 1.05rem; color: #fff;"><i class="fa-solid fa-robot" style="color: var(--accent); margin-right: 6px;"></i> SiuCloud AI (Private)</h3>
               
-              <!-- Clickable Badge: Triggers Entra ID Sign-In -->
               <button class="badge-btn" onclick="handleSignIn()" style="background: rgba(0, 194, 168, 0.2); color: var(--accent);">
                 MEMBERS ONLY
               </button>
@@ -897,7 +956,56 @@
 
         </div>
 
-        <!-- Membership Comparison Table Heading (Animated Word Color Pulse) -->
+        <!-- NEW: Wide Member Interactive Video Overview Showcase -->
+        <div class="member-video-card">
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; flex-wrap: wrap; gap: 8px;">
+            <h3 style="margin: 0; font-size: 1.2rem; color: var(--text); font-weight: 800;">
+              <i class="fa-solid fa-circle-play" style="color: var(--accent); margin-right: 8px;"></i>
+              How Members Interact with SiuCloud AI & Escalations
+            </h3>
+            <span style="font-size: 0.75rem; background: rgba(0, 194, 168, 0.15); color: var(--accent); padding: 4px 10px; border-radius: 999px; font-weight: 700; border: 1px solid var(--accent);">
+              MEMBER WALKTHROUGH VIDEO
+            </span>
+          </div>
+          
+          <!-- Cloudflare Stream Video Player with Video ID: 67b27f721f1df3de5866ae59017e661c -->
+          <div class="member-video-container">
+            <iframe
+              src="https://iframe.videodelivery.net/67b27f721f1df3de5866ae59017e661c?autoplay=true&muted=true"
+              allow="accelerometer; gyroscope; autoplay; encrypted-media; picture-in-picture;"
+              allowfullscreen="true">
+            </iframe>
+          </div>
+
+          <!-- 3-Step Walkthrough Breakdown -->
+          <div class="member-steps-grid">
+            <div class="step-box">
+              <div class="step-num">1</div>
+              <div style="font-size: 0.8rem; line-height: 1.4;">
+                <strong style="color: var(--accent); display: block; margin-bottom: 2px;">Entra ID Verification</strong>
+                Sign in securely with your <code>@helpdesk.miami</code> directory account to unlock the Private Agent.
+              </div>
+            </div>
+
+            <div class="step-box">
+              <div class="step-num">2</div>
+              <div style="font-size: 0.8rem; line-height: 1.4;">
+                <strong style="color: var(--accent); display: block; margin-bottom: 2px;">Dataverse Triage</strong>
+                Get instant, grounded answers across AWS, Azure, GCP, and custom operational runbooks.
+              </div>
+            </div>
+
+            <div class="step-box">
+              <div class="step-num">3</div>
+              <div style="font-size: 0.8rem; line-height: 1.4;">
+                <strong style="color: var(--accent); display: block; margin-bottom: 2px;">24-Hr SLA Escalation</strong>
+                Trigger Power Automate dispatches to schedule a joint SWOT / Triage meeting with senior cloud engineers.
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Membership Comparison Table Heading -->
         <div style="text-align: center; margin-bottom: 10px;">
           <h3 class="animate-title" style="font-size: 1.15rem; margin: 0;">
             <span style="--i:1">SiuCloud</span>
