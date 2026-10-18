@@ -340,6 +340,7 @@
       grid-template-columns: repeat(3, minmax(0, 1fr));
       gap:24px;
       margin-top:18px;
+      align-items: stretch;
     }
     @media (max-width: 900px){ .services-grid{grid-template-columns:1fr} }
     
@@ -350,6 +351,9 @@
       border: 1px solid var(--border);
       box-shadow: var(--shadow);
       text-align: left;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
     }
     
     .card-seq h4 {
@@ -363,12 +367,11 @@
     
     .card-seq p { margin: 0; color: var(--muted); line-height: 1.6; }
 
-    /* 3D Flip Card Styles */
+    /* 3D Flip Card Styles - Heights and Border Fix */
     .flip-card {
       background-color: transparent;
       width: 100%;
-      height: 100%;
-      min-height: 250px;
+      min-height: 290px;
       perspective: 1000px;
       cursor: pointer;
     }
@@ -400,12 +403,14 @@
     }
 
     .flip-card-front {
-      padding: 24px;
+      padding: 20px;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
       border: 1px solid rgba(0, 194, 168, 0.4);
       background: linear-gradient(180deg, rgba(255,255,255,0.03) 0%, rgba(0,194,168,0.05) 100%);
+      box-sizing: border-box;
+      overflow: hidden;
     }
 
     .flip-card-back {
@@ -414,44 +419,46 @@
       background: #000;
     }
 
-    /* Prominent Call-to-Action Demo Button */
+    /* Prominent Call-to-Action Demo Button (Pill Fit Inside Box) */
     .demo-cta-btn {
-      margin-top: 16px;
+      margin-top: 12px;
       display: flex;
       align-items: center;
       justify-content: center;
-      gap: 10px;
+      gap: 8px;
       background: rgba(0, 194, 168, 0.15);
       border: 1.5px solid var(--accent);
       color: #ffffff;
-      padding: 10px 16px;
+      padding: 8px 12px;
       border-radius: 999px;
-      font-size: 0.92rem;
+      font-size: 0.82rem;
       font-weight: 700;
-      letter-spacing: 0.3px;
+      letter-spacing: 0.2px;
       box-shadow: 0 0 15px rgba(0, 194, 168, 0.3);
       transition: all 0.3s ease;
       animation: playPulse 2.5s infinite;
+      white-space: nowrap;
     }
 
     .flip-card-front:hover .demo-cta-btn {
       background: var(--accent);
       color: #000000;
-      transform: scale(1.03);
-      box-shadow: 0 0 22px rgba(0, 194, 168, 0.6);
+      transform: scale(1.02);
+      box-shadow: 0 0 20px rgba(0, 194, 168, 0.6);
     }
 
     .play-icon-glow {
-      width: 24px;
-      height: 24px;
+      width: 22px;
+      height: 22px;
       background: var(--accent);
       color: #000;
       border-radius: 50%;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 0.75rem;
+      font-size: 0.7rem;
       padding-left: 2px;
+      flex-shrink: 0;
     }
 
     .flip-card-front:hover .play-icon-glow {
